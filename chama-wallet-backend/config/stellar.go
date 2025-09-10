@@ -93,3 +93,10 @@ func getEnvOrDefault(key, defaultValue string) string {
 	return defaultValue
 }
 
+// ValidateMainnetConfig ensures all required mainnet configuration is present
+func ValidateMainnetConfig() error {
+	if !Config.IsMainnet {
+		return nil // Skip validation for testnet
+	}
+
+	
