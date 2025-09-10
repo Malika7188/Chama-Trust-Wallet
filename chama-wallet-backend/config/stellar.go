@@ -115,3 +115,12 @@ func ValidateMainnetConfig() error {
 	return nil
 }
 
+// GetAssetInfo returns asset information for XLM and USDC
+func GetAssetInfo() map[string]map[string]string {
+	assets := map[string]map[string]string{
+		"XLM": {
+			"code":   "XLM",
+			"issuer": "native",
+			"type":   "native",
+		},
+	}
