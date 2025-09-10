@@ -54,4 +54,14 @@ func NominateAdmin(c *fiber.Ctx) error {
 		CreatedAt:   time.Now(),
 	}
 
+	if err := database.DB.Create(&nomination).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	// Check if nominee has 2 nominations, auto-approve as admin
+	var nominationCount int64
+	database.DB.Model(&models.AdminNomination{}).
+		Where("group_id = ? AND nominee_id = ? AND status = ?", groupID, payload.NomineeID, "pending").
+		Count(&nominationCount)
+
 	
