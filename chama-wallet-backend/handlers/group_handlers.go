@@ -114,4 +114,23 @@ func ContributeToGroup(c *fiber.Ctx) error {
 		UpdatedAt: time.Now(),
 	}
 
-	
+	if err := database.DB.Create(&contribution).Error; err != nil {
+		fmt.Printf("⚠️ Warning: Failed to record contribution in database: %v\n", err)
+		// Don't fail the request since blockchain transaction succeeded
+	}
+
+	fmt.Printf("✅ Contribution successful on %s: %s\n", config.Config.Network, output)
+
+	return c.JSON(fiber.Map{
+		"message":      "Contribution successful",
+		"group_id":     groupID,
+		"group_name":   group.Name,
+		"from":         payload.From,
+		"to":           group.Wallet,
+		"amount":       payload.Amount,
+		"tx_hash":      output,
+		"network":      config.Config.Network,
+		"contribution": contribution,
+	})
+}
+
