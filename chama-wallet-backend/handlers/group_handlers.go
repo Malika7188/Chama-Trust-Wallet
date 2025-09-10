@@ -156,4 +156,15 @@ func GetNonGroupMembers(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "Insufficient permissions"})
 	}
 
-	
+	// Get users who are not members of this group
+	var users []models.User
+	err := database.DB.
+		Where("id NOT IN (SELECT user_id FROM members WHERE group_id = ?)", groupID).
+		Find(&users).Error
+
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	return c.JSON(users)
+}
