@@ -341,3 +341,26 @@ func ActivateGroup(c *fiber.Ctx) error {
 		"current_round":        1,
 		"next_contribution_date": nextContributionDate,
 	}
+
+	if err := database.DB.Model(&group).Where("id = ?", groupID).Updates(updates).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	// Create payout schedule entries
+	var members []models.Member
+	database.DB.Where("group_id = ? AND status = ?", groupID, "approved").Find(&members)
+
+	totalPayout := payload.ContributionAmount * float64(len(members))
+	startDate := time.Now()
+
+	for i, memberID := range payload.PayoutOrder {
+		// Find the member
+		var member models.Member
+		for _, m := range members {
+			if m.UserID == memberID {
+				member = m
+				break
+			}
+		}
+		
+		
