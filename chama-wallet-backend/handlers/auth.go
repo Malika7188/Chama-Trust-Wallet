@@ -88,4 +88,15 @@ func GetProfile(c *fiber.Ctx) error {
 		})
 	}
 
-	
+	return c.JSON(fiber.Map{
+		"user": fiber.Map{
+			"id":         user.ID,
+			"name":       user.Name,
+			"email":      user.Email,
+			"wallet":     user.Wallet,
+			"secret_key": user.SecretKey, // Add this to show user their secret key
+			"created_at": user.CreatedAt,
+		},
+	})
+}
+
