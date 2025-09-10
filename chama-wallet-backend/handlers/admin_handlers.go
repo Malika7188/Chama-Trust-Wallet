@@ -119,4 +119,20 @@ func ApproveMember(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
 	}
 
+	// Send notification to member
+	var member models.Member
+	database.DB.Where("id = ?", payload.MemberID).Preload("User").First(&member)
+
+	notificationType := "membership_approved"
+	title := "Membership Approved"
+	message := "Your group membership has been approved"
+
+	if status == "rejected" {
+		notificationType = "membership_rejected"
+		title = "Membership Rejected"
+		message = "Your group membership has been rejected"
+	}
+
+	services.CreateNotification(member.UserID, groupID, notificationType, title, message)
+
 	
