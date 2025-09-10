@@ -467,4 +467,22 @@ func GetPayoutSchedule(c *fiber.Ctx) error {
 	groupID := c.Params("id")
 	user := c.Locals("user").(models.User)
 
-	
+	// Check if user is member of the group
+	var member models.Member
+	if err := database.DB.Where("group_id = ? AND user_id = ? AND status = ?",
+		groupID, user.ID, "approved").First(&member).Error; err != nil {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "Not a group member"})
+	}
+
+	var schedules []models.PayoutSchedule
+	err := database.DB.Where("group_id = ?", groupID).
+		Preload("Member.User").
+		Order("round ASC").
+		Find(&schedules).Error
+
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	return c.JSON(schedules)
+}
