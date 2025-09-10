@@ -388,3 +388,10 @@ func ActivateGroup(c *fiber.Ctx) error {
 	return c.JSON(fiber.Map{"message": "Group activated successfully"})
 }
 
+// Helper function to parse float64 safely
+func parseFloat64(s string) float64 {
+	if val, err := strconv.ParseFloat(s, 64); err == nil {
+		return val
+	}
+	return 0.0
+}
