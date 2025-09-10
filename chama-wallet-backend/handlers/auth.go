@@ -50,3 +50,11 @@ func Register(c *fiber.Ctx) error {
 	})
 }
 
+// Login handles user authentication
+func Login(c *fiber.Ctx) error {
+	var req models.LoginRequest
+	if err := c.BodyParser(&req); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Invalid request body",
+		})
+	}
