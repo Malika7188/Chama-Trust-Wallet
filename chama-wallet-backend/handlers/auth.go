@@ -134,4 +134,14 @@ func UpdateProfile(c *fiber.Ctx) error {
 		})
 	}
 
-	
+	return c.JSON(fiber.Map{
+		"user": user,
+	})
+}
+
+// Logout handles user logout (client-side token removal)
+func Logout(c *fiber.Ctx) error {
+	return c.JSON(fiber.Map{
+		"message": "Logged out successfully",
+	})
+}
