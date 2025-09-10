@@ -144,3 +144,16 @@ func GetUserGroups(c *fiber.Ctx) error {
 
 	return c.JSON(groups)
 }
+
+func GetNonGroupMembers(c *fiber.Ctx) error {
+	groupID := c.Params("id")
+	user := c.Locals("user").(models.User)
+
+	// Check if user is admin/creator of the group
+	var admin models.Member
+	if err := database.DB.Where("group_id = ? AND user_id = ? AND role IN ?", 
+		groupID, user.ID, []string{"creator", "admin"}).First(&admin).Error; err != nil {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "Insufficient permissions"})
+	}
+
+	
