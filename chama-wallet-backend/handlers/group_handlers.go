@@ -296,4 +296,29 @@ func ActivateGroup(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid body"})
 	}
 
+	// Debug logging
+	fmt.Printf("Received payout order: %+v\n", payload.PayoutOrder)
+
+	// Check if user is admin/creator
+	var admin models.Member
+	if err := database.DB.Where("group_id = ? AND user_id = ? AND role IN ?",
+		groupID, user.ID, []string{"creator", "admin"}).First(&admin).Error; err != nil {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "Only admins can activate groups"})
+	}
+
+	// Check if group is approved
+	var group models.Group
+	if err := database.DB.First(&group, "id = ?", groupID).Error; err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "Group not found"})
+	}
+
+	if !group.IsApproved {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Group must be approved before activation"})
+	}
+
+	// Validate payout order
+	if len(payload.PayoutOrder) == 0 {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Payout order cannot be empty"})
+	}
+
 	
