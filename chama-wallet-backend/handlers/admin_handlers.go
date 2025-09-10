@@ -88,3 +88,17 @@ func NominateAdmin(c *fiber.Ctx) error {
 	return c.JSON(fiber.Map{"message": "Nomination submitted successfully"})
 }
 
+func ApproveMember(c *fiber.Ctx) error {
+	groupID := c.Params("id")
+	user := c.Locals("user").(models.User)
+
+	var payload struct {
+		MemberID string `json:"member_id"`
+		Action   string `json:"action"` // approve or reject
+	}
+
+	if err := c.BodyParser(&payload); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid body"})
+	}
+
+	
