@@ -65,3 +65,15 @@ func Login(c *fiber.Ctx) error {
 			"error": "Email and password are required",
 		})
 	}
+
+	// Login user
+	authResponse, err := services.LoginUser(req)
+	if err != nil {
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+			"error": err.Error(),
+		})
+	}
+
+	return c.JSON(authResponse)
+}
+
