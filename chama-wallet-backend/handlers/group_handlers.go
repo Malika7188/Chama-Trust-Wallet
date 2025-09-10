@@ -93,4 +93,25 @@ func ContributeToGroup(c *fiber.Ctx) error {
 	fmt.Printf("🔄 Processing contribution: %s XLM from %s to group %s (contract: %s) on %s\n", 
 		payload.Amount, payload.From, group.Name, group.ContractID, config.Config.Network)
 
+	// Make authenticated Soroban contract call
+	output, err := services.ContributeWithAuth(group.ContractID, payload.From, payload.Amount, payload.Secret)
+	if err != nil {
+		fmt.Printf("❌ Soroban contribution failed: %v\n", err)
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": fmt.Sprintf("Blockchain transaction failed: %v", err),
+		})
+	}
+
+	// Record the contribution in the database
+	contribution := models.Contribution{
+		ID:        uuid.NewString(),
+		GroupID:   groupID,
+		UserID:    user.ID,
+		Amount:    parseFloat64(payload.Amount),
+		Status:    "confirmed",
+		TxHash:    output,
+		CreatedAt: time.Now(),
+		UpdatedAt: time.Now(),
+	}
+
 	
