@@ -124,3 +124,14 @@ func GetAssetInfo() map[string]map[string]string {
 			"type":   "native",
 		},
 	}
+
+	if Config.IsMainnet && Config.USDCAssetCode != "" && Config.USDCAssetIssuer != "" {
+		assets["USDC"] = map[string]string{
+			"code":   Config.USDCAssetCode,
+			"issuer": Config.USDCAssetIssuer,
+			"type":   "credit_alphanum4",
+		}
+	}
+
+	return assets
+}
