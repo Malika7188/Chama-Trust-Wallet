@@ -101,4 +101,22 @@ func ApproveMember(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid body"})
 	}
 
+	// Check if user is admin/creator
+	var admin models.Member
+	if err := database.DB.Where("group_id = ? AND user_id = ? AND role IN ?",
+		groupID, user.ID, []string{"creator", "admin"}).First(&admin).Error; err != nil {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "Insufficient permissions"})
+	}
+
+	status := "approved"
+	if payload.Action == "reject" {
+		status = "rejected"
+	}
+
+	if err := database.DB.Model(&models.Member{}).
+		Where("id = ? AND group_id = ?", payload.MemberID, groupID).
+		Update("status", status).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+
 	
