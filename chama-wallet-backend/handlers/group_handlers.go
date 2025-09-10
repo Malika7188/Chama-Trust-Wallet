@@ -75,3 +75,22 @@ func ContributeToGroup(c *fiber.Ctx) error {
 			"error": fmt.Sprintf("Group is not active (current status: %s)", group.Status),
 		})
 	}
+
+	// Validate contract ID
+	if group.ContractID == "" {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": "Group contract ID is not set",
+		})
+	}
+
+	// Validate user's wallet address matches the 'from' field
+	if payload.From != user.Wallet {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "From address must match your wallet address",
+		})
+	}
+
+	fmt.Printf("🔄 Processing contribution: %s XLM from %s to group %s (contract: %s) on %s\n", 
+		payload.Amount, payload.From, group.Name, group.ContractID, config.Config.Network)
+
+	
