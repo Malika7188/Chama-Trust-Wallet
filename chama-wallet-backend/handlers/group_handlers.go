@@ -260,4 +260,24 @@ func ApproveGroup(c *fiber.Ctx) error {
 		})
 	}
 
-	
+	// Update group approval status
+	if err := database.DB.Model(&group).Update("is_approved", true).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to approve group"})
+	}
+
+	// Notify all members that group is approved
+	var members []models.Member
+	database.DB.Where("group_id = ? AND status = ?", groupID, "approved").Find(&members)
+
+	for _, member := range members {
+		services.CreateNotification(
+			member.UserID,
+			groupID,
+			"group_approved",
+			"Group Approved",
+			"Your group has been approved and is ready for activation",
+		)
+	}
+
+	return c.JSON(fiber.Map{"message": "Group approved successfully"})
+}
