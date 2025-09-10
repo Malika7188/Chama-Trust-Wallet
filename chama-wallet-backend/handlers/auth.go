@@ -37,4 +37,16 @@ func Register(c *fiber.Ctx) error {
 		})
 	}
 
-	
+	return c.Status(fiber.StatusCreated).JSON(fiber.Map{
+		"message": "User created successfully",
+		"user": fiber.Map{
+			"id":         authResponse.User.ID,
+			"name":       authResponse.User.Name,
+			"email":      authResponse.User.Email,
+			"wallet":     authResponse.User.Wallet,
+			"secret_key": authResponse.User.SecretKey, // Include secret key in response
+		},
+		"token": authResponse.Token,
+	})
+}
+
