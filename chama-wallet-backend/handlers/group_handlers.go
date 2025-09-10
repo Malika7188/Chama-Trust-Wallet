@@ -30,4 +30,20 @@ func ContributeToGroup(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid request body"})
 	}
 
-	
+	// Validate required fields
+	if payload.From == "" || payload.Secret == "" || payload.Amount == "" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Missing required fields: from, secret, and amount are required",
+		})
+	}
+
+	// Validate amount limits for mainnet
+	if config.Config.IsMainnet {
+		amount, err := strconv.ParseFloat(payload.Amount, 64)
+		if err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+				"error": "Invalid amount format",
+			})
+		}
+		
+		
