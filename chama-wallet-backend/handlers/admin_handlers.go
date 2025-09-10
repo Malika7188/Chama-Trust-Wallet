@@ -38,4 +38,20 @@ func NominateAdmin(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Nominee is not a group member"})
 	}
 
+	// Check if already nominated
+	var existing models.AdminNomination
+	if database.DB.Where("group_id = ? AND nominee_id = ? AND status = ?",
+		groupID, payload.NomineeID, "pending").First(&existing).Error == nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "User already nominated"})
+	}
+
+	nomination := models.AdminNomination{
+		ID:          uuid.NewString(),
+		GroupID:     groupID,
+		NominatorID: user.ID,
+		NomineeID:   payload.NomineeID,
+		Status:      "pending",
+		CreatedAt:   time.Now(),
+	}
+
 	
