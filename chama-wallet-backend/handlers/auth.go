@@ -100,3 +100,12 @@ func GetProfile(c *fiber.Ctx) error {
 	})
 }
 
+// UpdateProfile updates the current user's profile
+func UpdateProfile(c *fiber.Ctx) error {
+	userID := c.Locals("userID").(string)
+
+	var req struct {
+		Name string `json:"name"`
+	}
+
+	
