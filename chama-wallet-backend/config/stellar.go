@@ -78,3 +78,10 @@ func GetNetworkPassphrase() string {
 	}
 	return network.TestNetworkPassphrase
 }
+
+func GetSorobanNetwork() string {
+	if Config.IsMainnet {
+		return "mainnet"
+	}
+	return "testnet"
+}
