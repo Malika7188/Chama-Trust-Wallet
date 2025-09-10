@@ -212,4 +212,24 @@ func InviteToGroup(c *fiber.Ctx) error {
 		ExpiresAt: time.Now().Add(7 * 24 * time.Hour), // 7 days
 	}
 
+	if err := database.DB.Create(&invitation).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	// Create notification for invited user
+	var group models.Group
+	database.DB.First(&group, "id = ?", groupID)
+
+	notification := models.Notification{
+		ID:        uuid.NewString(),
+		UserID:    invitedUser.ID,
+		GroupID:   groupID,
+		Type:      "group_invitation",
+		Title:     "Group Invitation",
+		Message:   fmt.Sprintf("You have been invited to join %s by %s", group.Name, user.Name),
+		Status:    "unread",
+		Read:      false,
+		CreatedAt: time.Now(),
+	}
+
 	
