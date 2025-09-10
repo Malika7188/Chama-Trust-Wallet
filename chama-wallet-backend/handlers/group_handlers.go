@@ -405,3 +405,12 @@ func JoinGroup(c *fiber.Ctx) error {
 	if err := database.DB.First(&group, "id = ?", groupID).Error; err != nil {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "Group not found"})
 	}
+
+	// Check if group is full
+	var memberCount int64
+	database.DB.Model(&models.Member{}).Where("group_id = ? AND status = ?", groupID, "approved").Count(&memberCount)
+	if memberCount >= int64(group.MaxMembers) {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Group is full"})
+	}
+
+	
