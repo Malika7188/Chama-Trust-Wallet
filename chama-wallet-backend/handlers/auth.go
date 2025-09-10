@@ -122,4 +122,9 @@ func UpdateProfile(c *fiber.Ctx) error {
 		})
 	}
 
+	// Update name if provided
+	if req.Name != "" {
+		user.Name = req.Name
+	}
+
 	
