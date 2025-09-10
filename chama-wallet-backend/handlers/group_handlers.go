@@ -281,3 +281,19 @@ func ApproveGroup(c *fiber.Ctx) error {
 
 	return c.JSON(fiber.Map{"message": "Group approved successfully"})
 }
+
+func ActivateGroup(c *fiber.Ctx) error {
+	groupID := c.Params("id")
+	user := c.Locals("user").(models.User)
+
+	var payload struct {
+		ContributionAmount float64  `json:"contribution_amount"`
+		ContributionPeriod int      `json:"contribution_period"`
+		PayoutOrder        []string `json:"payout_order"`
+	}
+
+	if err := c.BodyParser(&payload); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid body"})
+	}
+
+	
