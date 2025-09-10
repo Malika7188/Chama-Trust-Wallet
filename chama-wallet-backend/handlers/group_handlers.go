@@ -46,4 +46,20 @@ func ContributeToGroup(c *fiber.Ctx) error {
 			})
 		}
 		
-		
+		minAmount := 0.0000001 // Minimum XLM amount
+		if amount < minAmount {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+				"error": fmt.Sprintf("Amount below minimum of %f XLM", minAmount),
+			})
+		}
+	}
+	// Verify user is a member of the group
+	var member models.Member
+	if err := database.DB.Where("group_id = ? AND user_id = ? AND status = ?",
+		groupID, user.ID, "approved").First(&member).Error; err != nil {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{
+			"error": "You are not an approved member of this group",
+		})
+	}
+
+	
