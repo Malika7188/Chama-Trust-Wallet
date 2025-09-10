@@ -108,4 +108,10 @@ func UpdateProfile(c *fiber.Ctx) error {
 		Name string `json:"name"`
 	}
 
+	if err := c.BodyParser(&req); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Invalid request body",
+		})
+	}
+
 	
