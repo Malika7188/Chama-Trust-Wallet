@@ -29,4 +29,12 @@ func Register(c *fiber.Ctx) error {
 		})
 	}
 
+	// Register user
+	authResponse, err := services.RegisterUser(req)
+	if err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": err.Error(),
+		})
+	}
+
 	
