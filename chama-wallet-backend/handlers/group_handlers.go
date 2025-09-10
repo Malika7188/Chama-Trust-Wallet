@@ -321,4 +321,23 @@ func ActivateGroup(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Payout order cannot be empty"})
 	}
 
-	
+	// Convert payout order to JSON string
+	payoutOrderJSON, err := json.Marshal(payload.PayoutOrder)
+	if err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid payout order"})
+	}
+
+	fmt.Printf("Payout order JSON: %s\n", string(payoutOrderJSON))
+
+	// Calculate next contribution date
+	nextContributionDate := time.Now().AddDate(0, 0, payload.ContributionPeriod)
+
+	// Update group
+	updates := map[string]interface{}{
+		"status":                "active",
+		"contribution_amount":   payload.ContributionAmount,
+		"contribution_period":   payload.ContributionPeriod,
+		"payout_order":         string(payoutOrderJSON),
+		"current_round":        1,
+		"next_contribution_date": nextContributionDate,
+	}
