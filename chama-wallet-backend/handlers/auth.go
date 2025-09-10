@@ -77,3 +77,15 @@ func Login(c *fiber.Ctx) error {
 	return c.JSON(authResponse)
 }
 
+// GetProfile returns the current user's profile including secret key
+func GetProfile(c *fiber.Ctx) error {
+	userID := c.Locals("userID").(string)
+
+	user, err := services.GetUserByID(userID)
+	if err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
+			"error": "User not found",
+		})
+	}
+
+	
