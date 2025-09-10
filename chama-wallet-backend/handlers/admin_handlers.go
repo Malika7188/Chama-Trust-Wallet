@@ -135,4 +135,25 @@ func ApproveMember(c *fiber.Ctx) error {
 
 	services.CreateNotification(member.UserID, groupID, notificationType, title, message)
 
-	
+	// Check if group now meets minimum requirements and can be approved
+	if status == "approved" {
+		var group models.Group
+		database.DB.First(&group, "id = ?", groupID)
+
+		var approvedMemberCount int64
+		database.DB.Model(&models.Member{}).Where("group_id = ? AND status = ?", groupID, "approved").Count(&approvedMemberCount)
+
+		if approvedMemberCount >= int64(group.MinMembers) && !group.IsApproved {
+			// Notify creator that group meets minimum requirements and can be approved
+			services.CreateNotification(
+				group.CreatorID,
+				groupID,
+				"group_ready",
+				"Group Ready for Approval",
+				fmt.Sprintf("Your group now has %d members and can be approved for activation", approvedMemberCount),
+			)
+		}
+	}
+
+	return c.JSON(fiber.Map{"message": "Member status updated successfully"})
+}
