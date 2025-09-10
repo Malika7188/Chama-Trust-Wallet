@@ -127,4 +127,11 @@ func UpdateProfile(c *fiber.Ctx) error {
 		user.Name = req.Name
 	}
 
+	// Save changes
+	if err := services.UpdateUser(user); err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": "Failed to update profile",
+		})
+	}
+
 	
