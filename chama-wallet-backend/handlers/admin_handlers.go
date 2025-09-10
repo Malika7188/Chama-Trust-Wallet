@@ -64,4 +64,27 @@ func NominateAdmin(c *fiber.Ctx) error {
 		Where("group_id = ? AND nominee_id = ? AND status = ?", groupID, payload.NomineeID, "pending").
 		Count(&nominationCount)
 
-	
+	if nominationCount >= 2 {
+		// Update member role to admin
+		database.DB.Model(&models.Member{}).
+			Where("group_id = ? AND user_id = ?", groupID, payload.NomineeID).
+			Update("role", "admin")
+
+		// Update all nominations to approved
+		database.DB.Model(&models.AdminNomination{}).
+			Where("group_id = ? AND nominee_id = ?", groupID, payload.NomineeID).
+			Update("status", "approved")
+
+		// Send notification
+		services.CreateNotification(
+			payload.NomineeID,
+			groupID,
+			"admin_promotion",
+			"Promoted to Admin",
+			"You have been promoted to group admin",
+		)
+	}
+
+	return c.JSON(fiber.Map{"message": "Nomination submitted successfully"})
+}
+
