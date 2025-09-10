@@ -62,4 +62,16 @@ func ContributeToGroup(c *fiber.Ctx) error {
 		})
 	}
 
-	
+	// Get group details
+	group, err := services.GetGroupByID(groupID)
+	if err != nil {
+		fmt.Printf("❌ Group not found: %v\n", err)
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "Group not found"})
+	}
+
+	// Validate group status
+	if group.Status != "active" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": fmt.Sprintf("Group is not active (current status: %s)", group.Status),
+		})
+	}
