@@ -58,3 +58,10 @@ func Login(c *fiber.Ctx) error {
 			"error": "Invalid request body",
 		})
 	}
+
+	// Basic validation
+	if req.Email == "" || req.Password == "" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Email and password are required",
+		})
+	}
