@@ -395,3 +395,13 @@ func parseFloat64(s string) float64 {
 	}
 	return 0.0
 }
+
+func JoinGroup(c *fiber.Ctx) error {
+	groupID := c.Params("id")
+	user := c.Locals("user").(models.User)
+
+	// Check if group exists and is active
+	var group models.Group
+	if err := database.DB.First(&group, "id = ?", groupID).Error; err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "Group not found"})
+	}
