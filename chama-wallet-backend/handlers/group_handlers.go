@@ -134,3 +134,13 @@ func ContributeToGroup(c *fiber.Ctx) error {
 	})
 }
 
+func GetUserGroups(c *fiber.Ctx) error {
+	user := c.Locals("user").(models.User)
+
+	groups, err := services.GetUserGroups(user.ID)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	return c.JSON(groups)
+}
