@@ -99,4 +99,8 @@ func ValidateMainnetConfig() error {
 		return nil // Skip validation for testnet
 	}
 
+	if Config.ContractID == "" {
+		return fmt.Errorf("SOROBAN_CONTRACT_ID is required for mainnet")
+	}
+
 	
