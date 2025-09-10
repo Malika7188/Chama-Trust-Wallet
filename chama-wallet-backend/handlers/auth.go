@@ -15,3 +15,12 @@ func Register(c *fiber.Ctx) error {
 			"error": "Invalid request body",
 		})
 	}
+
+	// Basic validation
+	if req.Name == "" || req.Email == "" || req.Password == "" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Name, email, and password are required",
+		})
+	}
+
+	
