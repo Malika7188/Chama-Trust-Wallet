@@ -363,4 +363,28 @@ func ActivateGroup(c *fiber.Ctx) error {
 			}
 		}
 		
+		if member.ID == "" {
+			continue // Skip if member not found
+		}
 		
+		// Calculate due date for this round
+		dueDate := startDate.AddDate(0, 0, i*payload.ContributionPeriod)
+		
+		schedule := models.PayoutSchedule{
+			ID:        uuid.NewString(),
+			GroupID:   groupID,
+			MemberID:  member.ID,
+			Round:     i + 1,
+			Amount:    totalPayout,
+			DueDate:   dueDate,
+			Status:    "scheduled",
+			CreatedAt: time.Now(),
+			UpdatedAt: time.Now(),
+		}
+		
+		database.DB.Create(&schedule)
+	}
+
+	return c.JSON(fiber.Map{"message": "Group activated successfully"})
+}
+
