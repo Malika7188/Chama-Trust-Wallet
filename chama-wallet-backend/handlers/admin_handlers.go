@@ -30,3 +30,12 @@ func NominateAdmin(c *fiber.Ctx) error {
 		groupID, user.ID, "approved").First(&nominator).Error; err != nil {
 		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "Not a group member"})
 	}
+
+	// Check if nominee is a member
+	var nominee models.Member
+	if err := database.DB.Where("group_id = ? AND user_id = ? AND status = ?",
+		groupID, payload.NomineeID, "approved").First(&nominee).Error; err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Nominee is not a group member"})
+	}
+
+	
