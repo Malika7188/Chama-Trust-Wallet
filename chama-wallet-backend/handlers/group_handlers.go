@@ -433,4 +433,28 @@ func JoinGroup(c *fiber.Ctx) error {
 		JoinedAt: time.Now(),
 	}
 
+	if err := database.DB.Create(&member).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to join group"})
+	}
+
+	// Create notification for group admins
+	var admins []models.Member
+	database.DB.Where("group_id = ? AND role IN ? AND status = ?",
+		groupID, []string{"creator", "admin"}, "approved").Find(&admins)
+
+	for _, admin := range admins {
+		notification := models.Notification{
+			ID:        uuid.NewString(),
+			UserID:    admin.UserID,
+			GroupID:   groupID,
+			Type:      "join_request",
+			Title:     "New Join Request",
+			Message:   fmt.Sprintf("%s wants to join %s", user.Name, group.Name),
+			Data:      fmt.Sprintf(`{"group_id":"%s","member_id":"%s"}`, groupID, member.ID),
+			Status:    "unread",
+			CreatedAt: time.Now(),
+		}
+		database.DB.Create(&notification)
+	}
+
 	
