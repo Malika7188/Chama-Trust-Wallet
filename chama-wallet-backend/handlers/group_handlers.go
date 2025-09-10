@@ -413,4 +413,24 @@ func JoinGroup(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Group is full"})
 	}
 
+	// Check if user is already a member
+	var existingMember models.Member
+	if err := database.DB.Where("group_id = ? AND user_id = ?", groupID, user.ID).First(&existingMember).Error; err == nil {
+		if existingMember.Status == "pending" {
+			return c.Status(fiber.StatusConflict).JSON(fiber.Map{"error": "Join request already pending"})
+		}
+		return c.Status(fiber.StatusConflict).JSON(fiber.Map{"error": "Already a member of this group"})
+	}
+
+	// Create new member with pending status
+	member := models.Member{
+		ID:       uuid.NewString(),
+		GroupID:  groupID,
+		UserID:   user.ID,
+		Wallet:   user.Wallet,
+		Role:     "member",
+		Status:   "pending",
+		JoinedAt: time.Now(),
+	}
+
 	
