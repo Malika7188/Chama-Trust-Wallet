@@ -457,4 +457,14 @@ func JoinGroup(c *fiber.Ctx) error {
 		database.DB.Create(&notification)
 	}
 
+	return c.JSON(fiber.Map{
+		"message": "Join request sent successfully",
+		"member":  member,
+	})
+}
+
+func GetPayoutSchedule(c *fiber.Ctx) error {
+	groupID := c.Params("id")
+	user := c.Locals("user").(models.User)
+
 	
