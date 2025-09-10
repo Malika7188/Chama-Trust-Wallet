@@ -71,3 +71,10 @@ func GetHorizonClient() *horizonclient.Client {
 	}
 	return horizonclient.DefaultTestNetClient
 }
+
+func GetNetworkPassphrase() string {
+	if Config.IsMainnet {
+		return network.PublicNetworkPassphrase
+	}
+	return network.TestNetworkPassphrase
+}
