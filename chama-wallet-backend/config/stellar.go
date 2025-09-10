@@ -103,4 +103,15 @@ func ValidateMainnetConfig() error {
 		return fmt.Errorf("SOROBAN_CONTRACT_ID is required for mainnet")
 	}
 
-	
+	if os.Getenv("SOROBAN_PUBLIC_KEY") == "" {
+		return fmt.Errorf("SOROBAN_PUBLIC_KEY is required for mainnet")
+	}
+
+	if os.Getenv("SOROBAN_SECRET_KEY") == "" {
+		return fmt.Errorf("SOROBAN_SECRET_KEY is required for mainnet")
+	}
+
+	fmt.Println("✅ Mainnet configuration validated")
+	return nil
+}
+
