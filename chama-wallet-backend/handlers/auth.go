@@ -114,4 +114,12 @@ func UpdateProfile(c *fiber.Ctx) error {
 		})
 	}
 
+	// Get current user
+	user, err := services.GetUserByID(userID)
+	if err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
+			"error": "User not found",
+		})
+	}
+
 	
