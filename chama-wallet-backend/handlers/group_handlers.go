@@ -168,3 +168,24 @@ func GetNonGroupMembers(c *fiber.Ctx) error {
 
 	return c.JSON(users)
 }
+
+func InviteToGroup(c *fiber.Ctx) error {
+	groupID := c.Params("id")
+	user := c.Locals("user").(models.User)
+
+	var payload struct {
+		Email string `json:"email"`
+	}
+
+	if err := c.BodyParser(&payload); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid body"})
+	}
+
+	// Check if user is admin/creator
+	var admin models.Member
+	if err := database.DB.Where("group_id = ? AND user_id = ? AND role IN ?", 
+		groupID, user.ID, []string{"creator", "admin"}).First(&admin).Error; err != nil {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "Only admins can invite users"})
+	}
+
+	
