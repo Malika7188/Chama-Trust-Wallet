@@ -232,4 +232,32 @@ func InviteToGroup(c *fiber.Ctx) error {
 		CreatedAt: time.Now(),
 	}
 
+	if err := database.DB.Create(&notification).Error; err != nil {
+		fmt.Printf("⚠️ Failed to create notification: %v\n", err)
+	} else {
+		fmt.Printf("✅ Notification created for user %s\n", invitedUser.ID)
+	}
+
+	return c.JSON(fiber.Map{"message": "Invitation sent successfully"})
+}
+
+func ApproveGroup(c *fiber.Ctx) error {
+	groupID := c.Params("id")
+	user := c.Locals("user").(models.User)
+
+	// Check if user is the creator
+	var group models.Group
+	if err := database.DB.Where("id = ? AND creator_id = ?", groupID, user.ID).First(&group).Error; err != nil {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "Only group creator can approve the group"})
+	}
+
+	// Check if group has minimum members
+	var memberCount int64
+	database.DB.Model(&models.Member{}).Where("group_id = ? AND status = ?", groupID, "approved").Count(&memberCount)
+	if memberCount < int64(group.MinMembers) {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": fmt.Sprintf("Group needs at least %d members before approval (currently has %d)", group.MinMembers, memberCount),
+		})
+	}
+
 	
