@@ -89,4 +89,12 @@ func AcceptInvitation(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "Invitation not found"})
 	}
 
+	if invitation.Status != "pending" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invitation already processed"})
+	}
+
+	if time.Now().After(invitation.ExpiresAt) {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invitation has expired"})
+	}
+
 	
