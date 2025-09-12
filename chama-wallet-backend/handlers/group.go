@@ -133,4 +133,11 @@ func AddMember(c *fiber.Ctx) error {
 		})
 	}
 
+	group, err := services.AddMemberToGroup(groupID, body.UserID, body.Wallet)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": err.Error(),
+		})
+	}
+
 	
