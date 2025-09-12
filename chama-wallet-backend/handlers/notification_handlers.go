@@ -67,4 +67,10 @@ func DeleteNotification(c *fiber.Ctx) error {
 	notificationID := c.Params("id")
 	user := c.Locals("user").(models.User)
 
+	// Verify notification belongs to user
+	var notification models.Notification
+	if err := database.DB.Where("id = ? AND user_id = ?", notificationID, user.ID).First(&notification).Error; err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "Notification not found"})
+	}
+
 	
