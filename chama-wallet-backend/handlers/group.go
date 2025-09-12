@@ -52,4 +52,21 @@ func CreateGroup(c *fiber.Ctx) error {
 		}
 	}
 
+	// Get contract ID from configuration
+	contractID := config.Config.ContractID
+	if contractID == "" {
+		if config.Config.IsMainnet {
+			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+				"error": "Mainnet contract ID not configured. Please set SOROBAN_CONTRACT_ID in environment.",
+			})
+		} else {
+			// Deploy contract for testnet
+			contractID, err = services.DeployChamaContract()
+			if err != nil {
+				fmt.Printf("❌ Failed to deploy contract: %v\n", err)
+				return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to deploy contract"})
+			}
+		}
+	}
+
 	
