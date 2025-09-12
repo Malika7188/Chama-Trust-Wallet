@@ -61,3 +61,10 @@ func GetUserInvitations(c *fiber.Ctx) error {
 	fmt.Printf("✅ Found %d invitations for user %s\n", len(invitations), user.Email)
 	return c.JSON(invitations)
 }
+
+// DeleteNotification deletes a notification by ID for the authenticated user
+func DeleteNotification(c *fiber.Ctx) error {
+	notificationID := c.Params("id")
+	user := c.Locals("user").(models.User)
+
+	
