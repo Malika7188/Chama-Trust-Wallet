@@ -202,4 +202,19 @@ func GetGroupBalance(c *fiber.Ctx) error {
 		})
 	}
 
+	// Return group wallet and balance
+	return c.JSON(fiber.Map{
+		"group_id": id,
+		"wallet":   group.Wallet,
+		"balance":  balance,
+	})
+}
+
+func GetAllGroups(c *fiber.Ctx) error {
+	// Get authenticated user (optional)
+	user := c.Locals("user")
+
+	var groups []models.Group
+	var err error
+
 	
