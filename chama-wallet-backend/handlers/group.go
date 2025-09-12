@@ -233,4 +233,6 @@ func GetAllGroups(c *fiber.Ctx) error {
 		})
 	}
 
-	
+	fmt.Printf("✅ Found %d groups\n", len(groups)) // Add debug log
+	return c.JSON(groups)
+}
