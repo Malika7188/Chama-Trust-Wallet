@@ -29,4 +29,14 @@ func CreateGroup(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid body"})
 	}
 
+	// Get authenticated user
+	user := c.Locals("user").(models.User)
+
+	// Generate wallet for the group
+	wallet, err := utils.GenerateStellarWallet()
+	if err != nil {
+		fmt.Printf("❌ Failed to generate group wallet: %v\n", err)
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to generate wallet"})
+	}
+
 	
