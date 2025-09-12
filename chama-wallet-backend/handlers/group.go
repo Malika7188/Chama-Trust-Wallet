@@ -87,4 +87,15 @@ func CreateGroup(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
 	}
 
+	// Add the creator as the first member with creator role and approved status
+	member := models.Member{
+		ID:       uuid.NewString(),
+		GroupID:  group.ID,
+		UserID:   user.ID,
+		Wallet:   user.Wallet,
+		Role:     "creator",
+		Status:   "approved",
+		JoinedAt: time.Now(),
+	}
+
 	
