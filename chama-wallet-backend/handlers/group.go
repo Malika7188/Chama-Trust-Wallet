@@ -144,3 +144,11 @@ func AddMember(c *fiber.Ctx) error {
 }
 func DepositToGroup(c *fiber.Ctx) error {
 	groupID := c.Params("id")
+
+	var body struct {
+		FromWallet string `json:"from_wallet"`
+		Secret     string `json:"secret"` // sender's secret key
+		Amount     string `json:"amount"` // XLM to deposit
+	}
+
+	
