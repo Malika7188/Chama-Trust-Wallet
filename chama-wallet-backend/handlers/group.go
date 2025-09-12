@@ -39,4 +39,17 @@ func CreateGroup(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to generate wallet"})
 	}
 
+	fmt.Printf("✅ Generated group wallet: %s on %s\n", wallet.PublicKey, config.Config.Network)
+
+	// Fund wallet only on testnet
+	if !config.Config.IsMainnet {
+		err = services.FundTestAccount(wallet.PublicKey)
+		if err != nil {
+			fmt.Printf("⚠️ Warning: Failed to fund group wallet: %v\n", err)
+			// Don't fail the group creation, just log the warning
+		} else {
+			fmt.Printf("✅ Group wallet funded successfully on testnet\n")
+		}
+	}
+
 	
