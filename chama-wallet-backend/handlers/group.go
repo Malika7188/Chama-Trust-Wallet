@@ -164,4 +164,12 @@ func DepositToGroup(c *fiber.Ctx) error {
 		})
 	}
 
+	// Send XLM to group wallet
+	tx, err := services.SendXLM(body.Secret, group.Wallet, body.Amount)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": err.Error(),
+		})
+	}
+
 	
