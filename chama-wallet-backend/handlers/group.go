@@ -236,3 +236,15 @@ func GetAllGroups(c *fiber.Ctx) error {
 	fmt.Printf("✅ Found %d groups\n", len(groups)) // Add debug log
 	return c.JSON(groups)
 }
+
+func GetGroupDetails(c *fiber.Ctx) error {
+	groupID := c.Params("id")
+	group, err := services.GetGroupWithMembers(groupID)
+	if err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
+			"error": "Group not found",
+		})
+	}
+	return c.JSON(group)
+}
+
