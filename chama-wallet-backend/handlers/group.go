@@ -262,4 +262,17 @@ func GetGroupSecretKey(c *fiber.Ctx) error {
 		})
 	}
 
-	
+	// Get group
+	group, err := services.GetGroupByID(groupID)
+	if err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
+			"error": "Group not found",
+		})
+	}
+
+	return c.JSON(fiber.Map{
+		"group_id":   group.ID,
+		"wallet":     group.Wallet,
+		"secret_key": group.SecretKey,
+	})
+}
