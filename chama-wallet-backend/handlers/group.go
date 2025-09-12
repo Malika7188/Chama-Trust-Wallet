@@ -104,4 +104,17 @@ func CreateGroup(c *fiber.Ctx) error {
 		// Don't fail the group creation
 	}
 
-	
+	return c.Status(fiber.StatusCreated).JSON(fiber.Map{
+		"message": "Group created successfully",
+		"group": fiber.Map{
+			"id":          group.ID,
+			"name":        group.Name,
+			"description": group.Description,
+			"wallet":      group.Wallet,
+			"secret_key":  group.SecretKey,
+			"status":      group.Status,
+			"contract_id": contractID,
+			"network":     config.Config.Network,
+		},
+	})
+}
