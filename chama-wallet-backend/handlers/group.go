@@ -140,4 +140,7 @@ func AddMember(c *fiber.Ctx) error {
 		})
 	}
 
-	
+	return c.JSON(group)
+}
+func DepositToGroup(c *fiber.Ctx) error {
+	groupID := c.Params("id")
