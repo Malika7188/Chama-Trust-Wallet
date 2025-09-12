@@ -133,4 +133,14 @@ func AcceptInvitation(c *fiber.Ctx) error {
 		)
 	}
 
-	
+	// Notify the user that they successfully joined
+	services.CreateNotification(
+		user.ID,
+		invitation.GroupID,
+		"membership_approved",
+		"Welcome to the Group",
+		"You have successfully joined the group",
+	)
+
+	return c.JSON(fiber.Map{"message": "Invitation accepted successfully"})
+}
