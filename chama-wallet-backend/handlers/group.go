@@ -127,4 +127,10 @@ func AddMember(c *fiber.Ctx) error {
 		UserID string `json:"user_id"` // Add this field
 	}
 
+	if err := c.BodyParser(&body); err != nil || body.Wallet == "" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Invalid request. Wallet is required.",
+		})
+	}
+
 	
