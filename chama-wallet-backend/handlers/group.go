@@ -182,3 +182,14 @@ func DepositToGroup(c *fiber.Ctx) error {
 	})
 }
 
+// GetGroupBalance returns the XLM balance of the group's wallet
+func GetGroupBalance(c *fiber.Ctx) error {
+	id := c.Params("id")
+
+	// Check if the group exists
+	group, err := services.GetGroupByID(id)
+	if err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
+			"error": "Group not found",
+		})
+	}
