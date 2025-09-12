@@ -97,4 +97,21 @@ func AcceptInvitation(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invitation has expired"})
 	}
 
+	// Update invitation status
+	database.DB.Model(&invitation).Updates(map[string]interface{}{
+		"status":  "accepted",
+		"user_id": user.ID,
+	})
+
+	// Add user as member with approved status (since they were invited)
+	member := models.Member{
+		ID:       uuid.NewString(),
+		GroupID:  invitation.GroupID,
+		UserID:   user.ID,
+		Wallet:   user.Wallet,
+		Role:     "member",
+		Status:   "approved", // Auto-approve invited users
+		JoinedAt: time.Now(),
+	}
+
 	
