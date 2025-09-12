@@ -42,3 +42,9 @@ func MarkNotificationRead(c *fiber.Ctx) error {
 
 	return c.JSON(fiber.Map{"message": "Notification marked as read"})
 }
+
+func GetUserInvitations(c *fiber.Ctx) error {
+	user := c.Locals("user").(models.User)
+	fmt.Printf("🔍 Getting invitations for user: %s (email: %s)\n", user.ID, user.Email)
+
+	
