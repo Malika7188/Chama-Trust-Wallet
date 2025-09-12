@@ -69,4 +69,16 @@ func CreateGroup(c *fiber.Ctx) error {
 		}
 	}
 
-	
+	fmt.Printf("✅ Using contract ID: %s on %s\n", contractID, config.Config.Network)
+
+	// Save group in DB with the contract ID
+	group := models.Group{
+		ID:          uuid.NewString(),
+		Name:        payload.Name,
+		Description: payload.Description,
+		Wallet:      wallet.PublicKey,
+		CreatorID:   user.ID,
+		ContractID:  contractID,
+		Status:      "pending",
+		SecretKey:   wallet.SecretKey,
+	}
