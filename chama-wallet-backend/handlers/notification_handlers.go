@@ -22,4 +22,7 @@ func GetNotifications(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
 	}
 
-	
+	fmt.Printf("✅ Found %d notifications for user %s\n", len(notifications), user.ID)
+	return c.JSON(notifications)
+}
+q
