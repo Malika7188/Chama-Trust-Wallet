@@ -149,4 +149,17 @@ func RejectInvitation(c *fiber.Ctx) error {
 	invitationID := c.Params("id")
 	user := c.Locals("user").(models.User)
 
-	
+	var invitation models.GroupInvitation
+	if err := database.DB.Where("id = ? AND email = ?", invitationID, user.Email).First(&invitation).Error; err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "Invitation not found"})
+	}
+
+	if invitation.Status != "pending" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invitation already processed"})
+	}
+
+	// Update invitation status
+	database.DB.Model(&invitation).Update("status", "rejected")
+
+	return c.JSON(fiber.Map{"message": "Invitation rejected"})
+}
