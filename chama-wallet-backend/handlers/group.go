@@ -225,3 +225,12 @@ func GetAllGroups(c *fiber.Ctx) error {
 		// If not authenticated, show no groups
 		groups = []models.Group{}
 	}
+
+	if err != nil {
+		fmt.Printf("❌ Error fetching groups: %v\n", err) // Add debug log
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": "Failed to fetch groups",
+		})
+	}
+
+	
