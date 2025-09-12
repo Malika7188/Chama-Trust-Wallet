@@ -114,4 +114,13 @@ func AcceptInvitation(c *fiber.Ctx) error {
 		JoinedAt: time.Now(),
 	}
 
+	if err := database.DB.Create(&member).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	// Notify group admins about new member (not request)
+	var admins []models.Member
+	database.DB.Where("group_id = ? AND role IN ? AND status = ?",
+		invitation.GroupID, []string{"creator", "admin"}, "approved").Find(&admins)
+
 	
