@@ -36,4 +36,9 @@ func MarkNotificationRead(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "Notification not found"})
 	}
 
-	
+	if err := services.MarkNotificationAsRead(notificationID); err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	return c.JSON(fiber.Map{"message": "Notification marked as read"})
+}
