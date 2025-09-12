@@ -144,3 +144,9 @@ func AcceptInvitation(c *fiber.Ctx) error {
 
 	return c.JSON(fiber.Map{"message": "Invitation accepted successfully"})
 }
+
+func RejectInvitation(c *fiber.Ctx) error {
+	invitationID := c.Params("id")
+	user := c.Locals("user").(models.User)
+
+	
