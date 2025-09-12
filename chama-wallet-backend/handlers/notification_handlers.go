@@ -123,4 +123,14 @@ func AcceptInvitation(c *fiber.Ctx) error {
 	database.DB.Where("group_id = ? AND role IN ? AND status = ?",
 		invitation.GroupID, []string{"creator", "admin"}, "approved").Find(&admins)
 
+	for _, admin := range admins {
+		services.CreateNotification(
+			admin.UserID,
+			invitation.GroupID,
+			"new_member_joined",
+			"New Member Joined",
+			user.Name+" has joined the group",
+		)
+	}
+
 	
