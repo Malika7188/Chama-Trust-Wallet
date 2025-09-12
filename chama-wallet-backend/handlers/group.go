@@ -98,4 +98,10 @@ func CreateGroup(c *fiber.Ctx) error {
 		JoinedAt: time.Now(),
 	}
 
+	err = database.DB.Create(&member).Error
+	if err != nil {
+		fmt.Printf("⚠️ Warning: Failed to add creator as member: %v\n", err)
+		// Don't fail the group creation
+	}
+
 	
