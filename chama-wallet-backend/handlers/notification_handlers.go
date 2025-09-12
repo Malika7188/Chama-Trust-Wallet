@@ -47,4 +47,10 @@ func GetUserInvitations(c *fiber.Ctx) error {
 	user := c.Locals("user").(models.User)
 	fmt.Printf("🔍 Getting invitations for user: %s (email: %s)\n", user.ID, user.Email)
 
+	var invitations []models.GroupInvitation
+	err := database.DB.Where("email = ? AND status = ?", user.Email, "pending").
+		Preload("Group").
+		Preload("Inviter").
+		Find(&invitations).Error
+
 	
