@@ -172,4 +172,13 @@ func DepositToGroup(c *fiber.Ctx) error {
 		})
 	}
 
-	
+	return c.JSON(fiber.Map{
+		"message":   "Deposit successful",
+		"tx_id":     tx.ID,
+		"from":      body.FromWallet,
+		"to":        group.Wallet,
+		"amount":    body.Amount,
+		"timestamp": tx.LedgerCloseTime,
+	})
+}
+
