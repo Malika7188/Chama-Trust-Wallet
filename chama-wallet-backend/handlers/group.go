@@ -82,3 +82,9 @@ func CreateGroup(c *fiber.Ctx) error {
 		Status:      "pending",
 		SecretKey:   wallet.SecretKey,
 	}
+
+	if err := database.DB.Create(&group).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	
