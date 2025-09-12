@@ -157,4 +157,11 @@ func DepositToGroup(c *fiber.Ctx) error {
 		})
 	}
 
+	group, err := services.GetGroupByID(groupID)
+	if err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
+			"error": "Group not found.",
+		})
+	}
+
 	
