@@ -79,3 +79,14 @@ func DeleteNotification(c *fiber.Ctx) error {
 
 	return c.JSON(fiber.Map{"message": "Notification deleted"})
 }
+
+func AcceptInvitation(c *fiber.Ctx) error {
+	invitationID := c.Params("id")
+	user := c.Locals("user").(models.User)
+
+	var invitation models.GroupInvitation
+	if err := database.DB.Where("id = ? AND email = ?", invitationID, user.Email).First(&invitation).Error; err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "Invitation not found"})
+	}
+
+	
