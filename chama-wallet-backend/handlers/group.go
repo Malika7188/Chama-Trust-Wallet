@@ -118,3 +118,8 @@ func CreateGroup(c *fiber.Ctx) error {
 		},
 	})
 }
+
+func AddMember(c *fiber.Ctx) error {
+	groupID := c.Params("id")
+
+	
