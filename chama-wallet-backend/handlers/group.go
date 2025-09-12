@@ -24,3 +24,9 @@ func CreateGroup(c *fiber.Ctx) error {
 		Name        string `json:"name"`
 		Description string `json:"description"`
 	}
+
+	if err := c.BodyParser(&payload); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid body"})
+	}
+
+	
