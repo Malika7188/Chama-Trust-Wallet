@@ -53,4 +53,11 @@ func GetUserInvitations(c *fiber.Ctx) error {
 		Preload("Inviter").
 		Find(&invitations).Error
 
-	
+	if err != nil {
+		fmt.Printf("❌ Error getting invitations: %v\n", err)
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	fmt.Printf("✅ Found %d invitations for user %s\n", len(invitations), user.Email)
+	return c.JSON(invitations)
+}
