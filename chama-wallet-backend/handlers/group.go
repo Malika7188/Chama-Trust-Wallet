@@ -217,4 +217,11 @@ func GetAllGroups(c *fiber.Ctx) error {
 	var groups []models.Group
 	var err error
 
-	
+	if user != nil {
+		// If user is authenticated, only show groups they are part of
+		userModel := user.(models.User)
+		groups, err = services.GetUserGroups(userModel.ID)
+	} else {
+		// If not authenticated, show no groups
+		groups = []models.Group{}
+	}
