@@ -151,4 +151,10 @@ func DepositToGroup(c *fiber.Ctx) error {
 		Amount     string `json:"amount"` // XLM to deposit
 	}
 
+	if err := c.BodyParser(&body); err != nil || body.FromWallet == "" || body.Secret == "" || body.Amount == "" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Missing required fields.",
+		})
+	}
+
 	
