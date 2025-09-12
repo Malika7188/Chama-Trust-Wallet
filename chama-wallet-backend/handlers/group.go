@@ -193,3 +193,13 @@ func GetGroupBalance(c *fiber.Ctx) error {
 			"error": "Group not found",
 		})
 	}
+
+	// Fetch the balance from Stellar
+	balance, err := services.CheckBalance(group.Wallet)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": err.Error(),
+		})
+	}
+
+	
