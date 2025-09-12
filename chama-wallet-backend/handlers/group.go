@@ -122,4 +122,9 @@ func CreateGroup(c *fiber.Ctx) error {
 func AddMember(c *fiber.Ctx) error {
 	groupID := c.Params("id")
 
+	var body struct {
+		Wallet string `json:"wallet"`
+		UserID string `json:"user_id"` // Add this field
+	}
+
 	
