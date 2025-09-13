@@ -23,4 +23,22 @@ func ContributeToRound(c *fiber.Ctx) error {
 		Secret string  `json:"secret"`
 	}
 
+	if err := c.BodyParser(&payload); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid body"})
+	}
+
+	// ✅ Validate the secret key belongs to the user
+	kp, err := keypair.ParseFull(payload.Secret)
+	if err != nil {
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+			"error": "Invalid secret key format",
+		})
+	}
+
+	if kp.Address() != user.Wallet {
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+			"error": "Secret key does not match your wallet address",
+		})
+	}
+
 	
