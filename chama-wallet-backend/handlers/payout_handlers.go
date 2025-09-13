@@ -62,4 +62,13 @@ func CreatePayoutRequest(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Recipient is not a group member"})
 	}
 
+	// Check if payout request already exists for this round
+	var existingRequest models.PayoutRequest
+	if err := database.DB.Where("group_id = ? AND round = ? AND status IN ?",
+		groupID, payload.Round, []string{"pending", "approved"}).First(&existingRequest).Error; err == nil {
+		return c.Status(fiber.StatusConflict).JSON(fiber.Map{
+			"error": "Payout request already exists for this round",
+		})
+	}
+
 	
