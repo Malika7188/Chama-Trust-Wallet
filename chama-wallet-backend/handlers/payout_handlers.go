@@ -71,4 +71,18 @@ func CreatePayoutRequest(c *fiber.Ctx) error {
 		})
 	}
 
+	// Validate payout amount against group balance
+	groupBalance, err := services.CheckBalance(group.Wallet)
+	if err != nil {
+		fmt.Printf("⚠️ Warning: Could not check group balance: %v\n", err)
+	} else {
+		if balance, parseErr := strconv.ParseFloat(groupBalance, 64); parseErr == nil {
+			if payload.Amount > balance {
+				return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+					"error": fmt.Sprintf("Insufficient group balance. Available: %.2f XLM, Requested: %.2f XLM", balance, payload.Amount),
+				})
+			}
+		}
+	}
+
 	
