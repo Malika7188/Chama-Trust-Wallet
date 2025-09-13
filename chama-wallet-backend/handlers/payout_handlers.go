@@ -119,4 +119,14 @@ func CreatePayoutRequest(c *fiber.Ctx) error {
 		}
 	}
 
+	return c.JSON(fiber.Map{
+		"message": "Payout request created successfully",
+		"request": payoutRequest,
+	})
+}
+
+func ApprovePayoutRequest(c *fiber.Ctx) error {
+	payoutID := c.Params("id")
+	user := c.Locals("user").(models.User)
+
 	
