@@ -294,4 +294,14 @@ func executePayout(payoutRequest models.PayoutRequest) error {
 		return fmt.Errorf("group secret key not available")
 	}
 
-	
+	// Send actual XLM from group wallet to recipient
+	_, err := services.SendXLM(group.SecretKey, recipient.Wallet, fmt.Sprintf("%.7f", payoutRequest.Amount))
+	if err != nil {
+		fmt.Printf("⚠️ Warning: XLM transfer failed but contract withdrawal succeeded: %v\n", err)
+		return fmt.Errorf("soroban withdrawal failed: %w", err)
+	}
+
+	fmt.Printf("✅ Payout executed successfully")
+	return nil
+}
+
