@@ -195,4 +195,26 @@ func ApprovePayoutRequest(c *fiber.Ctx) error {
 
 	fmt.Printf("📊 Payout %s - Approvals: %d, Rejections: %d\n", payoutID, approvalCount, rejectionCount)
 
-	
+	// Process payout if we have enough approvals (1 admins) or any rejection
+	if approvalCount >= 1 {
+		fmt.Printf("✅ Payout approved with %d approvals, processing...\n", approvalCount)
+		
+		// Update payout status to approved
+		database.DB.Model(&models.PayoutRequest{}).
+			Where("id = ?", payoutID).
+			Update("status", "approved")
+
+		// Execute the actual payout using Soroban contract
+		if err := executePayout(payoutRequest); err != nil {
+			fmt.Printf("❌ Payout execution failed: %v\n", err)
+			// Update status to failed
+			database.DB.Model(&models.PayoutRequest{}).
+				Where("id = ?", payoutID).
+				Update("status", "failed")
+			
+			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+				"error": fmt.Sprintf("Payout execution failed: %v", err),
+			})
+		}
+
+		
