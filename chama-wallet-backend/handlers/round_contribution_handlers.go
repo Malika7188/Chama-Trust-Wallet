@@ -265,4 +265,11 @@ func updateRoundStatus(groupID string, round int) error {
 		Where("group_id = ? AND round = ? AND status = ?", groupID, round, "confirmed").
 		Count(&contributionsCount)
 
+	database.DB.Model(&models.RoundContribution{}).
+		Where("group_id = ? AND round = ? AND status = ?", groupID, round, "confirmed").
+		Select("COALESCE(SUM(amount), 0)").
+		Scan(&totalReceived)
+
+	totalRequired := group.ContributionAmount * float64(totalMembers)
+
 	
