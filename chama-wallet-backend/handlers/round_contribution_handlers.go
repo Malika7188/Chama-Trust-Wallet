@@ -228,4 +228,18 @@ func AuthorizeRoundPayout(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "Payout schedule not found"})
 	}
 
+	// Notify all members about authorized payout
+	var members []models.Member
+	database.DB.Where("group_id = ? AND status = ?", groupID, "approved").Find(&members)
+
+	for _, member := range members {
+		services.CreateNotification(
+			member.UserID,
+			groupID,
+			"round_payout_authorized",
+			"Round Payout Authorized",
+			fmt.Sprintf("Round %d payout has been authorized for %s", payload.Round, payoutSchedule.Member.User.Name),
+		)
+	}
+
 	
