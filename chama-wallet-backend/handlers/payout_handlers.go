@@ -129,4 +129,13 @@ func ApprovePayoutRequest(c *fiber.Ctx) error {
 	payoutID := c.Params("id")
 	user := c.Locals("user").(models.User)
 
+	var payload struct {
+		Approved bool `json:"approved"`
+	}
+
+	if err := c.BodyParser(&payload); err != nil {
+		fmt.Printf("❌ Failed to parse approval request: %v\n", err)
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid body"})
+	}
+
 	
