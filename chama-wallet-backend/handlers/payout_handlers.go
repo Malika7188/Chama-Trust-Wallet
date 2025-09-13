@@ -316,4 +316,16 @@ func GetPayoutRequests(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "Not a group member"})
 	}
 
-	
+	var payoutRequests []models.PayoutRequest
+	err := database.DB.Where("group_id = ?", groupID).
+		Preload("Recipient").
+		Preload("Approvals.Admin").
+		Order("created_at DESC").
+		Find(&payoutRequests).Error
+
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	return c.JSON(payoutRequests)
+}
