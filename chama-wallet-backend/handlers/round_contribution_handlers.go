@@ -272,4 +272,15 @@ func updateRoundStatus(groupID string, round int) error {
 
 	totalRequired := group.ContributionAmount * float64(totalMembers)
 
-	
+	// Update or create round status
+	roundStatus := models.RoundStatus{
+		GroupID:           groupID,
+		Round:             round,
+		TotalRequired:     totalRequired,
+		TotalReceived:     totalReceived,
+		ContributorsCount: int(contributionsCount),
+		RequiredCount:     int(totalMembers),
+		Status:            "collecting",
+	}
+
+
