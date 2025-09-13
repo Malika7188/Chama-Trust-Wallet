@@ -166,4 +166,17 @@ func ApprovePayoutRequest(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Already voted on this request"})
 	}
 
-	
+	// Create approval record
+	approval := models.PayoutApproval{
+		ID:              uuid.NewString(),
+		PayoutRequestID: payoutID,
+		AdminID:         user.ID,
+		Approved:        payload.Approved,
+		CreatedAt:       time.Now(),
+	}
+
+	if err := database.DB.Create(&approval).Error; err != nil {
+		fmt.Printf("❌ Failed to create approval record: %v\n", err)
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+
