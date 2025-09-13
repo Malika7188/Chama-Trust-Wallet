@@ -166,4 +166,11 @@ func GetRoundStatus(c *fiber.Ctx) error {
 		memberStatuses = append(memberStatuses, status)
 	}
 
-	
+	return c.JSON(fiber.Map{
+		"round":         round,
+		"round_status":  roundStatus,
+		"member_status": memberStatuses,
+		"total_members": len(allMembers),
+		"paid_members":  len(contributions),
+	})
+}
