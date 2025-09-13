@@ -41,4 +41,21 @@ func ContributeToRound(c *fiber.Ctx) error {
 		})
 	}
 
+	// Verify user is a member of the group
+	var member models.Member
+	if err := database.DB.Where("group_id = ? AND user_id = ? AND status = ?",
+		groupID, user.ID, "approved").First(&member).Error; err != nil {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "Not a member of this group"})
+	}
+
+	// Get group details
+	var group models.Group
+	if err := database.DB.First(&group, "id = ?", groupID).Error; err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "Group not found"})
+	}
+
+	if group.Status != "active" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Group is not active"})
+	}
+
 	
