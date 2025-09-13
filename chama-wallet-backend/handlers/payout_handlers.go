@@ -100,4 +100,23 @@ func CreatePayoutRequest(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
 	}
 
+	fmt.Printf("✅ Payout request created: %s\n", payoutRequest.ID)
+
+	// Notify all admins about the payout request (excluding the creator)
+	var admins []models.Member
+	database.DB.Where("group_id = ? AND role IN ? AND status = ?",
+		groupID, []string{"creator", "admin"}, "approved").Find(&admins)
+
+	for _, admin := range admins {
+		if admin.UserID != user.ID {
+			services.CreateNotification(
+				admin.UserID,
+				groupID,
+				"payout_request",
+				"Payout Request Created",
+				fmt.Sprintf("New payout request for %.2f XLM to %s requires approval", payload.Amount, recipient.User.Name),
+			)
+		}
+	}
+
 	
