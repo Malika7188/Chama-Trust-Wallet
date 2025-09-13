@@ -35,4 +35,10 @@ func CreatePayoutRequest(c *fiber.Ctx) error {
 		})
 	}
 
+	// Get group details
+	var group models.Group
+	if err := database.DB.First(&group, "id = ?", groupID).Error; err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "Group not found"})
+	}
+
 	
