@@ -103,4 +103,19 @@ func ContributeToRound(c *fiber.Ctx) error {
 		UpdatedAt: time.Now(),
 	}
 
-	
+	if err := database.DB.Create(&contribution).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	// Update or create round status
+	if err := updateRoundStatus(groupID, payload.Round); err != nil {
+		fmt.Printf("Warning: Failed to update round status: %v\n", err)
+	}
+
+	return c.JSON(fiber.Map{
+		"message":      "Contribution successful",
+		"contribution": contribution,
+		"tx_hash":      output,
+	})
+}
+
