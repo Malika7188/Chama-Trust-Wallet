@@ -283,4 +283,11 @@ func updateRoundStatus(groupID string, round int) error {
 		Status:            "collecting",
 	}
 
+	if contributionsCount >= totalMembers {
+		roundStatus.Status = "ready_for_payout"
+	}
 
+	return database.DB.Where("group_id = ? AND round = ?", groupID, round).
+		Assign(roundStatus).
+		FirstOrCreate(&roundStatus).Error
+}
