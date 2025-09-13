@@ -258,4 +258,11 @@ func updateRoundStatus(groupID string, round int) error {
 	var totalMembers int64
 	database.DB.Model(&models.Member{}).Where("group_id = ? AND status = ?", groupID, "approved").Count(&totalMembers)
 
+	// Get current contributions for this round
+	var contributionsCount int64
+	var totalReceived float64
+	database.DB.Model(&models.RoundContribution{}).
+		Where("group_id = ? AND round = ? AND status = ?", groupID, round, "confirmed").
+		Count(&contributionsCount)
+
 	
