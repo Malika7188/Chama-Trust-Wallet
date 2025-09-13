@@ -134,4 +134,16 @@ func GetRoundStatus(c *fiber.Ctx) error {
 	var roundStatus models.RoundStatus
 	database.DB.Where("group_id = ? AND round = ?", groupID, round).First(&roundStatus)
 
+	// Get all approved members for this group
+	var allMembers []models.Member
+	database.DB.Where("group_id = ? AND status = ?", groupID, "approved").
+		Preload("User").
+		Find(&allMembers)
+
+	// Create contribution map for easy lookup
+	contributionMap := make(map[string]models.RoundContribution)
+	for _, contrib := range contributions {
+		contributionMap[contrib.MemberID] = contrib
+	}
+
 	
