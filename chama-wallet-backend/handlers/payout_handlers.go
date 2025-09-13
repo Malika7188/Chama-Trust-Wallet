@@ -152,4 +152,18 @@ func ApprovePayoutRequest(c *fiber.Ctx) error {
 		})
 	}
 
+	// Check if user is admin/creator of the group
+	var admin models.Member
+	if err := database.DB.Where("group_id = ? AND user_id = ? AND role IN ?",
+		payoutRequest.GroupID, user.ID, []string{"creator", "admin"}).First(&admin).Error; err != nil {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "Insufficient permissions"})
+	}
+
+	// Check if already approved by this admin
+	var existingApproval models.PayoutApproval
+	if database.DB.Where("payout_request_id = ? AND admin_id = ?",
+		payoutID, user.ID).First(&existingApproval).Error == nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Already voted on this request"})
+	}
+
 	
