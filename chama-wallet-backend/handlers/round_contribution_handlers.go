@@ -201,4 +201,14 @@ func AuthorizeRoundPayout(c *fiber.Ctx) error {
 	var totalMembers int64
 	database.DB.Model(&models.Member{}).Where("group_id = ? AND status = ?", groupID, "approved").Count(&totalMembers)
 
+	var contributionsCount int64
+	database.DB.Model(&models.RoundContribution{}).Where("group_id = ? AND round = ? AND status = ?",
+		groupID, payload.Round, "confirmed").Count(&contributionsCount)
+
+	if contributionsCount < totalMembers {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": fmt.Sprintf("Not all members have contributed. %d/%d paid", contributionsCount, totalMembers),
+		})
+	}
+
 	
