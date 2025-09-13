@@ -55,4 +55,11 @@ func CreatePayoutRequest(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "Only admins can create payout requests"})
 	}
 
+	// Verify recipient is group member
+	var recipient models.Member
+	if err := database.DB.Where("group_id = ? AND user_id = ? AND status = ?",
+		groupID, payload.RecipientID, "approved").First(&recipient).Error; err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Recipient is not a group member"})
+	}
+
 	
