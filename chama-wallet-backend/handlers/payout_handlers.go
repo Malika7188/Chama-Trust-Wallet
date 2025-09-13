@@ -305,3 +305,15 @@ func executePayout(payoutRequest models.PayoutRequest) error {
 	return nil
 }
 
+func GetPayoutRequests(c *fiber.Ctx) error {
+	groupID := c.Params("id")
+	user := c.Locals("user").(models.User)
+
+	// Check if user is member of the group
+	var member models.Member
+	if err := database.DB.Where("group_id = ? AND user_id = ? AND status = ?",
+		groupID, user.ID, "approved").First(&member).Error; err != nil {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "Not a group member"})
+	}
+
+	
