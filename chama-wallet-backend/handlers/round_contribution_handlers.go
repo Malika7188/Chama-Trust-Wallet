@@ -119,3 +119,19 @@ func ContributeToRound(c *fiber.Ctx) error {
 	})
 }
 
+func GetRoundStatus(c *fiber.Ctx) error {
+	groupID := c.Params("id")
+	round := c.QueryInt("round", 1)
+
+	// Get round contributions
+	var contributions []models.RoundContribution
+	database.DB.Where("group_id = ? AND round = ?", groupID, round).
+		Preload("Member").
+		Preload("Member.User").
+		Find(&contributions)
+
+	// Get round status
+	var roundStatus models.RoundStatus
+	database.DB.Where("group_id = ? AND round = ?", groupID, round).First(&roundStatus)
+
+	
