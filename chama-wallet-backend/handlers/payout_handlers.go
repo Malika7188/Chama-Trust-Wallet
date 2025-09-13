@@ -23,4 +23,16 @@ func CreatePayoutRequest(c *fiber.Ctx) error {
 		Round       int     `json:"round"`
 	}
 
+	if err := c.BodyParser(&payload); err != nil {
+		fmt.Printf("❌ Failed to parse payout request: %v\n", err)
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid body"})
+	}
+
+	// Validate required fields
+	if payload.RecipientID == "" || payload.Amount <= 0 || payload.Round <= 0 {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Missing or invalid required fields",
+		})
+	}
+
 	
