@@ -183,4 +183,15 @@ func AuthorizeRoundPayout(c *fiber.Ctx) error {
 		Round int `json:"round"`
 	}
 
+	if err := c.BodyParser(&payload); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid body"})
+	}
+
+	// Check if user is admin/creator
+	var admin models.Member
+	if err := database.DB.Where("group_id = ? AND user_id = ? AND role IN ?",
+		groupID, user.ID, []string{"creator", "admin"}).First(&admin).Error; err != nil {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "Only admins can authorize payouts"})
+	}
+
 	
