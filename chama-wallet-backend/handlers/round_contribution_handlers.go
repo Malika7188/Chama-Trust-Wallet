@@ -242,4 +242,11 @@ func AuthorizeRoundPayout(c *fiber.Ctx) error {
 		)
 	}
 
-	
+	return c.JSON(fiber.Map{
+		"message":   "Round payout authorized successfully",
+		"round":     payload.Round,
+		"recipient": payoutSchedule.Member.User.Name,
+		"amount":    payoutSchedule.Amount,
+	})
+}
+
