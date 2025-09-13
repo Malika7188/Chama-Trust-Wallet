@@ -85,4 +85,19 @@ func CreatePayoutRequest(c *fiber.Ctx) error {
 		}
 	}
 
+	payoutRequest := models.PayoutRequest{
+		ID:          uuid.NewString(),
+		GroupID:     groupID,
+		RecipientID: payload.RecipientID,
+		Amount:      payload.Amount,
+		Round:       payload.Round,
+		Status:      "pending",
+		CreatedAt:   time.Now(),
+	}
+
+	if err := database.DB.Create(&payoutRequest).Error; err != nil {
+		fmt.Printf("❌ Failed to create payout request: %v\n", err)
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+
 	
