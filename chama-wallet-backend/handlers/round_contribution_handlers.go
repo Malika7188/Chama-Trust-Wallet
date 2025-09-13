@@ -58,4 +58,18 @@ func ContributeToRound(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Group is not active"})
 	}
 
+	// Validate amount matches expected contribution
+	if payload.Amount != group.ContributionAmount {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": fmt.Sprintf("Amount must be %.2f XLM", group.ContributionAmount),
+		})
+	}
+
+	// Check if user already contributed for this round
+	var existingContribution models.RoundContribution
+	if err := database.DB.Where("group_id = ? AND member_id = ? AND round = ?",
+		groupID, member.ID, payload.Round).First(&existingContribution).Error; err == nil {
+		return c.Status(fiber.StatusConflict).JSON(fiber.Map{"error": "Already contributed for this round"})
+	}
+
 	
