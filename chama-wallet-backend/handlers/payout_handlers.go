@@ -250,4 +250,26 @@ func ApprovePayoutRequest(c *fiber.Ctx) error {
 			)
 		}
 
+		return c.JSON(fiber.Map{
+			"message": "Payout request approved and executed successfully",
+			"status":  "completed",
+		})
+	} else if rejectionCount >= 1 {
+		fmt.Printf("❌ Payout rejected with %d rejections\n", rejectionCount)
 		
+		database.DB.Model(&models.PayoutRequest{}).
+			Where("id = ?", payoutID).
+			Update("status", "rejected")
+
+		return c.JSON(fiber.Map{
+			"message": "Payout request rejected",
+			"status":  "rejected",
+		})
+	}
+
+	return c.JSON(fiber.Map{
+		"message": fmt.Sprintf("Approval recorded, waiting for more approvals (%d/1)", approvalCount),
+		"status":  "pending",
+	})
+}
+
