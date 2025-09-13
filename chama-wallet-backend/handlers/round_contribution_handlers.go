@@ -194,4 +194,11 @@ func AuthorizeRoundPayout(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "Only admins can authorize payouts"})
 	}
 
+	// Check if all members have contributed
+	var group models.Group
+	database.DB.First(&group, "id = ?", groupID)
+
+	var totalMembers int64
+	database.DB.Model(&models.Member{}).Where("group_id = ? AND status = ?", groupID, "approved").Count(&totalMembers)
+
 	
