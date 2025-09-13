@@ -211,4 +211,12 @@ func AuthorizeRoundPayout(c *fiber.Ctx) error {
 		})
 	}
 
+	// Update round status to authorized
+	database.DB.Model(&models.RoundStatus{}).
+		Where("group_id = ? AND round = ?", groupID, payload.Round).
+		Updates(map[string]interface{}{
+			"payout_authorized": true,
+			"status":            "ready_for_payout",
+		})
+
 	
