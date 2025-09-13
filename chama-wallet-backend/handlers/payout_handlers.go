@@ -234,4 +234,20 @@ func ApprovePayoutRequest(c *fiber.Ctx) error {
 				Update("next_contribution_date", time.Now().AddDate(0, 0, currentGroup.ContributionPeriod))
 		}
 
+		// Notify all members about successful payout
+		var members []models.Member
+		database.DB.Where("group_id = ? AND status = ?",
+			payoutRequest.GroupID,
+			"approved").Find(&members)
+
+		for _, member := range members {
+			services.CreateNotification(
+				member.UserID,
+				payoutRequest.GroupID,
+				"payout_approved",
+				"Payout Approved",
+				fmt.Sprintf("Payout of %.2f XLM has been approved and processed", payoutRequest.Amount),
+			)
+		}
+
 		
