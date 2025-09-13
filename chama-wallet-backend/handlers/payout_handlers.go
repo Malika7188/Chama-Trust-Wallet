@@ -180,3 +180,19 @@ func ApprovePayoutRequest(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
 	}
 
+	fmt.Printf("✅ Approval recorded: %s by %s\n", payoutID, user.Name)
+
+	// Count approvals and rejections
+	var approvalCount int64
+	database.DB.Model(&models.PayoutApproval{}).
+		Where("payout_request_id = ? AND approved = ?", payoutID, true).
+		Count(&approvalCount)
+
+	var rejectionCount int64
+	database.DB.Model(&models.PayoutApproval{}).
+		Where("payout_request_id = ? AND approved = ?", payoutID, false).
+		Count(&rejectionCount)
+
+	fmt.Printf("📊 Payout %s - Approvals: %d, Rejections: %d\n", payoutID, approvalCount, rejectionCount)
+
+	
