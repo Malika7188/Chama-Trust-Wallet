@@ -219,4 +219,13 @@ func AuthorizeRoundPayout(c *fiber.Ctx) error {
 			"status":            "ready_for_payout",
 		})
 
+	// Get the recipient for this round from payout schedule
+	var payoutSchedule models.PayoutSchedule
+	if err := database.DB.Where("group_id = ? AND round = ?", groupID, payload.Round).
+		Preload("Member").
+		Preload("Member.User").
+		First(&payoutSchedule).Error; err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "Payout schedule not found"})
+	}
+
 	
