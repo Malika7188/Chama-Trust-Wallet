@@ -250,3 +250,12 @@ func AuthorizeRoundPayout(c *fiber.Ctx) error {
 	})
 }
 
+func updateRoundStatus(groupID string, round int) error {
+	// Get total required amount and member count
+	var group models.Group
+	database.DB.First(&group, "id = ?", groupID)
+
+	var totalMembers int64
+	database.DB.Model(&models.Member{}).Where("group_id = ? AND status = ?", groupID, "approved").Count(&totalMembers)
+
+	
