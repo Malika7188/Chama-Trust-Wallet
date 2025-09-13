@@ -146,4 +146,24 @@ func GetRoundStatus(c *fiber.Ctx) error {
 		contributionMap[contrib.MemberID] = contrib
 	}
 
+	// Build response with member contribution status
+	type MemberContributionStatus struct {
+		Member       models.Member             `json:"member"`
+		HasPaid      bool                      `json:"has_paid"`
+		Contribution *models.RoundContribution `json:"contribution,omitempty"`
+	}
+
+	var memberStatuses []MemberContributionStatus
+	for _, member := range allMembers {
+		contrib, hasPaid := contributionMap[member.ID]
+		status := MemberContributionStatus{
+			Member:  member,
+			HasPaid: hasPaid,
+		}
+		if hasPaid {
+			status.Contribution = &contrib
+		}
+		memberStatuses = append(memberStatuses, status)
+	}
+
 	
