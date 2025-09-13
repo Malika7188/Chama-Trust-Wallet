@@ -217,4 +217,21 @@ func ApprovePayoutRequest(c *fiber.Ctx) error {
 			})
 		}
 
+		// Update status to completed
+		database.DB.Model(&models.PayoutRequest{}).
+			Where("id = ?", payoutID).
+			Update("status", "completed")
+
+		// Fetch group details again to get the latest CurrentRound and ContributionPeriod
+		var currentGroup models.Group
+		if err := database.DB.First(&currentGroup, "id = ?", payoutRequest.GroupID).Error; err != nil {
+			fmt.Printf("❌ Failed to fetch group details for round update: %v\n", err)
+		} else {
+			// Increment current round and update next contribution date
+			database.DB.Model(&models.Group{}).
+				Where("id = ?", payoutRequest.GroupID).
+				Update("current_round", currentGroup.CurrentRound + 1).
+				Update("next_contribution_date", time.Now().AddDate(0, 0, currentGroup.ContributionPeriod))
+		}
+
 		
