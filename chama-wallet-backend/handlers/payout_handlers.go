@@ -283,4 +283,15 @@ func executePayout(payoutRequest models.PayoutRequest) error {
 		return fmt.Errorf("failed to get group: %w", err)
 	}
 
+	// Get recipient details
+	var recipient models.User
+	if err := database.DB.First(&recipient, "id = ?", payoutRequest.RecipientID).Error; err != nil {
+		return fmt.Errorf("failed to get recipient: %w", err)
+	}
+
+	// Validate group has secret key for transactions
+	if group.SecretKey == "" {
+		return fmt.Errorf("group secret key not available")
+	}
+
 	
