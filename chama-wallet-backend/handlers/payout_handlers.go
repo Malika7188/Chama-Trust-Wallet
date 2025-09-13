@@ -138,4 +138,18 @@ func ApprovePayoutRequest(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid body"})
 	}
 
+	// Get payout request
+	var payoutRequest models.PayoutRequest
+	if err := database.DB.Where("id = ?", payoutID).Preload("Group").First(&payoutRequest).Error; err != nil {
+		fmt.Printf("❌ Payout request not found: %v\n", err)
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "Payout request not found"})
+	}
+
+	// Check if payout is still pending
+	if payoutRequest.Status != "pending" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": fmt.Sprintf("Payout request is already %s", payoutRequest.Status),
+		})
+	}
+
 	
