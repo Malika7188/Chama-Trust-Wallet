@@ -174,3 +174,13 @@ func GetRoundStatus(c *fiber.Ctx) error {
 		"paid_members":  len(contributions),
 	})
 }
+
+func AuthorizeRoundPayout(c *fiber.Ctx) error {
+	groupID := c.Params("id")
+	user := c.Locals("user").(models.User)
+
+	var payload struct {
+		Round int `json:"round"`
+	}
+
+	
