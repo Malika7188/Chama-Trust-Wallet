@@ -273,3 +273,14 @@ func ApprovePayoutRequest(c *fiber.Ctx) error {
 	})
 }
 
+// executePayout performs the actual blockchain payout transaction
+func executePayout(payoutRequest models.PayoutRequest) error {
+	fmt.Printf("🔄 Executing payout: %.2f XLM to recipient %s\n", payoutRequest.Amount, payoutRequest.RecipientID)
+	
+	// Get group details
+	var group models.Group
+	if err := database.DB.First(&group, "id = ?", payoutRequest.GroupID).Error; err != nil {
+		return fmt.Errorf("failed to get group: %w", err)
+	}
+
+	
