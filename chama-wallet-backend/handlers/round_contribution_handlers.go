@@ -72,4 +72,35 @@ func ContributeToRound(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusConflict).JSON(fiber.Map{"error": "Already contributed for this round"})
 	}
 
+	// Perform direct XLM transfer from user to group wallet
+	tx, err := services.SendXLM(payload.Secret, group.Wallet, fmt.Sprintf("%.7f", payload.Amount))
+	if err != nil {
+		fmt.Printf("❌ Failed to send XLM: %v\n", err)
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": fmt.Sprintf("Failed to transfer funds: %v", err),
+		})
+	}
+	output := tx.Hash // Use the transaction hash as output
+	fmt.Printf("✅ XLM transferred successfully. Transaction Hash: %s\n", output)
+
+	// Note: If the smart contract still needs to track contributions,
+	// you might need to call an unauthenticated 'record_contribution'
+	// function on the smart contract here, passing the user's public key
+	// and the amount. However, this would require modifying the smart contract
+	// to have such a function and ensuring proper authorization for it.
+	// For now, we are only performing the direct transfer.
+
+	// Record the contribution
+	contribution := models.RoundContribution{
+		ID:        uuid.NewString(),
+		GroupID:   groupID,
+		MemberID:  member.ID,
+		Round:     payload.Round,
+		Amount:    payload.Amount,
+		Status:    "confirmed",
+		TxHash:    output,
+		CreatedAt: time.Now(),
+		UpdatedAt: time.Now(),
+	}
+
 	
