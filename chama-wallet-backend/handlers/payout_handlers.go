@@ -41,4 +41,11 @@ func CreatePayoutRequest(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "Group not found"})
 	}
 
+	// Validate group is active
+	if group.Status != "active" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Group must be active to create payout requests",
+		})
+	}
+
 	
