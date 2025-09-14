@@ -335,3 +335,11 @@ func GetTransactionHistory(c *fiber.Ctx) error {
 	})
 }
 
+// Helper functions
+func getExplorerURL(txHash string) string {
+	if config.Config.IsMainnet {
+		return fmt.Sprintf("https://stellar.expert/explorer/public/tx/%s", txHash)
+	}
+	return fmt.Sprintf("https://stellar.expert/explorer/testnet/tx/%s", txHash)
+}
+
