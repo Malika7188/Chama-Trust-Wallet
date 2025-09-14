@@ -62,3 +62,16 @@ type AdminNomination struct {
 	Status      string `gorm:"default:pending"` // pending, approved, rejected
 	CreatedAt   time.Time
 }
+
+type PayoutRequest struct {
+	ID            string `gorm:"primaryKey"`
+	GroupID       string
+	Group         Group  `gorm:"foreignKey:GroupID"`
+	RecipientID   string
+	Recipient     User   `gorm:"foreignKey:RecipientID"`
+	Amount        float64
+	Round         int
+	Status        string `gorm:"default:pending"` // pending, approved, rejected, completed
+	Approvals     []PayoutApproval `gorm:"foreignKey:PayoutRequestID"`
+	CreatedAt     time.Time
+}
