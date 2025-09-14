@@ -18,4 +18,10 @@ func AuthMiddleware() fiber.Handler {
 			})
 		}
 
+		if !strings.HasPrefix(authHeader, "Bearer ") {
+			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+				"error": "Invalid authorization header format",
+			})
+		}
+
 		
