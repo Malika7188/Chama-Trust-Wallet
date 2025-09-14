@@ -33,4 +33,12 @@ func ContributeHandler(c *fiber.Ctx) error {
 		})
 	}
 
+	// Validate amount
+	amount, err := strconv.ParseFloat(body.Amount, 64)
+	if err != nil || amount <= 0 {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Amount must be a positive number",
+		})
+	}
+
 	
