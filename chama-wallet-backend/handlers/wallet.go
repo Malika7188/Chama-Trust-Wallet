@@ -75,4 +75,11 @@ func TransferFunds(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid request payload"})
 	}
 
+	// Validate required fields
+	if req.FromSeed == "" || req.ToAddress == "" || req.Amount == "" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Missing required fields: from_seed, to_address, and amount are required",
+		})
+	}
+
 	
