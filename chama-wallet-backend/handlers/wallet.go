@@ -82,4 +82,11 @@ func TransferFunds(c *fiber.Ctx) error {
 		})
 	}
 
+	// Validate amount is positive
+	if amount, err := strconv.ParseFloat(req.Amount, 64); err != nil || amount <= 0 {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Amount must be a positive number",
+		})
+	}
+
 	
