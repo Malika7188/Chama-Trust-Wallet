@@ -55,4 +55,8 @@ func GetBalance(c *fiber.Ctx) error {
 		balances = append(balances, fmt.Sprintf("%s: %s", assetInfo, b.Balance))
 	}
 
-	
+	return c.JSON(fiber.Map{
+		"balances": balances,
+		"network":  config.Config.Network,
+	})
+}
