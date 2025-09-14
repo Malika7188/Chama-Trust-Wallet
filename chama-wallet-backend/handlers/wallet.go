@@ -201,4 +201,10 @@ func TransferFunds(c *fiber.Ctx) error {
 		asset = txnbuild.NativeAsset{}
 	}
 
+	op = &txnbuild.Payment{
+		Destination: req.ToAddress,
+		Amount:      req.Amount,
+		Asset:       asset,
+	}
+
 	
