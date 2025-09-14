@@ -190,4 +190,15 @@ func TransferFunds(c *fiber.Ctx) error {
 	var asset txnbuild.Asset
 	var op txnbuild.Operation
 
+	if assetType == "USDC" && config.Config.IsMainnet {
+		// USDC payment (mainnet only)
+		asset = txnbuild.CreditAsset{
+			Code:   config.Config.USDCAssetCode,
+			Issuer: config.Config.USDCAssetIssuer,
+		}
+	} else {
+		// XLM payment (default)
+		asset = txnbuild.NativeAsset{}
+	}
+
 	
