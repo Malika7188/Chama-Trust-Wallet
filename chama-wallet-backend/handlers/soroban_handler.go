@@ -51,4 +51,9 @@ func ContributeHandler(c *fiber.Ctx) error {
 		}
 	}
 
+	fmt.Printf("🔄 Processing direct Soroban contribution: %s XLM from %s to contract %s on %s\n",
+		body.Amount, body.UserAddress, body.ContractID, config.Config.Network)
+	args := []string{body.UserAddress, body.Amount}
+	var result string
+
 	
