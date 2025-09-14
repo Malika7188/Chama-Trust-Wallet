@@ -196,4 +196,10 @@ func HistoryHandler(c *fiber.Ctx) error {
 		})
 	}
 
-	
+	return c.JSON(fiber.Map{
+		"contract_id": body.ContractID,
+		"user":        body.UserAddress,
+		"history":     result,
+		"network":     config.Config.Network,
+	})
+}
