@@ -136,3 +136,18 @@ type PayoutSchedule struct {
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }
+
+type RoundContribution struct {
+	ID        string    `gorm:"primaryKey"`
+	GroupID   string
+	Group     Group     `gorm:"foreignKey:GroupID"`
+	MemberID  string
+	Member    Member    `gorm:"foreignKey:MemberID"`
+	Round     int
+	Amount    float64
+	Status    string    `gorm:"default:pending"` // pending, confirmed, failed
+	TxHash    string    `gorm:"column:tx_hash"`
+	CreatedAt time.Time
+	UpdatedAt time.Time
+}
+
