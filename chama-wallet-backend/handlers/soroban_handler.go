@@ -41,4 +41,14 @@ func ContributeHandler(c *fiber.Ctx) error {
 		})
 	}
 
+	// Validate amount limits for mainnet
+	if config.Config.IsMainnet {
+		minAmount := 0.0000001 // Minimum XLM amount
+		if amount < minAmount {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+				"error": fmt.Sprintf("Amount below minimum of %f XLM for mainnet", minAmount),
+			})
+		}
+	}
+
 	
