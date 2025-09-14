@@ -95,4 +95,10 @@ func TransferFunds(c *fiber.Ctx) error {
 		minAmount, _ := strconv.ParseFloat(os.Getenv("MIN_TRANSFER_AMOUNT"), 64)
 		maxAmount, _ := strconv.ParseFloat(os.Getenv("MAX_TRANSFER_AMOUNT"), 64)
 
+		if minAmount > 0 && amount < minAmount {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+				"error": fmt.Sprintf("Amount below minimum transfer limit of %f", minAmount),
+			})
+		}
+
 		
