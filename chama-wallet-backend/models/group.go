@@ -37,3 +37,16 @@ type Member struct {
 	Status   string `gorm:"default:pending"` // pending, approved, rejected
 }
 
+type GroupInvitation struct {
+	ID        string `gorm:"primaryKey"`
+	GroupID   string
+	Group     Group  `gorm:"foreignKey:GroupID"`
+	InviterID string
+	Inviter   User   `gorm:"foreignKey:InviterID"`
+	Email     string
+	UserID    string // if user exists
+	User      User   `gorm:"foreignKey:UserID"`
+	Status    string `gorm:"default:pending"` // pending, accepted, rejected
+	CreatedAt time.Time
+	ExpiresAt time.Time
+}
