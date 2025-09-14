@@ -343,3 +343,9 @@ func getExplorerURL(txHash string) string {
 	return fmt.Sprintf("https://stellar.expert/explorer/testnet/tx/%s", txHash)
 }
 
+func getNetworkWarning() string {
+	if config.Config.IsMainnet {
+		return "⚠️ MAINNET: This keypair can control real funds. Keep the secret key secure!"
+	}
+	return "ℹ️ TESTNET: This is a test keypair for development purposes only."
+}
