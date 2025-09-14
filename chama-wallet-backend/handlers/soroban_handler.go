@@ -144,4 +144,13 @@ func WithdrawHandler(c *fiber.Ctx) error {
 		})
 	}
 
+	// Additional validation for mainnet
+	if config.Config.IsMainnet {
+		minAmount := 0.0000001
+		if amount < minAmount {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+				"error": fmt.Sprintf("Amount below minimum of %f XLM for mainnet", minAmount),
+			})
+		}
+	}
 	
