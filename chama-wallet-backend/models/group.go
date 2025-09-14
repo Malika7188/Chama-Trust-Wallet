@@ -151,3 +151,17 @@ type RoundContribution struct {
 	UpdatedAt time.Time
 }
 
+type RoundStatus struct {
+	ID                string    `gorm:"primaryKey"`
+	GroupID           string
+	Group             Group     `gorm:"foreignKey:GroupID"`
+	Round             int
+	TotalRequired     float64   `gorm:"column:total_required"`
+	TotalReceived     float64   `gorm:"column:total_received"`
+	ContributorsCount int       `gorm:"column:contributors_count"`
+	RequiredCount     int       `gorm:"column:required_count"`
+	Status            string    `gorm:"default:collecting"` // collecting, ready_for_payout, completed
+	PayoutAuthorized  bool      `gorm:"column:payout_authorized;default:false"`
+	CreatedAt         time.Time
+	UpdatedAt         time.Time
+}
