@@ -113,4 +113,11 @@ func TransferFunds(c *fiber.Ctx) error {
 		assetType = "XLM" // Default to XLM
 	}
 
+	fmt.Printf("🔄 Processing %s transfer: %s to %s on %s\n", assetType, req.Amount, req.ToAddress, config.Config.Network)
+	sourceKP, err := keypair.ParseFull(req.FromSeed)
+	if err != nil {
+		fmt.Printf("❌ Invalid secret key: %v\n", err)
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid secret key"})
+	}
+
 	
