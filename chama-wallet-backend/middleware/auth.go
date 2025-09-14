@@ -31,4 +31,11 @@ func AuthMiddleware() fiber.Handler {
 			})
 		}
 
+		claims, err := services.ValidateJWT(token)
+		if err != nil {
+			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+				"error": "Invalid token",
+			})
+		}
+
 		
