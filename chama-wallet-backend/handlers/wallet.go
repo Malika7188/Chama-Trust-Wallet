@@ -224,4 +224,10 @@ func TransferFunds(c *fiber.Ctx) error {
 		Operations: []txnbuild.Operation{op},
 	}
 
+	tx, err := txnbuild.NewTransaction(txParams)
+	if err != nil {
+		fmt.Printf("❌ Failed to build transaction: %v\n", err)
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to build transaction"})
+	}
+
 	
