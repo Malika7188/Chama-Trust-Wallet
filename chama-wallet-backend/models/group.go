@@ -50,3 +50,15 @@ type GroupInvitation struct {
 	CreatedAt time.Time
 	ExpiresAt time.Time
 }
+
+type AdminNomination struct {
+	ID          string `gorm:"primaryKey"`
+	GroupID     string
+	Group       Group  `gorm:"foreignKey:GroupID"`
+	NominatorID string
+	Nominator   User   `gorm:"foreignKey:NominatorID"`
+	NomineeID   string
+	Nominee     User   `gorm:"foreignKey:NomineeID"`
+	Status      string `gorm:"default:pending"` // pending, approved, rejected
+	CreatedAt   time.Time
+}
