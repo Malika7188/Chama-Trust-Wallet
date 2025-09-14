@@ -31,4 +31,5 @@ func Setup(app *fiber.App) {
 	})
 	// Public wallet routes
 	app.Post("/create-wallet", handlers.CreateWallet)
+	app.Get("/balance/:address", middleware.OptionalAuthMiddleware(), handlers.GetBalance)
 	
