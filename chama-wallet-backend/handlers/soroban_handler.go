@@ -183,4 +183,10 @@ func HistoryHandler(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid request body"})
 	}
 
+	if body.ContractID == "" || body.UserAddress == "" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Missing required fields: contract_id and user_address are required",
+		})
+	}
+
 	
