@@ -133,4 +133,12 @@ func TransferFunds(c *fiber.Ctx) error {
 	if err != nil {
 		fmt.Printf("❌ Cannot load source account: %v\n", err)
 
-		
+		// Check if account doesn't exist and try to fund it
+		if horizonError, ok := err.(*horizonclient.Error); ok && horizonError.Problem.Status == 404 {
+			if config.Config.IsMainnet {
+				return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+					"error": "Source account not found on mainnet. Please fund the account with real XLM first.",
+				})
+			}
+
+			
