@@ -60,3 +60,11 @@ func GetBalance(c *fiber.Ctx) error {
 		"network":  config.Config.Network,
 	})
 }
+
+type TransferRequest struct {
+	FromSeed  string `json:"from_seed"`
+	ToAddress string `json:"to_address"`
+	Amount    string `json:"amount"`
+	AssetType string `json:"asset_type,omitempty"` // "XLM" or "USDC"
+}
+
