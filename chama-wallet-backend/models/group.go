@@ -86,3 +86,18 @@ type PayoutApproval struct {
 	CreatedAt       time.Time
 }
 
+type Notification struct {
+	ID        string `gorm:"primaryKey"`
+	UserID    string
+	User      User   `gorm:"foreignKey:UserID"`
+	GroupID   string
+	Group     Group  `gorm:"foreignKey:GroupID"`
+	Type      string // contribution_reminder, payout_approved, invitation, etc.
+	Title     string
+	Data      string
+	Status    string
+	Message   string
+	Read      bool   `gorm:"default:false"`
+	CreatedAt time.Time
+}
+
