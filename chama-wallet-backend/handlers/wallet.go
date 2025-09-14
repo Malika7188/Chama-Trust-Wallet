@@ -311,4 +311,27 @@ func GetTransactionHistory(c *fiber.Ctx) error {
 		Order:      horizonclient.OrderDesc,
 	}
 
-	
+	txPage, err := client.Transactions(txRequest)
+	if err != nil {
+		return c.Status(500).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	var txs []fiber.Map
+	for _, tx := range txPage.Embedded.Records {
+		txs = append(txs, fiber.Map{
+			"hash":         tx.Hash,
+			"ledger":       tx.Ledger,
+			"memo":         tx.Memo,
+			"successful":   tx.Successful,
+			"created_at":   tx.LedgerCloseTime.Format("2006-01-02 15:04:05"),
+			"fee_charged":  tx.FeeCharged,
+			"explorer_url": getExplorerURL(tx.Hash),
+		})
+	}
+
+	return c.JSON(fiber.Map{
+		"transactions": txs,
+		"network":      config.Config.Network,
+	})
+}
+
