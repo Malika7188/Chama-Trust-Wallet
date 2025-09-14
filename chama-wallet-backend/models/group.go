@@ -26,3 +26,14 @@ type Group struct {
 	UpdatedAt          time.Time
 }
 
+type Member struct {
+	ID       string `gorm:"primaryKey"`
+	GroupID  string
+	UserID   string
+	User     User   `gorm:"foreignKey:UserID"`
+	Wallet   string
+	Role     string `gorm:"default:member"` // member, admin, creator
+	JoinedAt time.Time
+	Status   string `gorm:"default:pending"` // pending, approved, rejected
+}
+
