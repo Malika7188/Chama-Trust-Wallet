@@ -10,4 +10,5 @@ func SetupSorobanRoutes(app *fiber.App) {
 	// Soroban contract interaction routes
 	app.Post("/api/contribute", handlers.ContributeHandler)
 	app.Post("/api/balance", handlers.BalanceHandler)
+	app.Post("/api/withdraw", handlers.WithdrawHandler)
 	
