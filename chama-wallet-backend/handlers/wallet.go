@@ -207,4 +207,10 @@ func TransferFunds(c *fiber.Ctx) error {
 		Asset:       asset,
 	}
 
+	// Add memo for mainnet compliance
+	var memo txnbuild.Memo
+	if config.Config.IsMainnet {
+		memo = txnbuild.MemoText(fmt.Sprintf("Chama Wallet %s Transfer", assetType))
+	}
+
 	
