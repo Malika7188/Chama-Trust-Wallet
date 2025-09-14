@@ -246,4 +246,16 @@ func TransferFunds(c *fiber.Ctx) error {
 
 	fmt.Printf("✅ %s transfer successful on %s: %s\n", assetType, config.Config.Network, resp.Hash)
 
-	
+	return c.Status(fiber.StatusOK).JSON(fiber.Map{
+		"message":          "Transfer completed successfully",
+		"transaction_hash": resp.Hash,
+		"from":             sourceKP.Address(),
+		"to":               req.ToAddress,
+		"amount":           req.Amount,
+		"asset_type":       assetType,
+		"network":          config.Config.Network,
+		"ledger":           resp.Ledger,
+		"explorer_url":     getExplorerURL(resp.Hash),
+	})
+}
+
