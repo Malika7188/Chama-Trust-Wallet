@@ -11,4 +11,5 @@ func SetupSorobanRoutes(app *fiber.App) {
 	app.Post("/api/contribute", handlers.ContributeHandler)
 	app.Post("/api/balance", handlers.BalanceHandler)
 	app.Post("/api/withdraw", handlers.WithdrawHandler)
-	
+	app.Post("/api/history", handlers.HistoryHandler)
+}
