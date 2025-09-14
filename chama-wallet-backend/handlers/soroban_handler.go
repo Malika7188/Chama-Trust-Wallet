@@ -170,3 +170,12 @@ func WithdrawHandler(c *fiber.Ctx) error {
 		"network":     config.Config.Network,
 	})
 }
+
+// HistoryHandler handles contribution history requests
+func HistoryHandler(c *fiber.Ctx) error {
+	type RequestBody struct {
+		ContractID  string `json:"contract_id"`
+		UserAddress string `json:"user_address"`
+	}
+
+	
