@@ -17,4 +17,16 @@ func Setup(app *fiber.App) {
 		})
 	})
 
+	// Network info endpoint
+	app.Get("/network", func(c *fiber.Ctx) error {
+		return c.JSON(fiber.Map{
+			"network":            config.Config.Network,
+			"horizon_url":        config.Config.HorizonURL,
+			"soroban_rpc_url":    config.Config.SorobanRPCURL,
+			"network_passphrase": config.Config.NetworkPassphrase,
+			"contract_id":        config.Config.ContractID,
+			"is_mainnet":         config.Config.IsMainnet,
+			"supported_assets":   config.GetAssetInfo(),
+		})
+	})
 	
