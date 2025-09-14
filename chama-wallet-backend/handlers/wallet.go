@@ -273,3 +273,10 @@ func GenerateKeypair(c *fiber.Ctx) error {
 	})
 }
 
+func FundAccount(c *fiber.Ctx) error {
+	address := c.Params("address")
+	if address == "" {
+		return c.Status(400).JSON(fiber.Map{"error": "Address is required"})
+	}
+
+	
