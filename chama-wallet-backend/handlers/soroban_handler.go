@@ -189,4 +189,11 @@ func HistoryHandler(c *fiber.Ctx) error {
 		})
 	}
 
+	result, err := services.GetContributionHistory(body.ContractID, body.UserAddress)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": fmt.Sprintf("Failed to get history: %v", err),
+		})
+	}
+
 	
