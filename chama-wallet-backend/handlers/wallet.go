@@ -279,4 +279,15 @@ func FundAccount(c *fiber.Ctx) error {
 		return c.Status(400).JSON(fiber.Map{"error": "Address is required"})
 	}
 
+	if config.Config.IsMainnet {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error":   "Account funding not available on mainnet. Please deposit real XLM to fund your account.",
+			"network": config.Config.Network,
+		})
+	}
+	err := services.FundTestAccount(address)
+	if err != nil {
+		return c.Status(500).JSON(fiber.Map{"error": err.Error()})
+	}
+
 	
