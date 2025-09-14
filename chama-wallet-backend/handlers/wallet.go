@@ -298,4 +298,17 @@ func FundAccount(c *fiber.Ctx) error {
 	})
 }
 
-f
+func GetTransactionHistory(c *fiber.Ctx) error {
+	address := c.Params("address")
+	if address == "" {
+		return c.Status(400).JSON(fiber.Map{"error": "Address is required"})
+	}
+
+	client := config.GetHorizonClient()
+	txRequest := horizonclient.TransactionRequest{
+		ForAccount: address,
+		Limit:      10,
+		Order:      horizonclient.OrderDesc,
+	}
+
+	
