@@ -70,4 +70,16 @@ func ContributeHandler(c *fiber.Ctx) error {
 		})
 	}
 
-	
+	fmt.Printf("✅ Direct Soroban contribution successful on %s: %s\n", config.Config.Network, result)
+
+	return c.JSON(fiber.Map{
+		"message":     "Contribution successful",
+		"contract_id": body.ContractID,
+		"user":        body.UserAddress,
+		"amount":      body.Amount,
+		"tx_hash":     result,
+		"network":     config.Config.Network,
+		"timestamp":   fmt.Sprintf("%d", time.Now().Unix()),
+	})
+}
+
