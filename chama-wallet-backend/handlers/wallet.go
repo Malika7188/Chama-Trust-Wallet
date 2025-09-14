@@ -290,4 +290,12 @@ func FundAccount(c *fiber.Ctx) error {
 		return c.Status(500).JSON(fiber.Map{"error": err.Error()})
 	}
 
-	
+	return c.JSON(fiber.Map{
+		"status":  "success",
+		"message": "Account funded",
+		"address": address,
+		"network": config.Config.Network,
+	})
+}
+
+f
