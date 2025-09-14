@@ -101,4 +101,11 @@ func BalanceHandler(c *fiber.Ctx) error {
 		})
 	}
 
+	result, err := services.GetBalance(body.ContractID, body.UserAddress)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": fmt.Sprintf("Failed to get balance: %v", err),
+		})
+	}
+
 	
