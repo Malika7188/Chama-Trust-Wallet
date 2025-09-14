@@ -114,3 +114,9 @@ type Contribution struct {
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }
+
+type GroupSettings struct {
+	ContributionAmount float64  `json:"contribution_amount"`
+	ContributionPeriod int      `json:"contribution_period"`
+	PayoutOrder        []string `json:"payout_order"`
+}
