@@ -265,4 +265,11 @@ func GenerateKeypair(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
 	}
 
-	
+	return c.JSON(fiber.Map{
+		"public_key":  kp.Address(),
+		"secret_seed": kp.Seed(),
+		"network":     config.Config.Network,
+		"warning":     getNetworkWarning(),
+	})
+}
+
