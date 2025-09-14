@@ -185,3 +185,9 @@ func TransferFunds(c *fiber.Ctx) error {
 			}
 		}
 	}
+
+	// Determine asset type and create appropriate payment operation
+	var asset txnbuild.Asset
+	var op txnbuild.Operation
+
+	
