@@ -108,4 +108,9 @@ func TransferFunds(c *fiber.Ctx) error {
 		}
 	}
 
+	assetType := req.AssetType
+	if assetType == "" {
+		assetType = "XLM" // Default to XLM
+	}
+
 	
