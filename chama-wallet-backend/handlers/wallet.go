@@ -120,4 +120,11 @@ func TransferFunds(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid secret key"})
 	}
 
+	// Validate destination address format
+	if len(req.ToAddress) != 56 || !strings.HasPrefix(req.ToAddress, "G") {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Invalid destination address format",
+		})
+	}
+
 	
