@@ -230,4 +230,10 @@ func TransferFunds(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to build transaction"})
 	}
 
+	signedTx, err := tx.Sign(config.GetNetworkPassphrase(), sourceKP)
+	if err != nil {
+		fmt.Printf("❌ Failed to sign transaction: %v\n", err)
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to sign transaction"})
+	}
+
 	
