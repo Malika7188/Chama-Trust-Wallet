@@ -12,3 +12,10 @@ func GroupRoutes(app *fiber.App) {
 	app.Get("/ping", func(c *fiber.Ctx) error {
 		return c.SendString("pong")
 	})
+
+	// Public routes (can be accessed without authentication)
+	app.Get("/groups", middleware.AuthMiddleware(), handlers.GetAllGroups)
+	app.Get("/group/:id", middleware.OptionalAuthMiddleware(), handlers.GetGroupDetails)
+	app.Get("/group/:id/balance", middleware.OptionalAuthMiddleware(), handlers.GetGroupBalance)
+
+	
