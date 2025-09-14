@@ -25,3 +25,12 @@ func ContributeHandler(c *fiber.Ctx) error {
 		fmt.Printf("❌ Failed to parse contribute request: %v\n", err)
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid request body"})
 	}
+
+	// Validate required fields
+	if body.ContractID == "" || body.UserAddress == "" || body.Amount == "" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Missing required fields: contract_id, user_address, and amount are required",
+		})
+	}
+
+	
