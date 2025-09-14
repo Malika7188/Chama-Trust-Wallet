@@ -29,4 +29,6 @@ func Setup(app *fiber.App) {
 			"supported_assets":   config.GetAssetInfo(),
 		})
 	})
+	// Public wallet routes
+	app.Post("/create-wallet", handlers.CreateWallet)
 	
