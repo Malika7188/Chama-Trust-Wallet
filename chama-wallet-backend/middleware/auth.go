@@ -38,4 +38,11 @@ func AuthMiddleware() fiber.Handler {
 			})
 		}
 
+		user, err := services.GetUserByID(claims.UserID)
+		if err != nil {
+			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+				"error": "User not found",
+			})
+		}
+
 		
