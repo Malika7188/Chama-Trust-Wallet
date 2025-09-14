@@ -46,4 +46,13 @@ func GetBalance(c *fiber.Ctx) error {
 		})
 	}
 
+	var balances []string
+	for _, b := range account.Balances {
+		assetInfo := "XLM"
+		if b.Asset.Type != "native" {
+			assetInfo = fmt.Sprintf("%s:%s", b.Asset.Code, b.Asset.Issuer)
+		}
+		balances = append(balances, fmt.Sprintf("%s: %s", assetInfo, b.Balance))
+	}
+
 	
