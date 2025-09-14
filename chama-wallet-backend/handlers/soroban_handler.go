@@ -161,4 +161,12 @@ func WithdrawHandler(c *fiber.Ctx) error {
 		})
 	}
 
-	
+	return c.JSON(fiber.Map{
+		"message":     "Withdrawal successful",
+		"contract_id": body.ContractID,
+		"user":        body.UserAddress,
+		"amount":      body.Amount,
+		"new_balance": result,
+		"network":     config.Config.Network,
+	})
+}
