@@ -16,4 +16,6 @@ func AuthRoutes(app *fiber.App) {
 
 	// Protected routes
 	auth := app.Group("/auth", middleware.AuthMiddleware())
-	
+	auth.Get("/profile", handlers.GetProfile)
+	auth.Put("/profile", handlers.UpdateProfile)
+}
