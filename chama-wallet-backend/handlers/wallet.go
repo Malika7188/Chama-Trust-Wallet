@@ -213,4 +213,15 @@ func TransferFunds(c *fiber.Ctx) error {
 		memo = txnbuild.MemoText(fmt.Sprintf("Chama Wallet %s Transfer", assetType))
 	}
 
+	txParams := txnbuild.TransactionParams{
+		SourceAccount:        &sourceAccount,
+		IncrementSequenceNum: true,
+		BaseFee:              txnbuild.MinBaseFee,
+		Memo:                 memo,
+		Preconditions: txnbuild.Preconditions{
+			TimeBounds: txnbuild.NewTimeout(300), // 5 minute timeout
+		},
+		Operations: []txnbuild.Operation{op},
+	}
+
 	
