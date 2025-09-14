@@ -1,0 +1,12 @@
+package routes
+
+import (
+	"github.com/gofiber/fiber/v2"
+
+	"chama-wallet-backend/handlers"
+)
+
+func SetupSorobanRoutes(app *fiber.App) {
+	// Soroban contract interaction routes
+	app.Post("/api/contribute", handlers.ContributeHandler)
+	
