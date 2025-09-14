@@ -141,4 +141,14 @@ func TransferFunds(c *fiber.Ctx) error {
 				})
 			}
 
+			fmt.Printf("🔄 Source account not found, attempting to fund: %s\n", sourceKP.Address())
+			if fundErr := services.FundTestAccount(sourceKP.Address()); fundErr != nil {
+				return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+					"error": "Source account not found and funding failed",
+				})
+			}
+
+			// Wait for funding to process
+			time.Sleep(3 * time.Second)
+
 			
