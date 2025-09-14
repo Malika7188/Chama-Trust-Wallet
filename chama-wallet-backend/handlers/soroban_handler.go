@@ -83,3 +83,11 @@ func ContributeHandler(c *fiber.Ctx) error {
 	})
 }
 
+// BalanceHandler handles balance queries
+func BalanceHandler(c *fiber.Ctx) error {
+	type RequestBody struct {
+		ContractID  string `json:"contract_id"`
+		UserAddress string `json:"user_address"`
+	}
+
+	
