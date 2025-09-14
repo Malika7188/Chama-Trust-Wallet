@@ -1,0 +1,14 @@
+package routes
+
+import (
+	"github.com/gofiber/fiber/v2"
+
+	"chama-wallet-backend/handlers"
+	"chama-wallet-backend/middleware"
+)
+
+// AuthRoutes sets up authentication routes
+func AuthRoutes(app *fiber.App) {
+	// Public routes
+	app.Post("/auth/register", handlers.Register)
+	
