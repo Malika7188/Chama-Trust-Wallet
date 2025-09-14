@@ -75,3 +75,14 @@ type PayoutRequest struct {
 	Approvals     []PayoutApproval `gorm:"foreignKey:PayoutRequestID"`
 	CreatedAt     time.Time
 }
+
+type PayoutApproval struct {
+	ID              string `gorm:"primaryKey"`
+	PayoutRequestID string
+	PayoutRequest   PayoutRequest `gorm:"foreignKey:PayoutRequestID"`
+	AdminID         string
+	Admin           User          `gorm:"foreignKey:AdminID"`
+	Approved        bool
+	CreatedAt       time.Time
+}
+
