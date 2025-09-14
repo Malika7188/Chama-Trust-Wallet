@@ -27,3 +27,7 @@ func CreateWallet(c *fiber.Ctx) error {
 	})
 }
 
+func GetBalance(c *fiber.Ctx) error {
+	address := c.Params("address")
+
+	
