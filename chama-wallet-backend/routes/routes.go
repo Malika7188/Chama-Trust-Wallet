@@ -33,4 +33,5 @@ func Setup(app *fiber.App) {
 	app.Post("/create-wallet", handlers.CreateWallet)
 	app.Get("/balance/:address", middleware.OptionalAuthMiddleware(), handlers.GetBalance)
 	app.Get("/generate-keypair", handlers.GenerateKeypair)
+	app.Post("/fund/:address", middleware.OptionalAuthMiddleware(), handlers.FundAccount)
 	
