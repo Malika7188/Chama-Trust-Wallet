@@ -89,4 +89,10 @@ func TransferFunds(c *fiber.Ctx) error {
 		})
 	}
 
-	
+	// Validate transfer limits for mainnet
+	if config.Config.IsMainnet {
+		amount, _ := strconv.ParseFloat(req.Amount, 64)
+		minAmount, _ := strconv.ParseFloat(os.Getenv("MIN_TRANSFER_AMOUNT"), 64)
+		maxAmount, _ := strconv.ParseFloat(os.Getenv("MAX_TRANSFER_AMOUNT"), 64)
+
+		
