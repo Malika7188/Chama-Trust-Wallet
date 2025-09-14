@@ -259,3 +259,10 @@ func TransferFunds(c *fiber.Ctx) error {
 	})
 }
 
+func GenerateKeypair(c *fiber.Ctx) error {
+	kp, err := keypair.Random()
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	
