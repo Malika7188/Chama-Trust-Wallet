@@ -236,4 +236,14 @@ func TransferFunds(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to sign transaction"})
 	}
 
+	resp, err := client.SubmitTransaction(signedTx)
+	if err != nil {
+		fmt.Printf("❌ Failed to submit transaction: %v\n", err)
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": fmt.Sprintf("Transaction submission failed: %v", err),
+		})
+	}
+
+	fmt.Printf("✅ %s transfer successful on %s: %s\n", assetType, config.Config.Network, resp.Hash)
+
 	
