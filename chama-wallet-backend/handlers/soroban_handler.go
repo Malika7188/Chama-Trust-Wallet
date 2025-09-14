@@ -178,4 +178,9 @@ func HistoryHandler(c *fiber.Ctx) error {
 		UserAddress string `json:"user_address"`
 	}
 
+	var body RequestBody
+	if err := c.BodyParser(&body); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid request body"})
+	}
+
 	
