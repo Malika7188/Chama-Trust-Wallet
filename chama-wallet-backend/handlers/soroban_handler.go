@@ -116,4 +116,13 @@ func BalanceHandler(c *fiber.Ctx) error {
 	})
 }
 
-/
+// WithdrawHandler handles withdrawal requests
+func WithdrawHandler(c *fiber.Ctx) error {
+	type RequestBody struct {
+		ContractID  string `json:"contract_id"`
+		UserAddress string `json:"user_address"`
+		Amount      string `json:"amount"`
+		SecretKey   string `json:"secret_key"`
+	}
+
+	
