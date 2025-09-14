@@ -56,4 +56,18 @@ func ContributeHandler(c *fiber.Ctx) error {
 	args := []string{body.UserAddress, body.Amount}
 	var result string
 
+	// Use authenticated call if secret key provided, otherwise use regular call
+	if body.SecretKey != "" {
+		result, err = services.CallSorobanFunctionWithAuth(body.ContractID, "contribute", body.SecretKey, args)
+	} else {
+		result, err = services.CallSorobanFunction(body.ContractID, "contribute", args)
+	}
+
+	if err != nil {
+		fmt.Printf("❌ Soroban contribution failed: %v\n", err)
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": fmt.Sprintf("Blockchain transaction failed: %v", err),
+		})
+	}
+
 	
