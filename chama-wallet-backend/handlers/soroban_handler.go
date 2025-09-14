@@ -130,4 +130,10 @@ func WithdrawHandler(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid request body"})
 	}
 
+	if body.ContractID == "" || body.UserAddress == "" || body.Amount == "" || body.SecretKey == "" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Missing required fields: contract_id, user_address, amount, and secret_key are required",
+		})
+	}
+
 	
