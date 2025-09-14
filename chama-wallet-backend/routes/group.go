@@ -44,4 +44,11 @@ func GroupRoutes(app *fiber.App) {
 	app.Post("/invitations/:id/accept", middleware.AuthMiddleware(), handlers.AcceptInvitation)
 	app.Post("/invitations/:id/reject", middleware.AuthMiddleware(), handlers.RejectInvitation)
 
-	
+	// Contribution round routes
+	app.Post("/group/:id/contribute-round", middleware.AuthMiddleware(), handlers.ContributeToRound)
+	app.Get("/group/:id/round-status", middleware.AuthMiddleware(), handlers.GetRoundStatus)
+	app.Post("/group/:id/authorize-payout", middleware.AuthMiddleware(), handlers.AuthorizeRoundPayout)
+
+	// Add this route for group secret key access
+	app.Get("/group/:id/secret", middleware.AuthMiddleware(), handlers.GetGroupSecretKey)
+}
