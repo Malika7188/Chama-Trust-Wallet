@@ -165,3 +165,23 @@ func TransferFunds(c *fiber.Ctx) error {
 		}
 	}
 
+	// Check if destination account exists, if not try to create it
+	destAccountRequest := horizonclient.AccountRequest{AccountID: req.ToAddress}
+	_, err = client.AccountDetail(destAccountRequest)
+	if err != nil {
+		if horizonError, ok := err.(*horizonclient.Error); ok && horizonError.Problem.Status == 404 {
+			if config.Config.IsMainnet {
+				fmt.Printf("⚠️ Destination account not found on mainnet: %s\n", req.ToAddress)
+				// On mainnet, we can still send to non-existent accounts (they'll be created)
+			} else {
+				fmt.Printf("🔄 Destination account not found, attempting to fund: %s\n", req.ToAddress)
+				if fundErr := services.FundTestAccount(req.ToAddress); fundErr != nil {
+					fmt.Printf("⚠️ Warning: Could not fund destination account: %v\n", fundErr)
+					// Continue with transfer anyway - account will be created
+				} else {
+					// Wait for funding to process
+					time.Sleep(2 * time.Second)
+				}
+			}
+		}
+	}
