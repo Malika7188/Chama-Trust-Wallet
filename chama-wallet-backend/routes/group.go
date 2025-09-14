@@ -24,4 +24,16 @@ func GroupRoutes(app *fiber.App) {
 	app.Post("/group/:id/contribute", middleware.AuthMiddleware(), handlers.ContributeToGroup)
 	app.Post("/group/:id/join", middleware.AuthMiddleware(), handlers.JoinGroup)
 
+	// New routes
+	app.Post("/group/:id/invite", middleware.AuthMiddleware(), handlers.InviteToGroup)
+	app.Get("/group/:id/non-members", middleware.AuthMiddleware(), handlers.GetNonGroupMembers)
+	app.Post("/group/:id/approve", middleware.AuthMiddleware(), handlers.ApproveGroup)
+	app.Post("/group/:id/activate", middleware.AuthMiddleware(), handlers.ActivateGroup)
+	app.Post("/group/:id/nominate-admin", middleware.AuthMiddleware(), handlers.NominateAdmin)
+	app.Post("/group/:id/approve-member", middleware.AuthMiddleware(), handlers.ApproveMember)
+	app.Post("/group/:id/payout-request", middleware.AuthMiddleware(), handlers.CreatePayoutRequest)
+	app.Post("/payout/:id/approve", middleware.AuthMiddleware(), handlers.ApprovePayoutRequest)
+	app.Get("/group/:id/payout-requests", middleware.AuthMiddleware(), handlers.GetPayoutRequests)
+	app.Get("/group/:id/payout-schedule", middleware.AuthMiddleware(), handlers.GetPayoutSchedule)
+
 	
