@@ -153,4 +153,12 @@ func WithdrawHandler(c *fiber.Ctx) error {
 			})
 		}
 	}
+	args := []string{body.UserAddress, body.Amount}
+	result, err := services.CallSorobanFunctionWithAuth(body.ContractID, "withdraw", body.SecretKey, args)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": fmt.Sprintf("Withdrawal failed: %v", err),
+		})
+	}
+
 	
