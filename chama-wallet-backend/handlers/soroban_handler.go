@@ -20,4 +20,8 @@ func ContributeHandler(c *fiber.Ctx) error {
 		SecretKey   string `json:"secret_key,omitempty"`
 	}
 
-	
+	var body RequestBody
+	if err := c.BodyParser(&body); err != nil {
+		fmt.Printf("❌ Failed to parse contribute request: %v\n", err)
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid request body"})
+	}
