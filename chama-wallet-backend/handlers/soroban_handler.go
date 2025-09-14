@@ -108,4 +108,12 @@ func BalanceHandler(c *fiber.Ctx) error {
 		})
 	}
 
-	
+	return c.JSON(fiber.Map{
+		"contract_id": body.ContractID,
+		"user":        body.UserAddress,
+		"balance":     result,
+		"network":     config.Config.Network,
+	})
+}
+
+/
