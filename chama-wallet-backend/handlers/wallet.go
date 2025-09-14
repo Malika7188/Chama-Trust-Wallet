@@ -151,4 +151,17 @@ func TransferFunds(c *fiber.Ctx) error {
 			// Wait for funding to process
 			time.Sleep(3 * time.Second)
 
-			
+			// Try to load account again
+			sourceAccount, err = client.AccountDetail(ar)
+			if err != nil {
+				return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+					"error": "Cannot load source account after funding",
+				})
+			}
+		} else {
+			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+				"error": "Cannot load source account",
+			})
+		}
+	}
+
