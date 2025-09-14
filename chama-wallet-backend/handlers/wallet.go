@@ -30,4 +30,20 @@ func CreateWallet(c *fiber.Ctx) error {
 func GetBalance(c *fiber.Ctx) error {
 	address := c.Params("address")
 
+	client := config.GetHorizonClient()
+	accountRequest := horizonclient.AccountRequest{AccountID: address}
+	account, err := client.AccountDetail(accountRequest)
+	if err != nil {
+		// For mainnet, provide more helpful error messages
+		if config.Config.IsMainnet {
+			return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
+				"error":   "Account not found on mainnet. Please ensure the account is funded with real XLM first.",
+				"network": config.Config.Network,
+			})
+		}
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": err.Error(),
+		})
+	}
+
 	
