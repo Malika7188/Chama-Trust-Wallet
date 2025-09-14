@@ -68,3 +68,11 @@ type TransferRequest struct {
 	AssetType string `json:"asset_type,omitempty"` // "XLM" or "USDC"
 }
 
+func TransferFunds(c *fiber.Ctx) error {
+	var req TransferRequest
+	if err := c.BodyParser(&req); err != nil {
+		fmt.Printf("❌ Failed to parse transfer request: %v\n", err)
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid request payload"})
+	}
+
+	
