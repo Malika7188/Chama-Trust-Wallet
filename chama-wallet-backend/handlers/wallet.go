@@ -101,4 +101,11 @@ func TransferFunds(c *fiber.Ctx) error {
 			})
 		}
 
-		
+		if maxAmount > 0 && amount > maxAmount {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+				"error": fmt.Sprintf("Amount exceeds maximum transfer limit of %f", maxAmount),
+			})
+		}
+	}
+
+	
