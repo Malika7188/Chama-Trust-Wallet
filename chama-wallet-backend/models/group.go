@@ -101,3 +101,16 @@ type Notification struct {
 	CreatedAt time.Time
 }
 
+type Contribution struct {
+	ID        string    `gorm:"primaryKey"`
+	GroupID   string
+	Group     Group     `gorm:"foreignKey:GroupID"`
+	UserID    string
+	User      User      `gorm:"foreignKey:UserID"`
+	Amount    float64
+	Round     int
+	Status    string    `gorm:"default:pending"` // pending, confirmed, failed
+	TxHash    string    `gorm:"column:tx_hash"`
+	CreatedAt time.Time
+	UpdatedAt time.Time
+}
