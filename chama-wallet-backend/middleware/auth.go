@@ -24,4 +24,11 @@ func AuthMiddleware() fiber.Handler {
 			})
 		}
 
+		token := strings.TrimPrefix(authHeader, "Bearer ")
+		if token == "" {
+			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+				"error": "Token required",
+			})
+		}
+
 		
