@@ -127,4 +127,10 @@ func TransferFunds(c *fiber.Ctx) error {
 		})
 	}
 
-	
+	client := config.GetHorizonClient()
+	ar := horizonclient.AccountRequest{AccountID: sourceKP.Address()}
+	sourceAccount, err := client.AccountDetail(ar)
+	if err != nil {
+		fmt.Printf("❌ Cannot load source account: %v\n", err)
+
+		
