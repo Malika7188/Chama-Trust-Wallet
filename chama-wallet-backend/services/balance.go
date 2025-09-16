@@ -39,4 +39,10 @@ func CheckBalance(address string) (string, error) {
 				}
 			} else {
 				return "0", fmt.Errorf("failed to get account details: %w", err)
-			
+			}
+		} else {
+			return "0", fmt.Errorf("failed to get account details: %w", err)
+		}
+	}
+
+	
