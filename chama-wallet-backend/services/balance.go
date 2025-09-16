@@ -22,4 +22,9 @@ func CheckBalance(address string) (string, error) {
 					return "0", fmt.Errorf("account not found on mainnet - account needs to be funded with real XLM first")
 				}
 
-				
+				fmt.Printf("⚠️ Account %s not found on testnet. Attempting to fund...\n", address)
+
+				// Try to fund the account
+				if fundErr := FundTestAccount(address); fundErr != nil {
+					return "0", fmt.Errorf("account not found and funding failed: %w", fundErr)
+				}
