@@ -32,4 +32,11 @@ func CheckBalance(address string) (string, error) {
 				// Wait a moment for the funding to process
 				time.Sleep(2 * time.Second)
 
-				
+				// Try again to get account details
+				account, err = client.AccountDetail(horizonclient.AccountRequest{AccountID: address})
+				if err != nil {
+					return "0", fmt.Errorf("account still not found after funding: %w", err)
+				}
+			} else {
+				return "0", fmt.Errorf("failed to get account details: %w", err)
+			
