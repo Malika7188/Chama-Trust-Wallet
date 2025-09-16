@@ -63,4 +63,10 @@ func CheckBalance(address string) (string, error) {
 	return totalBalance, nil
 }
 
-/
+// CheckUSDCBalance returns the USDC balance of a wallet (mainnet only)
+func CheckUSDCBalance(address string) (string, error) {
+	if !config.Config.IsMainnet {
+		return "0", fmt.Errorf("USDC balance checking only available on mainnet")
+	}
+
+	
