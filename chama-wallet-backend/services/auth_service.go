@@ -106,4 +106,9 @@ func RegisterUser(req models.RegisterRequest) (models.AuthResponse, error) {
 		return models.AuthResponse{}, err
 	}
 
-	
+	return models.AuthResponse{
+		User:  user,
+		Token: token,
+	}, nil
+}
+
