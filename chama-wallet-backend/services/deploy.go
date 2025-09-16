@@ -132,4 +132,9 @@ func deployWithKeyStorage(source, secret string) (string, error) {
 		"--network", network,
 	)
 
+	var out bytes.Buffer
+	var stderr bytes.Buffer
+	deployCmd.Stdout = &out
+	deployCmd.Stderr = &stderr
+
 	
