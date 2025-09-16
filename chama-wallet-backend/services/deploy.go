@@ -196,4 +196,20 @@ func InvokeContract(contractAddress, method string, args []string) (string, erro
 		"--", method,
 	}
 
-	
+	// Add method arguments
+	cmdArgs = append(cmdArgs, args...)
+
+	cmd := exec.Command("soroban", cmdArgs...)
+
+	var out bytes.Buffer
+	var stderr bytes.Buffer
+	cmd.Stdout = &out
+	cmd.Stderr = &stderr
+
+	if err := cmd.Run(); err != nil {
+		fmt.Printf("❌ Contract invoke failed: %v, stderr: %s\n", err, stderr.String())
+		return "", fmt.Errorf("contract invoke failed: %v", err)
+	}
+
+	return strings.TrimSpace(out.String()), nil
+}
