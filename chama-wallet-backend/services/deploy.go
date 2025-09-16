@@ -117,4 +117,10 @@ func deployWithKeyStorage(source, secret string) (string, error) {
 		}
 	}()
 
+	// Step 2: Deploy using the stored key
+	wasmPath := "./chama_savings/target/wasm32-unknown-unknown/release/chama_savings.wasm"
+	if _, err := os.Stat(wasmPath); os.IsNotExist(err) {
+		wasmPath = "./chama_savings.wasm"
+	}
+
 	
