@@ -137,4 +137,9 @@ func deployWithKeyStorage(source, secret string) (string, error) {
 	deployCmd.Stdout = &out
 	deployCmd.Stderr = &stderr
 
+	if err := deployCmd.Run(); err != nil {
+		fmt.Printf("❌ Deploy with key storage failed: %v, stderr: %s\n", err, stderr.String())
+		return "", fmt.Errorf("deployment failed: %v", err)
+	}
+
 	
