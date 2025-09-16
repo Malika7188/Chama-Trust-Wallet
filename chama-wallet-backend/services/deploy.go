@@ -84,4 +84,8 @@ func DeployChamaContract() (string, error) {
 		return "", fmt.Errorf("invalid contract address format: %s", contractAddress)
 	}
 
-	
+	fmt.Printf("✅ Contract deployed at address: %s on %s\n", contractAddress, network)
+	return contractAddress, nil
+}
+
+/
