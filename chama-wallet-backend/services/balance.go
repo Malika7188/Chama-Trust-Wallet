@@ -28,3 +28,8 @@ func CheckBalance(address string) (string, error) {
 				if fundErr := FundTestAccount(address); fundErr != nil {
 					return "0", fmt.Errorf("account not found and funding failed: %w", fundErr)
 				}
+
+				// Wait a moment for the funding to process
+				time.Sleep(2 * time.Second)
+
+				
