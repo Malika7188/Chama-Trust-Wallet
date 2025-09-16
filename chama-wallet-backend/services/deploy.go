@@ -123,4 +123,13 @@ func deployWithKeyStorage(source, secret string) (string, error) {
 		wasmPath = "./chama_savings.wasm"
 	}
 
+	network := config.GetSorobanNetwork()
+
+	deployCmd := exec.Command("soroban",
+		"contract", "deploy",
+		"--wasm", wasmPath,
+		"--source-account", keyName,
+		"--network", network,
+	)
+
 	
