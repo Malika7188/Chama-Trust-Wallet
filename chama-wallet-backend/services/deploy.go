@@ -16,3 +16,9 @@ func DeployChamaContract() (string, error) {
 	if config.Config.IsMainnet {
 		return "", fmt.Errorf("contract deployment should be done manually on mainnet for security. Use the configured SOROBAN_CONTRACT_ID instead")
 	}
+
+	// Load keys from environment
+	source := os.Getenv("SOROBAN_PUBLIC_KEY")
+	secret := os.Getenv("SOROBAN_SECRET_KEY")
+
+	
