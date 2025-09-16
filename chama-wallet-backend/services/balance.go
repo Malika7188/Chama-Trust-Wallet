@@ -17,4 +17,9 @@ func CheckBalance(address string) (string, error) {
 	if err != nil {
 		// Check if it's a "Resource Missing" error (account doesn't exist)
 		if horizonError, ok := err.(*horizonclient.Error); ok {
-			
+			if horizonError.Problem.Status == 404 {
+				if config.Config.IsMainnet {
+					return "0", fmt.Errorf("account not found on mainnet - account needs to be funded with real XLM first")
+				}
+
+				
