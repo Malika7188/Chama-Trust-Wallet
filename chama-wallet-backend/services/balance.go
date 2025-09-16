@@ -55,4 +55,12 @@ func CheckBalance(address string) (string, error) {
 		}
 		fmt.Printf(" - Asset: %s | Balance: %s\n", assetInfo, b.Balance)
 
-		
+		if b.Asset.Type == "native" {
+			totalBalance = b.Balance
+		}
+	}
+
+	return totalBalance, nil
+}
+
+/
