@@ -48,4 +48,11 @@ func CheckBalance(address string) (string, error) {
 	fmt.Printf("🔍 Balances for %s (%s)\n", address, config.Config.Network)
 	var totalBalance string = "0"
 
-	
+	for _, b := range account.Balances {
+		assetInfo := "native"
+		if b.Asset.Type != "native" {
+			assetInfo = fmt.Sprintf("%s:%s", b.Asset.Code, b.Asset.Issuer)
+		}
+		fmt.Printf(" - Asset: %s | Balance: %s\n", assetInfo, b.Balance)
+
+		
