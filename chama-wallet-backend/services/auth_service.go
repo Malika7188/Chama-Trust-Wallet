@@ -80,4 +80,10 @@ func RegisterUser(req models.RegisterRequest) (models.AuthResponse, error) {
 		return models.AuthResponse{}, err
 	}
 
+	// Hash password
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(req.Password), 14)
+	if err != nil {
+		return models.AuthResponse{}, err
+	}
+
 	
