@@ -119,4 +119,9 @@ func LoginUser(req models.LoginRequest) (models.AuthResponse, error) {
 		return models.AuthResponse{}, errors.New("invalid email or password")
 	}
 
+	// Check password
+	if !CheckPasswordHash(req.Password, user.Password) {
+		return models.AuthResponse{}, errors.New("invalid email or password")
+	}
+
 	
