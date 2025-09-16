@@ -68,4 +68,11 @@ func DeployChamaContract() (string, error) {
 		fmt.Printf("❗ stderr: %s\n", stderr.String())
 		fmt.Printf("❗ stdout: %s\n", out.String())
 
-		
+		// Try alternative method with temporary key storage
+		return deployWithKeyStorage(source, secret)
+	}
+
+	output := strings.TrimSpace(out.String())
+	fmt.Printf("✅ Contract deployed successfully on %s. Output: %s\n", network, output)
+
+	
