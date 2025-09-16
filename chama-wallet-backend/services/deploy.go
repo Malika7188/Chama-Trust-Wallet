@@ -30,4 +30,14 @@ func DeployChamaContract() (string, error) {
 		}
 	}
 
+	// Check if WASM file exists
+	wasmPath := "./chama_savings/target/wasm32-unknown-unknown/release/chama_savings.wasm"
+	if _, err := os.Stat(wasmPath); os.IsNotExist(err) {
+		// Try alternative path
+		wasmPath = "./chama_savings.wasm"
+		if _, err := os.Stat(wasmPath); os.IsNotExist(err) {
+			return "", fmt.Errorf("WASM file not found. Please build the contract first with: cd chama_savings && stellar contract build")
+		}
+	}
+
 	
