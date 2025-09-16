@@ -92,4 +92,10 @@ func DeployChamaContract() (string, error) {
 func deployWithKeyStorage(source, secret string) (string, error) {
 	fmt.Printf("🔄 Trying alternative deployment method with key storage on %s...\n", config.Config.Network)
 
+	keyName := fmt.Sprintf("temp-deploy-key-%d", time.Now().Unix())
+
+	// Step 1: Add key to soroban keys
+	addKeyCmd := exec.Command("soroban", "keys", "add", keyName, "--secret-key")
+	addKeyCmd.Stdin = strings.NewReader(secret)
+
 	
