@@ -142,4 +142,11 @@ func deployWithKeyStorage(source, secret string) (string, error) {
 		return "", fmt.Errorf("deployment failed: %v", err)
 	}
 
+	output := strings.TrimSpace(out.String())
+	fmt.Printf("✅ Contract deployed with key storage on %s. Output: %s\n", network, output)
+
+	// Extract contract address from output
+	lines := strings.Split(output, "\n")
+	contractAddress := strings.TrimSpace(lines[len(lines)-1])
+
 	
