@@ -98,4 +98,12 @@ func deployWithKeyStorage(source, secret string) (string, error) {
 	addKeyCmd := exec.Command("soroban", "keys", "add", keyName, "--secret-key")
 	addKeyCmd.Stdin = strings.NewReader(secret)
 
+	var addKeyStderr bytes.Buffer
+	addKeyCmd.Stderr = &addKeyStderr
+
+	if err := addKeyCmd.Run(); err != nil {
+		fmt.Printf("❌ Failed to add key: %v, stderr: %s\n", err, addKeyStderr.String())
+		return "", fmt.Errorf("failed to add key: %v", err)
+	}
+
 	
