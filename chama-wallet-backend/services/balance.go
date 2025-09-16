@@ -69,4 +69,10 @@ func CheckUSDCBalance(address string) (string, error) {
 		return "0", fmt.Errorf("USDC balance checking only available on mainnet")
 	}
 
+	client := config.GetHorizonClient()
+	account, err := client.AccountDetail(horizonclient.AccountRequest{AccountID: address})
+	if err != nil {
+		return "0", fmt.Errorf("failed to get account details: %w", err)
+	}
+
 	
