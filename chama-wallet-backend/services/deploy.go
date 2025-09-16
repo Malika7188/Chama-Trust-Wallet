@@ -61,4 +61,11 @@ func DeployChamaContract() (string, error) {
 	cmd.Stdout = &out
 	cmd.Stderr = &stderr
 
-	
+	// Execute
+	execErr := cmd.Run()
+	if execErr != nil {
+		fmt.Printf("❌ Deployment error: %v\n", execErr)
+		fmt.Printf("❗ stderr: %s\n", stderr.String())
+		fmt.Printf("❗ stdout: %s\n", out.String())
+
+		
