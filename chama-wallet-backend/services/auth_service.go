@@ -48,4 +48,11 @@ func GenerateJWT(userID, email string) (string, error) {
 	return token.SignedString(jwtSecret)
 }
 
-/
+// ValidateJWT validates a JWT token and returns the claims
+func ValidateJWT(tokenString string) (*Claims, error) {
+	claims := &Claims{}
+	token, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {
+		return jwtSecret, nil
+	})
+
+	
