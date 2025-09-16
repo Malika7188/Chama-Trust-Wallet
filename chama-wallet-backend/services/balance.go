@@ -16,4 +16,5 @@ func CheckBalance(address string) (string, error) {
 	account, err := client.AccountDetail(horizonclient.AccountRequest{AccountID: address})
 	if err != nil {
 		// Check if it's a "Resource Missing" error (account doesn't exist)
-		
+		if horizonError, ok := err.(*horizonclient.Error); ok {
+			
