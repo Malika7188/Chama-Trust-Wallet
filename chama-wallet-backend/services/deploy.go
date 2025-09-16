@@ -79,4 +79,9 @@ func DeployChamaContract() (string, error) {
 	lines := strings.Split(output, "\n")
 	contractAddress := strings.TrimSpace(lines[len(lines)-1])
 
+	// Validate contract address format
+	if len(contractAddress) != 56 || !strings.HasPrefix(contractAddress, "C") {
+		return "", fmt.Errorf("invalid contract address format: %s", contractAddress)
+	}
+
 	
