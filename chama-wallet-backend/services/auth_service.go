@@ -124,4 +124,15 @@ func LoginUser(req models.LoginRequest) (models.AuthResponse, error) {
 		return models.AuthResponse{}, errors.New("invalid email or password")
 	}
 
-	
+	// Generate JWT token
+	token, err := GenerateJWT(user.ID, user.Email)
+	if err != nil {
+		return models.AuthResponse{}, err
+	}
+
+	return models.AuthResponse{
+		User:  user,
+		Token: token,
+	}, nil
+}
+
