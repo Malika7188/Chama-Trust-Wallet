@@ -75,4 +75,13 @@ func CheckUSDCBalance(address string) (string, error) {
 		return "0", fmt.Errorf("failed to get account details: %w", err)
 	}
 
-	
+	for _, b := range account.Balances {
+		if b.Asset.Type != "native" &&
+			b.Asset.Code == config.Config.USDCAssetCode &&
+			b.Asset.Issuer == config.Config.USDCAssetIssuer {
+			return b.Balance, nil
+		}
+	}
+
+	return "0", nil // No USDC balance found
+}
