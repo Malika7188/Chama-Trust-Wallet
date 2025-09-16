@@ -75,4 +75,8 @@ func DeployChamaContract() (string, error) {
 	output := strings.TrimSpace(out.String())
 	fmt.Printf("✅ Contract deployed successfully on %s. Output: %s\n", network, output)
 
+	// Extract contract address from output (usually the last line)
+	lines := strings.Split(output, "\n")
+	contractAddress := strings.TrimSpace(lines[len(lines)-1])
+
 	
