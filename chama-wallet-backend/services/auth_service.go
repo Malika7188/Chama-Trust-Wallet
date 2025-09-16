@@ -144,3 +144,9 @@ func GetUserByID(userID string) (models.User, error) {
 	}
 	return user, nil
 }
+
+// UpdateUser updates a user's information
+func UpdateUser(user models.User) error {
+	return database.DB.Save(&user).Error
+}
+
