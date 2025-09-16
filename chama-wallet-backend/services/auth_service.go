@@ -86,4 +86,19 @@ func RegisterUser(req models.RegisterRequest) (models.AuthResponse, error) {
 		return models.AuthResponse{}, err
 	}
 
+	// Create user with secret key
+	user := models.User{
+		ID:        uuid.New().String(),
+		Name:      req.Name,
+		Email:     req.Email,
+		Password:  string(hashedPassword),
+		Wallet:    wallet.PublicKey,
+		SecretKey: wallet.SecretKey, // Make sure this is set
+	}
+
+	if err := database.DB.Create(&user).Error; err != nil {
+		return models.AuthResponse{}, err
+	}
+
+	// Generate token
 	
