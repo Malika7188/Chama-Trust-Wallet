@@ -21,4 +21,13 @@ func DeployChamaContract() (string, error) {
 	source := os.Getenv("SOROBAN_PUBLIC_KEY")
 	secret := os.Getenv("SOROBAN_SECRET_KEY")
 
+	if source == "" || secret == "" {
+		// Fallback to default test account
+		source = "malika"
+		secret = os.Getenv("SOROBAN_SECRET_KEY")
+		if secret == "" {
+			return "", fmt.Errorf("missing SOROBAN_SECRET_KEY in environment")
+		}
+	}
+
 	
