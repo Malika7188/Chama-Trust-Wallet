@@ -88,4 +88,8 @@ func DeployChamaContract() (string, error) {
 	return contractAddress, nil
 }
 
-/
+// deployWithKeyStorage: Alternative deployment method using temporary key storage
+func deployWithKeyStorage(source, secret string) (string, error) {
+	fmt.Printf("🔄 Trying alternative deployment method with key storage on %s...\n", config.Config.Network)
+
+	
