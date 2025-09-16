@@ -106,4 +106,15 @@ func deployWithKeyStorage(source, secret string) (string, error) {
 		return "", fmt.Errorf("failed to add key: %v", err)
 	}
 
+	fmt.Printf("✅ Temporary key added: %s\n", keyName)
+
+	// Ensure cleanup
+	defer func() {
+		fmt.Printf("🧹 Cleaning up temporary key: %s\n", keyName)
+		cleanupCmd := exec.Command("soroban", "keys", "rm", keyName)
+		if err := cleanupCmd.Run(); err != nil {
+			fmt.Printf("⚠️ Warning: Failed to cleanup key: %v\n", err)
+		}
+	}()
+
 	
