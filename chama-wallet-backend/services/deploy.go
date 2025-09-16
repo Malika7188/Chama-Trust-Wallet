@@ -185,4 +185,15 @@ func InvokeContract(contractAddress, method string, args []string) (string, erro
 		cleanupCmd.Run()
 	}()
 
+	network := config.GetSorobanNetwork()
+
+	// Build invoke command
+	cmdArgs := []string{
+		"contract", "invoke",
+		"--id", contractAddress,
+		"--source-account", keyName,
+		"--network", network,
+		"--", method,
+	}
+
 	
