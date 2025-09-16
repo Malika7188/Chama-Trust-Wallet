@@ -75,4 +75,9 @@ func RegisterUser(req models.RegisterRequest) (models.AuthResponse, error) {
 		return models.AuthResponse{}, errors.New("user with this email already exists")
 	}
 	
+	wallet, err := utils.GenerateStellarWallet()
+	if err != nil {
+		return models.AuthResponse{}, err
+	}
+
 	
