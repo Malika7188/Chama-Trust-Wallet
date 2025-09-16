@@ -136,3 +136,11 @@ func LoginUser(req models.LoginRequest) (models.AuthResponse, error) {
 	}, nil
 }
 
+// GetUserByID retrieves a user by ID
+func GetUserByID(userID string) (models.User, error) {
+	var user models.User
+	if err := database.DB.Where("id = ?", userID).First(&user).Error; err != nil {
+		return models.User{}, errors.New("user not found")
+	}
+	return user, nil
+}
