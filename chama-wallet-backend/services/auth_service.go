@@ -101,4 +101,9 @@ func RegisterUser(req models.RegisterRequest) (models.AuthResponse, error) {
 	}
 
 	// Generate token
+	token, err := GenerateJWT(user.ID, user.Email)
+	if err != nil {
+		return models.AuthResponse{}, err
+	}
+
 	
