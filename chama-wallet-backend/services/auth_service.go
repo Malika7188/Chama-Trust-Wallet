@@ -55,4 +55,8 @@ func ValidateJWT(tokenString string) (*Claims, error) {
 		return jwtSecret, nil
 	})
 
+	if err != nil {
+		return nil, err
+	}
+
 	
