@@ -176,4 +176,13 @@ func InvokeContract(contractAddress, method string, args []string) (string, erro
 	addKeyCmd := exec.Command("soroban", "keys", "add", keyName, "--secret-key")
 	addKeyCmd.Stdin = strings.NewReader(secret)
 
+	if err := addKeyCmd.Run(); err != nil {
+		return "", fmt.Errorf("failed to add key for invoke: %v", err)
+	}
+
+	defer func() {
+		cleanupCmd := exec.Command("soroban", "keys", "rm", keyName)
+		cleanupCmd.Run()
+	}()
+
 	
