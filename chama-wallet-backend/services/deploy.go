@@ -170,4 +170,10 @@ func InvokeContract(contractAddress, method string, args []string) (string, erro
 		return "", fmt.Errorf("missing SOROBAN_PUBLIC_KEY or SOROBAN_SECRET_KEY in environment")
 	}
 
+	keyName := "temp-invoke-key"
+
+	// Add key temporarily
+	addKeyCmd := exec.Command("soroban", "keys", "add", keyName, "--secret-key")
+	addKeyCmd.Stdin = strings.NewReader(secret)
+
 	
