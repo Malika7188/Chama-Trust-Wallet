@@ -112,3 +112,11 @@ func RegisterUser(req models.RegisterRequest) (models.AuthResponse, error) {
 	}, nil
 }
 
+// LoginUser authenticates a user and returns a token
+func LoginUser(req models.LoginRequest) (models.AuthResponse, error) {
+	var user models.User
+	if err := database.DB.Where("email = ?", req.Email).First(&user).Error; err != nil {
+		return models.AuthResponse{}, errors.New("invalid email or password")
+	}
+
+	
