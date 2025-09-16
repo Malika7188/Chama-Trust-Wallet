@@ -40,4 +40,7 @@ func DeployChamaContract() (string, error) {
 		}
 	}
 
+	fmt.Printf("🔧 Deploying contract from WASM: %s on %s\n", wasmPath, config.Config.Network)
+	fmt.Printf("🔧 Using source account: %s\n", source)
+
 	
