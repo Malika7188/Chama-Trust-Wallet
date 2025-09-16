@@ -53,4 +53,12 @@ func DeployChamaContract() (string, error) {
 		"--network", network,
 	)
 
+	fmt.Printf("🚀 Running deployment command on %s...\n", network)
+
+	// Capture stdout and stderr
+	var out bytes.Buffer
+	var stderr bytes.Buffer
+	cmd.Stdout = &out
+	cmd.Stderr = &stderr
+
 	
