@@ -157,3 +157,10 @@ func deployWithKeyStorage(source, secret string) (string, error) {
 	return contractAddress, nil
 }
 
+// Function to invoke contract methods
+func InvokeContract(contractAddress, method string, args []string) (string, error) {
+	if contractAddress == "" {
+		return "", fmt.Errorf("contract address is required")
+	}
+
+	
