@@ -163,4 +163,11 @@ func InvokeContract(contractAddress, method string, args []string) (string, erro
 		return "", fmt.Errorf("contract address is required")
 	}
 
+	source := os.Getenv("SOROBAN_PUBLIC_KEY")
+	secret := os.Getenv("SOROBAN_SECRET_KEY")
+
+	if source == "" || secret == "" {
+		return "", fmt.Errorf("missing SOROBAN_PUBLIC_KEY or SOROBAN_SECRET_KEY in environment")
+	}
+
 	
