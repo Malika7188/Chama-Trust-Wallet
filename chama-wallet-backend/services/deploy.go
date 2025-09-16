@@ -45,4 +45,12 @@ func DeployChamaContract() (string, error) {
 
 	network := config.GetSorobanNetwork()
 
+	// Deploy using source account name (should be configured in soroban keys)
+	cmd := exec.Command("soroban",
+		"contract", "deploy",
+		"--wasm", wasmPath,
+		"--source-account", source,
+		"--network", network,
+	)
+
 	
