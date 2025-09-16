@@ -45,4 +45,7 @@ func CheckBalance(address string) (string, error) {
 		}
 	}
 
+	fmt.Printf("🔍 Balances for %s (%s)\n", address, config.Config.Network)
+	var totalBalance string = "0"
+
 	
