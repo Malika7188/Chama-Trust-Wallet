@@ -10,4 +10,6 @@ import (
 )
 
 func CheckBalance(address string) (string, error) {
+	client := config.GetHorizonClient()
+
 	
