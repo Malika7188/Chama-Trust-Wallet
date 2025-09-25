@@ -20,4 +20,6 @@ func FundTestAccount(address string) error {
 	if err != nil {
 		return fmt.Errorf("failed to call friendbot: %w", err)
 	}
+	defer resp.Body.Close()
+
 	
