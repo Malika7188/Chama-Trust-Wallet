@@ -22,4 +22,5 @@ func FundTestAccount(address string) error {
 	}
 	defer resp.Body.Close()
 
+	if resp.StatusCode != http.StatusOK {
 	
