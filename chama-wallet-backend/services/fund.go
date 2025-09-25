@@ -26,3 +26,7 @@ func FundTestAccount(address string) error {
 		body, _ := ioutil.ReadAll(resp.Body)
 		return fmt.Errorf("friendbot returned non-200 status: %s - %s", resp.Status, body)
 	}
+
+	fmt.Printf("✅ Testnet account funded: %s\n", address)
+	return nil
+}
