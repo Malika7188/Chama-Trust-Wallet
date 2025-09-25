@@ -35,4 +35,10 @@ func CreateGroup(name, description, creatorID string) (models.Group, error) {
 	// Automatically add creator as admin
 	creator := models.Member{
 		ID:       uuid.NewString(),
-		
+		GroupID:  group.ID,
+		UserID:   creatorID,
+		Role:     "creator",
+		Status:   "approved",
+		JoinedAt: time.Now(),
+	}
+	
