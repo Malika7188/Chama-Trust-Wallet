@@ -51,3 +51,11 @@ func GetGroupByID(groupID string) (models.Group, error) {
 	err := database.DB.Preload("Members.User").Preload("Creator").First(&group, "id = ?", groupID).Error
 	return group, err
 }
+
+func AddMemberToGroup(groupID, userID, walletAddress string) (models.Group, error) {
+	var group models.Group
+	if err := database.DB.Preload("Members").First(&group, "id = ?", groupID).Error; err != nil {
+		return group, err
+	}
+
+	
