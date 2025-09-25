@@ -151,4 +151,13 @@ func InviteUserToGroup(groupID, inviterID, email string) error {
 		invitation.UserID = user.ID
 	}
 
+	return database.DB.Create(&invitation).Error
+}
+
+func GetNonGroupMembers(groupID string) ([]models.User, error) {
+	var users []models.User
+	err := database.DB.
+		Where("id NOT IN (SELECT user_id FROM members WHERE group_id = ? AND status = ?)",
+			groupID, "approved").
+		Find(&users).Error
 	
