@@ -24,4 +24,5 @@ func FundTestAccount(address string) error {
 
 	if resp.StatusCode != http.StatusOK {
 		body, _ := ioutil.ReadAll(resp.Body)
-	
+		return fmt.Errorf("friendbot returned non-200 status: %s - %s", resp.Status, body)
+	}
