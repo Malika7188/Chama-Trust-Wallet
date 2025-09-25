@@ -179,4 +179,26 @@ func ApproveGroupActivation(groupID, adminID string, settings models.GroupSettin
 		"payout_order":        settings.PayoutOrder,
 	}
 
-	
+	return database.DB.Model(&models.Group{}).Where("id = ?", groupID).Updates(updates).Error
+}
+
+func JoinGroupRequest(groupID, userID, walletAddress string) error {
+	// Check if user is already a member
+	var existingMember models.Member
+	if err := database.DB.Where("group_id = ? AND user_id = ?", groupID, userID).First(&existingMember).Error; err == nil {
+		return errors.New("user is already a member of this group")
+	}
+
+	// Create pending membership
+	member := models.Member{
+		ID:       uuid.NewString(),
+		GroupID:  groupID,
+		UserID:   userID,
+		Wallet:   walletAddress,
+		Role:     "member",
+		Status:   "pending",
+		JoinedAt: time.Now(),
+	}
+
+	return database.DB.Create(&member).Error
+}
