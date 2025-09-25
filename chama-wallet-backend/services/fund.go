@@ -18,4 +18,6 @@ func FundTestAccount(address string) error {
 
 	resp, err := http.Get(url)
 	if err != nil {
+		return fmt.Errorf("failed to call friendbot: %w", err)
+	}
 	
