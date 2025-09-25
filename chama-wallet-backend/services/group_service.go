@@ -133,4 +133,8 @@ func InviteUserToGroup(groupID, inviterID, email string) error {
 		return errors.New("only admins can invite users")
 	}
 
+	// Check if user exists
+	var user models.User
+	userExists := database.DB.Where("email = ?", email).First(&user).Error == nil
+
 	
