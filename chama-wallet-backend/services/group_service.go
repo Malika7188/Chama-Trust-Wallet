@@ -160,4 +160,15 @@ func GetNonGroupMembers(groupID string) ([]models.User, error) {
 		Where("id NOT IN (SELECT user_id FROM members WHERE group_id = ? AND status = ?)",
 			groupID, "approved").
 		Find(&users).Error
+	return users, err
+}
+
+func ApproveGroupActivation(groupID, adminID string, settings models.GroupSettings) error {
+	// Verify admin permissions
+	var member models.Member
+	if err := database.DB.Where("group_id = ? AND user_id = ? AND role IN ?",
+		groupID, adminID, []string{"creator", "admin"}).First(&member).Error; err != nil {
+		return errors.New("insufficient permissions")
+	}
+
 	
