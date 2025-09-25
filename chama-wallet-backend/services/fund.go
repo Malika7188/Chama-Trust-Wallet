@@ -14,4 +14,6 @@ func FundTestAccount(address string) error {
 		return fmt.Errorf("friendbot funding not available on mainnet - use real XLM deposits")
 	}
 
+	url := fmt.Sprintf("https://friendbot.stellar.org/?addr=%s", address)
+
 	
