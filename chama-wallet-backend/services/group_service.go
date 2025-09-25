@@ -65,4 +65,13 @@ func AddMemberToGroup(groupID, userID, walletAddress string) (models.Group, erro
 		}
 	}
 
+	member := models.Member{
+		ID:       uuid.NewString(),
+		GroupID:  groupID,
+		UserID:   userID,
+		Wallet:   walletAddress,
+		Role:     "member",
+		Status:   "approved",
+		JoinedAt: time.Now(),
+	}
 	
