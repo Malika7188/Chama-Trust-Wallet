@@ -45,3 +45,9 @@ func CreateGroup(name, description, creatorID string) (models.Group, error) {
 
 	return group, nil
 }
+
+func GetGroupByID(groupID string) (models.Group, error) {
+	var group models.Group
+	err := database.DB.Preload("Members.User").Preload("Creator").First(&group, "id = ?", groupID).Error
+	return group, err
+}
