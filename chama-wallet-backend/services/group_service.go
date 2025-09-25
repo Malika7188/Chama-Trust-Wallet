@@ -137,4 +137,18 @@ func InviteUserToGroup(groupID, inviterID, email string) error {
 	var user models.User
 	userExists := database.DB.Where("email = ?", email).First(&user).Error == nil
 
+	invitation := models.GroupInvitation{
+		ID:        uuid.NewString(),
+		GroupID:   groupID,
+		InviterID: inviterID,
+		Email:     email,
+		Status:    "pending",
+		CreatedAt: time.Now(),
+		ExpiresAt: time.Now().Add(7 * 24 * time.Hour), // 7 days
+	}
+
+	if userExists {
+		invitation.UserID = user.ID
+	}
+
 	
