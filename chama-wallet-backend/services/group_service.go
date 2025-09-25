@@ -124,3 +124,13 @@ func GetUserGroups(userID string) ([]models.Group, error) {
 		Find(&groups).Error
 	return groups, err
 }
+
+func InviteUserToGroup(groupID, inviterID, email string) error {
+	// Check if inviter is admin/creator
+	var member models.Member
+	if err := database.DB.Where("group_id = ? AND user_id = ? AND role IN ?",
+		groupID, inviterID, []string{"creator", "admin"}).First(&member).Error; err != nil {
+		return errors.New("only admins can invite users")
+	}
+
+	
