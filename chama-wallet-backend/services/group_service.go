@@ -32,4 +32,7 @@ func CreateGroup(name, description, creatorID string) (models.Group, error) {
 		return models.Group{}, err
 	}
 
-	
+	// Automatically add creator as admin
+	creator := models.Member{
+		ID:       uuid.NewString(),
+		
