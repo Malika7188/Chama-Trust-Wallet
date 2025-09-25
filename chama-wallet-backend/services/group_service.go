@@ -100,3 +100,8 @@ func AddMemberToGroup(groupID, userID, walletAddress string) (models.Group, erro
 // 	return database.DB.Create(&contribution).Error
 // }
 
+func GetGroupWithMembers(groupID string) (models.Group, error) {
+	var group models.Group
+	err := database.DB.Preload("Members").First(&group, "id = ?", groupID).Error
+	return group, err
+}
