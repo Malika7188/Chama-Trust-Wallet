@@ -41,4 +41,7 @@ func CreateGroup(name, description, creatorID string) (models.Group, error) {
 		Status:   "approved",
 		JoinedAt: time.Now(),
 	}
-	
+	database.DB.Create(&creator)
+
+	return group, nil
+}
