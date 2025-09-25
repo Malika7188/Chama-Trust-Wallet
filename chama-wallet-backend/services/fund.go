@@ -23,4 +23,5 @@ func FundTestAccount(address string) error {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
+		body, _ := ioutil.ReadAll(resp.Body)
 	
