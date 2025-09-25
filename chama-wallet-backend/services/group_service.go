@@ -23,4 +23,9 @@ func CreateGroup(name, description, creatorID string) (models.Group, error) {
 		ID:          uuid.New().String(),
 		Name:        name,
 		Description: description,
-		
+		Wallet:      wallet.PublicKey,
+		CreatorID:   creatorID,
+		Status:      "pending",
+	}
+
+	
