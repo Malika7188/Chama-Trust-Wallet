@@ -105,3 +105,11 @@ func GetGroupWithMembers(groupID string) (models.Group, error) {
 	err := database.DB.Preload("Members").First(&group, "id = ?", groupID).Error
 	return group, err
 }
+func GetAllGroups() ([]models.Group, error) {
+	var groups []models.Group
+	if err := database.DB.Find(&groups).Error; err != nil {
+		return nil, err
+	}
+	return groups, nil
+}
+
