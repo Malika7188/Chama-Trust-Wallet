@@ -28,4 +28,8 @@ func CreateGroup(name, description, creatorID string) (models.Group, error) {
 		Status:      "pending",
 	}
 
+	if err := database.DB.Create(&group).Error; err != nil {
+		return models.Group{}, err
+	}
+
 	
