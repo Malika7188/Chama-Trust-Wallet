@@ -171,4 +171,12 @@ func ApproveGroupActivation(groupID, adminID string, settings models.GroupSettin
 		return errors.New("insufficient permissions")
 	}
 
+	// Update group with contribution settings
+	updates := map[string]interface{}{
+		"status":              "active",
+		"contribution_amount": settings.ContributionAmount,
+		"contribution_period": settings.ContributionPeriod,
+		"payout_order":        settings.PayoutOrder,
+	}
+
 	
