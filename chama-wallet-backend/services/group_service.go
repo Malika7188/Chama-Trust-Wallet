@@ -74,4 +74,8 @@ func AddMemberToGroup(groupID, userID, walletAddress string) (models.Group, erro
 		Status:   "approved",
 		JoinedAt: time.Now(),
 	}
+	if err := database.DB.Create(&member).Error; err != nil {
+		return group, err
+	}
+
 	
