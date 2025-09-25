@@ -82,4 +82,10 @@ func AddMemberToGroup(groupID, userID, walletAddress string) (models.Group, erro
 	return group, nil
 }
 
-/
+// func Contribute(groupID, memberID string, amount float64) error {
+// 	// 1. Call Soroban
+// 	resp, err := ContributeOnChain(fmt.Sprintf("%.0f", amount))
+// 	if err != nil {
+// 		return err
+// 	}
+// 	fmt.Println("On-chain response:", resp)
