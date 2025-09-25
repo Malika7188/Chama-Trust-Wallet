@@ -89,3 +89,14 @@ func AddMemberToGroup(groupID, userID, walletAddress string) (models.Group, erro
 // 		return err
 // 	}
 // 	fmt.Println("On-chain response:", resp)
+
+// 	// 2. Save to DB
+// 	contribution := models.Contribution{
+// 		ID:       uuid.New().String(),
+// 		GroupID:  groupID,
+// 		MemberID: memberID,
+// 		Amount:   amount,
+// 	}
+// 	return database.DB.Create(&contribution).Error
+// }
+
