@@ -21,4 +21,6 @@ func CreateGroup(name, description, creatorID string) (models.Group, error) {
 
 	group := models.Group{
 		ID:          uuid.New().String(),
+		Name:        name,
+		Description: description,
 		
