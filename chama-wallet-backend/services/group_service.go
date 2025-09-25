@@ -78,4 +78,8 @@ func AddMemberToGroup(groupID, userID, walletAddress string) (models.Group, erro
 		return group, err
 	}
 
-	
+	group.Members = append(group.Members, member)
+	return group, nil
+}
+
+/
