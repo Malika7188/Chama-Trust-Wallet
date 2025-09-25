@@ -58,4 +58,11 @@ func AddMemberToGroup(groupID, userID, walletAddress string) (models.Group, erro
 		return group, err
 	}
 
+	// Check if member already exists
+	for _, member := range group.Members {
+		if member.UserID == userID {
+			return group, nil // Member already exists
+		}
+	}
+
 	
