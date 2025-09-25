@@ -113,3 +113,14 @@ func GetAllGroups() ([]models.Group, error) {
 	return groups, nil
 }
 
+func GetUserGroups(userID string) ([]models.Group, error) {
+	var groups []models.Group
+	err := database.DB.
+		Joins("INNER JOIN members ON groups.id = members.group_id").
+		Where("members.user_id = ? AND members.status = ?", userID, "approved").
+		Preload("Members.User").
+		Preload("Creator").
+		Distinct().
+		Find(&groups).Error
+	return groups, err
+}
