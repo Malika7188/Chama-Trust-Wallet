@@ -37,4 +37,7 @@ func checkContractExists(contractID string) error {
 	network := config.GetSorobanNetwork()
 	cmd := exec.Command("soroban", "contract", "inspect", "--id", contractID, "--network", network)
 	
+	var stderr bytes.Buffer
+	cmd.Stderr = &stderr
+	
 	
