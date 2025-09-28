@@ -53,4 +53,8 @@ func CallSorobanFunction(contractID, functionName string, args []string) (string
 		return "", fmt.Errorf("invalid contract ID: %w", err)
 	}
 	
+	if functionName == "" {
+		return "", fmt.Errorf("function name cannot be empty")
+	}
+
 	
