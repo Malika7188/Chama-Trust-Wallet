@@ -42,4 +42,6 @@ func FundWallet(address string) error {
 	}
 	defer resp.Body.Close()
 	body, _ := ioutil.ReadAll(resp.Body)
-	
+	fmt.Printf("Friendbot response for %s: %s\n", address, string(body))
+	return nil
+}
