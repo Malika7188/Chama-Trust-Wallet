@@ -103,4 +103,11 @@ func CallSorobanFunction(contractID, functionName string, args []string) (string
 		done <- execCmd.Run()
 	}()
 	
-	
+	select {
+	case err := <-done:
+		if err != nil {
+			fmt.Printf("❌ Soroban command failed: %v\n", err)
+			fmt.Printf("❌ Stderr: %s\n", stderr.String())
+			fmt.Printf("❌ Stdout: %s\n", out.String())
+			return "", fmt.Errorf("soroban invoke failed: %v, stderr: %s", err, stderr.String())
+		}
