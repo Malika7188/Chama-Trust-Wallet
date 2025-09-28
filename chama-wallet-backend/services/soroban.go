@@ -69,4 +69,9 @@ func CallSorobanFunction(contractID, functionName string, args []string) (string
 		"contract", "invoke",
 		"--id", contractID,
 		"--network", network,
+		"--source-account", sourceAccount,
+		"--",
+		functionName,
+	}
+
 	
