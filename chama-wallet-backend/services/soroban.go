@@ -40,4 +40,9 @@ func checkContractExists(contractID string) error {
 	var stderr bytes.Buffer
 	cmd.Stderr = &stderr
 	
-	
+	if err := cmd.Run(); err != nil {
+		return fmt.Errorf("contract does not exist or is not accessible on %s: %v, stderr: %s", network, err, stderr.String())
+	}
+	return nil
+}
+
