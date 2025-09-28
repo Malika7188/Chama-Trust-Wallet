@@ -204,4 +204,8 @@ func CallSorobanFunctionWithAuth(contractID, functionName, userSecretKey string,
 	// Execute the command with timeout
 	cmd := exec.Command("soroban", cmdArgs...)
 
-	
+	var out bytes.Buffer
+	var stderr bytes.Buffer
+	cmd.Stdout = &out
+	cmd.Stderr = &stderr
+
