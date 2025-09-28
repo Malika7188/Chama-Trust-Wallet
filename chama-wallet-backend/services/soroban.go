@@ -147,4 +147,8 @@ func CallSorobanFunctionWithAuth(contractID, functionName, userSecretKey string,
 	
 	fmt.Printf("🔑 Adding temporary key: %s\n", keyName)
 
+	// Add user's key temporarily with better error handling
+	addKeyCmd := exec.Command("soroban", "keys", "add", keyName, "--secret-key")
+	addKeyCmd.Stdin = strings.NewReader(userSecretKey)
+
 	
