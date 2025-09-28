@@ -77,4 +77,7 @@ func CallSorobanFunction(contractID, functionName string, args []string) (string
 	// Convert function arguments to proper format
 	if functionName == "contribute" && len(args) >= 2 {
 		cmd = append(cmd, "--user", args[0], "--amount", args[1])
-	
+	} else if functionName == "get_balance" && len(args) >= 1 {
+		cmd = append(cmd, "--user", args[0])
+	} else if functionName == "withdraw" && len(args) >= 2 {
+		cmd = append(cmd, "--user", args[0], "--amount", args[1])
