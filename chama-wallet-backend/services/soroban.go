@@ -46,3 +46,7 @@ func checkContractExists(contractID string) error {
 	return nil
 }
 
+// CallSorobanFunction executes a Soroban contract function
+func CallSorobanFunction(contractID, functionName string, args []string) (string, error) {
+	// Validate inputs
+	
