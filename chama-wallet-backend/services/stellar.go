@@ -117,4 +117,6 @@ func SendUSDC(seed, destination, amount string) (horizon.Transaction, error) {
 		return horizon.Transaction{}, fmt.Errorf("USDC asset configuration missing")
 	}
 
+	client := GetHorizonClient()
+
 	
