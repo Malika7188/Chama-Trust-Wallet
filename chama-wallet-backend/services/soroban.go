@@ -23,3 +23,7 @@ func validateContractID(contractID string) error {
 	if contractID == "" {
 		return fmt.Errorf("contract ID cannot be empty")
 	}
+	if len(contractID) != 56 {
+		return fmt.Errorf("invalid contract ID length: expected 56 characters, got %d", len(contractID))
+	}
+	
