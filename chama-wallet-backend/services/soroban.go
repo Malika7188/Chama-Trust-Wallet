@@ -165,3 +165,12 @@ func CallSorobanFunctionWithAuth(contractID, functionName, userSecretKey string,
 	
 	fmt.Printf("✅ Key added successfully\n")
 
+	// Ensure cleanup
+	defer func() {
+		fmt.Printf("🧹 Cleaning up temporary key: %s\n", keyName)
+		cleanupCmd := exec.Command("soroban", "keys", "rm", keyName)
+		if err := cleanupCmd.Run(); err != nil {
+			fmt.Printf("⚠️ Warning: Failed to cleanup key %s: %v\n", keyName, err)
+		}
+	}()
+
