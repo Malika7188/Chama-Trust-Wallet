@@ -104,4 +104,6 @@ func SendXLM(seed, destination, amount string) (horizon.Transaction, error) {
 		return horizon.Transaction{}, err
 	}
 
-	
+	return resp, nil
+}
+
