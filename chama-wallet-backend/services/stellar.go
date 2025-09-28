@@ -109,4 +109,8 @@ func SendXLM(seed, destination, amount string) (horizon.Transaction, error) {
 
 // SendUSDC transfers USDC from sender to receiver (mainnet only)
 func SendUSDC(seed, destination, amount string) (horizon.Transaction, error) {
+	if !config.Config.IsMainnet {
+		return horizon.Transaction{}, fmt.Errorf("USDC transfers only available on mainnet")
+	}
+
 	
