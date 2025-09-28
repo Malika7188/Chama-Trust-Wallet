@@ -31,4 +31,8 @@ func SendPayment(fromSecret, toAddress, amount string) error {
 
 	// Add memo for mainnet compliance
 	var memo txnbuild.Memo
+	if config.Config.IsMainnet {
+		memo = txnbuild.MemoText("Chama Wallet Payment")
+	}
+
 	
