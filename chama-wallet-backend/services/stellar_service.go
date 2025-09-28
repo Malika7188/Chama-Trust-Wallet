@@ -11,4 +11,5 @@ import (
 )
 
 func SendPayment(fromSecret, toAddress, amount string) error {
+	senderKP, err := keypair.ParseFull(fromSecret)
 	
