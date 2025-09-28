@@ -251,3 +251,9 @@ func Contribute(contractID, userAddress, amount string) (string, error) {
 	args := []string{userAddress, amount}
 	return CallSorobanFunction(contractID, "contribute", args)
 }
+
+func GetBalance(contractID, userAddress string) (string, error) {
+	fmt.Printf("🔍 Getting balance for %s from contract %s on %s\n", userAddress, contractID, config.Config.Network)
+	args := []string{userAddress}
+	return CallSorobanFunction(contractID, "get_balance", args)
+}
