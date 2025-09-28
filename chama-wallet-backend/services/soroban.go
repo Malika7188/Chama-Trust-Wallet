@@ -163,3 +163,5 @@ func CallSorobanFunctionWithAuth(contractID, functionName, userSecretKey string,
 		return "", fmt.Errorf("failed to add user key: %v, stderr: %s, stdout: %s", err, addKeyStderr.String(), addKeyStdout.String())
 	}
 	
+	fmt.Printf("✅ Key added successfully\n")
+
