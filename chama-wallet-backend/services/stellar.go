@@ -62,4 +62,11 @@ func SendXLM(seed, destination, amount string) (horizon.Transaction, error) {
 		return horizon.Transaction{}, err
 	}
 
+	// Build the transaction
+	op := txnbuild.Payment{
+		Destination: destination,
+		Amount:      amount,
+		Asset:       txnbuild.NativeAsset{},
+	}
+
 	
