@@ -174,3 +174,16 @@ func CallSorobanFunctionWithAuth(contractID, functionName, userSecretKey string,
 		}
 	}()
 
+	network := config.GetSorobanNetwork()
+
+	// Build command arguments
+	cmdArgs := []string{
+		"contract", "invoke",
+		"--id", contractID,
+		"--source-account", keyName,
+		"--network", network,
+		"--",
+		functionName,
+	}
+
+	
