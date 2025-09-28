@@ -36,4 +36,8 @@ func FundWallet(address string) error {
 	}
 
 	url := fmt.Sprintf("https://friendbot.stellar.org/?addr=%s", address)
+	resp, err := http.Get(url)
+	if err != nil {
+		return err
+	}
 	
