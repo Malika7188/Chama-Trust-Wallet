@@ -116,4 +116,11 @@ func CallSorobanFunction(contractID, functionName string, args []string) (string
 		return "", fmt.Errorf("soroban command timed out after 60 seconds")
 	}
 	
+	result := strings.TrimSpace(out.String())
+	fmt.Printf("✅ Soroban result on %s: %s\n", network, result)
 	
+
+	return result, nil
+}
+
+/
