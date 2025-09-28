@@ -35,4 +35,5 @@ func FundWallet(address string) error {
 		return fmt.Errorf("funding not available on mainnet - use real XLM deposits")
 	}
 
+	url := fmt.Sprintf("https://friendbot.stellar.org/?addr=%s", address)
 	
