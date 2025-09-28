@@ -94,4 +94,7 @@ func CallSorobanFunction(contractID, functionName string, args []string) (string
 	
 	var out bytes.Buffer
 	var stderr bytes.Buffer
+	execCmd.Stdout = &out
+	execCmd.Stderr = &stderr
+	
 	
