@@ -31,4 +31,8 @@ func CreateWallet() (string, string) {
 
 // FundWallet funds a wallet using Friendbot (testnet only)
 func FundWallet(address string) error {
+	if config.Config.IsMainnet {
+		return fmt.Errorf("funding not available on mainnet - use real XLM deposits")
+	}
+
 	
