@@ -228,3 +228,10 @@ func CallSorobanFunctionWithAuth(contractID, functionName, userSecretKey string,
 		return "", fmt.Errorf("soroban command timed out after 90 seconds")
 	}
 
+	result := strings.TrimSpace(out.String())
+	fmt.Printf("✅ Authenticated Soroban result on %s: %s\n", network, result)
+	
+	return result, nil
+}
+
+/
