@@ -123,4 +123,11 @@ func CallSorobanFunction(contractID, functionName string, args []string) (string
 	return result, nil
 }
 
-/
+// CallSorobanFunctionWithAuth executes a Soroban contract function with user authentication
+func CallSorobanFunctionWithAuth(contractID, functionName, userSecretKey string, args []string) (string, error) {
+	// Validate inputs
+	if err := validateContractID(contractID); err != nil {
+		return "", fmt.Errorf("invalid contract ID: %w", err)
+	}
+	
+	
