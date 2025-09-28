@@ -92,4 +92,6 @@ func CallSorobanFunction(contractID, functionName string, args []string) (string
 	// Execute the command with timeout
 	execCmd := exec.Command("soroban", cmd...)
 	
+	var out bytes.Buffer
+	var stderr bytes.Buffer
 	
