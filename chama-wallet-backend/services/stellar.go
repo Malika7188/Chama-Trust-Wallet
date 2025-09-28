@@ -45,3 +45,9 @@ func FundWallet(address string) error {
 	fmt.Printf("Friendbot response for %s: %s\n", address, string(body))
 	return nil
 }
+
+// SendXLM transfers XLM from sender to receiver
+func SendXLM(seed, destination, amount string) (horizon.Transaction, error) {
+	client := GetHorizonClient()
+
+	
