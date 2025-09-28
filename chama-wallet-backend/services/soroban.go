@@ -199,3 +199,9 @@ func CallSorobanFunctionWithAuth(contractID, functionName, userSecretKey string,
 		cmdArgs = append(cmdArgs, args...)
 	}
 
+	fmt.Printf("🔧 Executing authenticated Soroban command on %s: soroban %s\n", network, strings.Join(cmdArgs, " "))
+	
+	// Execute the command with timeout
+	cmd := exec.Command("soroban", cmdArgs...)
+
+	
