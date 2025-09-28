@@ -56,4 +56,11 @@ func SendPayment(fromSecret, toAddress, amount string) error {
 		return fmt.Errorf("cannot sign tx: %w", err)
 	}
 
-	
+	_, err = client.SubmitTransaction(tx)
+	if err != nil {
+		return fmt.Errorf("tx failed: %w", err)
+	}
+
+	fmt.Printf("✅ Payment sent on %s network\n", config.Config.Network)
+	return nil
+}
