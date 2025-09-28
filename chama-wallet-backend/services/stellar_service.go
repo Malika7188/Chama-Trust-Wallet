@@ -19,4 +19,8 @@ func SendPayment(fromSecret, toAddress, amount string) error {
 	client := config.GetHorizonClient()
 	ar := horizonclient.AccountRequest{AccountID: senderKP.Address()}
 	sourceAccount, err := client.AccountDetail(ar)
+	if err != nil {
+		return fmt.Errorf("could not load source account: %w", err)
+	}
+
 	
