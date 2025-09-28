@@ -107,3 +107,6 @@ func SendXLM(seed, destination, amount string) (horizon.Transaction, error) {
 	return resp, nil
 }
 
+// SendUSDC transfers USDC from sender to receiver (mainnet only)
+func SendUSDC(seed, destination, amount string) (horizon.Transaction, error) {
+	
