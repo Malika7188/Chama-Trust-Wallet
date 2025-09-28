@@ -131,4 +131,10 @@ func SendUSDC(seed, destination, amount string) (horizon.Transaction, error) {
 		return horizon.Transaction{}, err
 	}
 
+	// Create USDC asset
+	usdcAsset := txnbuild.CreditAsset{
+		Code:   config.Config.USDCAssetCode,
+		Issuer: config.Config.USDCAssetIssuer,
+	}
+
 	
