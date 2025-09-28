@@ -186,4 +186,16 @@ func CallSorobanFunctionWithAuth(contractID, functionName, userSecretKey string,
 		functionName,
 	}
 
-	
+	// Add function-specific arguments
+	if functionName == "contribute" && len(args) >= 2 {
+		cmdArgs = append(cmdArgs, "--user", args[0], "--amount", args[1])
+	} else if functionName == "get_balance" && len(args) >= 1 {
+		cmdArgs = append(cmdArgs, "--user", args[0])
+	} else if functionName == "withdraw" && len(args) >= 2 {
+		cmdArgs = append(cmdArgs, "--user", args[0], "--amount", args[1])
+	} else if functionName == "get_contribution_history" && len(args) >= 1 {
+		cmdArgs = append(cmdArgs, "--user", args[0])
+	} else {
+		cmdArgs = append(cmdArgs, args...)
+	}
+
