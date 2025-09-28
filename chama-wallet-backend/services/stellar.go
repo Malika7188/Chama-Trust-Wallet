@@ -50,4 +50,6 @@ func FundWallet(address string) error {
 func SendXLM(seed, destination, amount string) (horizon.Transaction, error) {
 	client := GetHorizonClient()
 
+	// Load source account
+	kp, err := keypair.ParseFull(seed)
 	
