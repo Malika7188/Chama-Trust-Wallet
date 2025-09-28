@@ -97,4 +97,10 @@ func CallSorobanFunction(contractID, functionName string, args []string) (string
 	execCmd.Stdout = &out
 	execCmd.Stderr = &stderr
 	
+	// Set a timeout for the command
+	done := make(chan error, 1)
+	go func() {
+		done <- execCmd.Run()
+	}()
+	
 	
