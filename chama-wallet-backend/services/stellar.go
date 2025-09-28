@@ -144,4 +144,6 @@ func SendUSDC(seed, destination, amount string) (horizon.Transaction, error) {
 		Asset:       usdcAsset,
 	}
 
+	memo := txnbuild.MemoText("Chama Wallet USDC Transfer")
+
 	
