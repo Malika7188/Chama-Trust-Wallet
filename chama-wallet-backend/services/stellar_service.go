@@ -51,4 +51,5 @@ func SendPayment(fromSecret, toAddress, amount string) error {
 		return fmt.Errorf("cannot build tx: %w", err)
 	}
 
+	tx, err = tx.Sign(config.GetNetworkPassphrase(), senderKP)
 	
