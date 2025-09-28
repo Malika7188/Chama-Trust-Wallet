@@ -151,4 +151,9 @@ func CallSorobanFunctionWithAuth(contractID, functionName, userSecretKey string,
 	addKeyCmd := exec.Command("soroban", "keys", "add", keyName, "--secret-key")
 	addKeyCmd.Stdin = strings.NewReader(userSecretKey)
 
+	var addKeyStderr bytes.Buffer
+	var addKeyStdout bytes.Buffer
+	addKeyCmd.Stderr = &addKeyStderr
+	addKeyCmd.Stdout = &addKeyStdout
+
 	
