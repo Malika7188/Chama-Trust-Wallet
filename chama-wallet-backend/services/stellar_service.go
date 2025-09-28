@@ -39,4 +39,16 @@ func SendPayment(fromSecret, toAddress, amount string) error {
 		SourceAccount: &sourceAccount,
 		Operations:    []txnbuild.Operation{&op},
 		BaseFee:       txnbuild.MinBaseFee,
-		
+		Memo:          memo,
+		Preconditions: txnbuild.Preconditions{
+			TimeBounds: txnbuild.NewInfiniteTimeout(), // ✅ This returns *Timebounds
+		},
+		IncrementSequenceNum: true,
+	}
+
+	tx, err := txnbuild.NewTransaction(txParams)
+	if err != nil {
+		return fmt.Errorf("cannot build tx: %w", err)
+	}
+
+	
