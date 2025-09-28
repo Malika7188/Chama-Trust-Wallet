@@ -119,4 +119,10 @@ func SendUSDC(seed, destination, amount string) (horizon.Transaction, error) {
 
 	client := GetHorizonClient()
 
+	// Load source account
+	kp, err := keypair.ParseFull(seed)
+	if err != nil {
+		return horizon.Transaction{}, err
+	}
+
 	
