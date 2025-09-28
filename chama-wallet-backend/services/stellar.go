@@ -80,4 +80,9 @@ func SendXLM(seed, destination, amount string) (horizon.Transaction, error) {
 			SourceAccount:        &sourceAccount,
 			IncrementSequenceNum: true,
 			Operations:           []txnbuild.Operation{&op},
-			
+			BaseFee:              txnbuild.MinBaseFee,
+			Memo:                 memo,
+			Preconditions:        txnbuild.Preconditions{TimeBounds: txnbuild.NewInfiniteTimeout()},
+		},
+	)
+	
