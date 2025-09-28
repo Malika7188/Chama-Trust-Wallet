@@ -89,4 +89,9 @@ func SendXLM(seed, destination, amount string) (horizon.Transaction, error) {
 		return horizon.Transaction{}, err
 	}
 
+	tx, err = tx.Sign(config.GetNetworkPassphrase(), kp)
+	if err != nil {
+		return horizon.Transaction{}, err
+	}
+
 	
