@@ -156,4 +156,8 @@ func SendUSDC(seed, destination, amount string) (horizon.Transaction, error) {
 			Preconditions:        txnbuild.Preconditions{TimeBounds: txnbuild.NewInfiniteTimeout()},
 		},
 	)
+	if err != nil {
+		return horizon.Transaction{}, err
+	}
+
 	
