@@ -23,4 +23,8 @@ func GetHorizonClient() *horizonclient.Client {
 // CreateWallet generates a new Stellar keypair
 func CreateWallet() (string, string) {
 	kp, err := keypair.Random()
-	
+	if err != nil {
+		log.Fatal(err)
+	}
+	return kp.Address(), kp.Seed()
+}
