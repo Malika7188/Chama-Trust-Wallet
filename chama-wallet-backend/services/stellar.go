@@ -28,3 +28,7 @@ func CreateWallet() (string, string) {
 	}
 	return kp.Address(), kp.Seed()
 }
+
+// FundWallet funds a wallet using Friendbot (testnet only)
+func FundWallet(address string) error {
+	
