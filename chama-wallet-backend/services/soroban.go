@@ -245,3 +245,9 @@ func getSourceAccount() string {
 	}
 	return "malika" // Testnet account
 }
+// Wrapper functions with improved error handling
+func Contribute(contractID, userAddress, amount string) (string, error) {
+	fmt.Printf("🔄 Contributing %s XLM from %s to contract %s on %s\n", amount, userAddress, contractID, config.Config.Network)
+	args := []string{userAddress, amount}
+	return CallSorobanFunction(contractID, "contribute", args)
+}
