@@ -75,4 +75,7 @@ func SendXLM(seed, destination, amount string) (horizon.Transaction, error) {
 		memo = txnbuild.MemoText("Chama Wallet Transfer")
 	}
 
-	
+	tx, err := txnbuild.NewTransaction(
+		txnbuild.TransactionParams{
+			SourceAccount:        &sourceAccount,
+		
