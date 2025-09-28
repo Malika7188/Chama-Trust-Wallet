@@ -264,3 +264,9 @@ func Withdraw(contractID, userAddress, amount string) (string, error) {
 	return CallSorobanFunction(contractID, "withdraw", args)
 }
 
+func GetContributionHistory(contractID, userAddress string) (string, error) {
+	fmt.Printf("📊 Getting contribution history for %s from contract %s on %s\n", userAddress, contractID, config.Config.Network)
+	args := []string{userAddress}
+	return CallSorobanFunction(contractID, "get_contribution_history", args)
+}
+
