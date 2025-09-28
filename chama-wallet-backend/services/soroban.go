@@ -65,4 +65,6 @@ func CallSorobanFunction(contractID, functionName string, args []string) (string
 	network := config.GetSorobanNetwork()
 	sourceAccount := getSourceAccount()
 
+	cmd := []string{
+		"contract", "invoke",
 	
