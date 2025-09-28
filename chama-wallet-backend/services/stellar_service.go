@@ -52,4 +52,8 @@ func SendPayment(fromSecret, toAddress, amount string) error {
 	}
 
 	tx, err = tx.Sign(config.GetNetworkPassphrase(), senderKP)
+	if err != nil {
+		return fmt.Errorf("cannot sign tx: %w", err)
+	}
+
 	
