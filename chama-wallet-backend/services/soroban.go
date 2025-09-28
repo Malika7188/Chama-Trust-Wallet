@@ -209,3 +209,9 @@ func CallSorobanFunctionWithAuth(contractID, functionName, userSecretKey string,
 	cmd.Stdout = &out
 	cmd.Stderr = &stderr
 
+	// Set a timeout for the command
+	done := make(chan error, 1)
+	go func() {
+		done <- cmd.Run()
+	}()
+	
