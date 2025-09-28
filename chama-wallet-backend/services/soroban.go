@@ -35,4 +35,6 @@ func validateContractID(contractID string) error {
 // checkContractExists verifies the contract exists on the network
 func checkContractExists(contractID string) error {
 	network := config.GetSorobanNetwork()
+	cmd := exec.Command("soroban", "contract", "inspect", "--id", contractID, "--network", network)
+	
 	
