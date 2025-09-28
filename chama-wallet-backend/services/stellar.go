@@ -69,4 +69,10 @@ func SendXLM(seed, destination, amount string) (horizon.Transaction, error) {
 		Asset:       txnbuild.NativeAsset{},
 	}
 
+	// Add memo for mainnet compliance if required
+	var memo txnbuild.Memo
+	if config.Config.IsMainnet && os.Getenv("REQUIRE_MEMO_FOR_TRANSFERS") == "true" {
+		memo = txnbuild.MemoText("Chama Wallet Transfer")
+	}
+
 	
