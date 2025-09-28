@@ -58,4 +58,8 @@ func SendXLM(seed, destination, amount string) (horizon.Transaction, error) {
 
 	ar := horizonclient.AccountRequest{AccountID: kp.Address()}
 	sourceAccount, err := client.AccountDetail(ar)
+	if err != nil {
+		return horizon.Transaction{}, err
+	}
+
 	
