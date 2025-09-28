@@ -270,3 +270,9 @@ func GetContributionHistory(contractID, userAddress string) (string, error) {
 	return CallSorobanFunction(contractID, "get_contribution_history", args)
 }
 
+// ContributeWithAuth - wrapper for authenticated contributions
+func ContributeWithAuth(contractID, userAddress, amount, secretKey string) (string, error) {
+	fmt.Printf("🔐 Making authenticated contribution: %s XLM from %s on %s\n", amount, userAddress, config.Config.Network)
+	args := []string{userAddress, amount}
+	return CallSorobanFunctionWithAuth(contractID, "contribute", secretKey, args)
+}
