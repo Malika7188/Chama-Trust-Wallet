@@ -143,3 +143,8 @@ func CallSorobanFunctionWithAuth(contractID, functionName, userSecretKey string,
 		return "", fmt.Errorf("contract validation failed: %w", err)
 	}
 
+	keyName := fmt.Sprintf("temp-user-key-%d-%d", os.Getpid(), time.Now().Unix())
+	
+	fmt.Printf("🔑 Adding temporary key: %s\n", keyName)
+
+	
