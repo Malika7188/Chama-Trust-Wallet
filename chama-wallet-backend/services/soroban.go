@@ -87,4 +87,9 @@ func CallSorobanFunction(contractID, functionName string, args []string) (string
 		cmd = append(cmd, args...)
 	}
 
+	fmt.Printf("🔧 Executing Soroban command on %s: soroban %s\n", network, strings.Join(cmd, " "))
+	
+	// Execute the command with timeout
+	execCmd := exec.Command("soroban", cmd...)
+	
 	
