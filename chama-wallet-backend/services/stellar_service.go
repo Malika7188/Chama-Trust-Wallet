@@ -17,4 +17,4 @@ func SendPayment(fromSecret, toAddress, amount string) error {
 	}
 
 	client := config.GetHorizonClient()
-	
+	ar := horizonclient.AccountRequest{AccountID: senderKP.Address()}
