@@ -12,4 +12,8 @@ import (
 
 func SendPayment(fromSecret, toAddress, amount string) error {
 	senderKP, err := keypair.ParseFull(fromSecret)
+	if err != nil {
+		return fmt.Errorf("invalid secret key: %w", err)
+	}
+
 	
