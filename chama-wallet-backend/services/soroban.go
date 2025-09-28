@@ -234,4 +234,14 @@ func CallSorobanFunctionWithAuth(contractID, functionName, userSecretKey string,
 	return result, nil
 }
 
-/
+// getSourceAccount returns the appropriate source account based on network
+func getSourceAccount() string {
+	if config.Config.IsMainnet {
+		// For mainnet, use environment variable or configured account
+		if account := os.Getenv("SOROBAN_PUBLIC_KEY"); account != "" {
+			return account
+		}
+		return "mainnet-account" // This should be configured in soroban keys
+	}
+	return "malika" // Testnet account
+}
