@@ -134,3 +134,7 @@ func CallSorobanFunctionWithAuth(contractID, functionName, userSecretKey string,
 		return "", fmt.Errorf("function name cannot be empty")
 	}
 	
+	if userSecretKey == "" {
+		return "", fmt.Errorf("user secret key is required")
+	}
+
