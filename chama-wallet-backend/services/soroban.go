@@ -62,4 +62,7 @@ func CallSorobanFunction(contractID, functionName string, args []string) (string
 		return "", fmt.Errorf("contract validation failed: %w", err)
 	}
 
+	network := config.GetSorobanNetwork()
+	sourceAccount := getSourceAccount()
+
 	
