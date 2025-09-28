@@ -150,4 +150,6 @@ func SendUSDC(seed, destination, amount string) (horizon.Transaction, error) {
 		txnbuild.TransactionParams{
 			SourceAccount:        &sourceAccount,
 			IncrementSequenceNum: true,
+			Operations:           []txnbuild.Operation{&op},
+			BaseFee:              txnbuild.MinBaseFee,
 			
