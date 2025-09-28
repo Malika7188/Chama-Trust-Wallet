@@ -138,3 +138,8 @@ func CallSorobanFunctionWithAuth(contractID, functionName, userSecretKey string,
 		return "", fmt.Errorf("user secret key is required")
 	}
 
+	// Check if contract exists
+	if err := checkContractExists(contractID); err != nil {
+		return "", fmt.Errorf("contract validation failed: %w", err)
+	}
+
