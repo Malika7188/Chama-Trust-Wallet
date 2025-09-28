@@ -37,4 +37,6 @@ func SendPayment(fromSecret, toAddress, amount string) error {
 
 	txParams := txnbuild.TransactionParams{
 		SourceAccount: &sourceAccount,
+		Operations:    []txnbuild.Operation{&op},
+		BaseFee:       txnbuild.MinBaseFee,
 		
