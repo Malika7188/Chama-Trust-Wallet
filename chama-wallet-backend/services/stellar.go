@@ -113,4 +113,8 @@ func SendUSDC(seed, destination, amount string) (horizon.Transaction, error) {
 		return horizon.Transaction{}, fmt.Errorf("USDC transfers only available on mainnet")
 	}
 
+	if config.Config.USDCAssetCode == "" || config.Config.USDCAssetIssuer == "" {
+		return horizon.Transaction{}, fmt.Errorf("USDC asset configuration missing")
+	}
+
 	
