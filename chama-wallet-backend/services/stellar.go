@@ -140,4 +140,5 @@ func SendUSDC(seed, destination, amount string) (horizon.Transaction, error) {
 	// Build the transaction
 	op := txnbuild.Payment{
 		Destination: destination,
+		Amount:      amount,
 	
