@@ -52,4 +52,8 @@ func SendXLM(seed, destination, amount string) (horizon.Transaction, error) {
 
 	// Load source account
 	kp, err := keypair.ParseFull(seed)
+	if err != nil {
+		return horizon.Transaction{}, err
+	}
+
 	
