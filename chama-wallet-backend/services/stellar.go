@@ -165,4 +165,9 @@ func SendUSDC(seed, destination, amount string) (horizon.Transaction, error) {
 		return horizon.Transaction{}, err
 	}
 
+	txeBase64, err := tx.Base64()
+	if err != nil {
+		return horizon.Transaction{}, err
+	}
+
 	
