@@ -257,3 +257,10 @@ func GetBalance(contractID, userAddress string) (string, error) {
 	args := []string{userAddress}
 	return CallSorobanFunction(contractID, "get_balance", args)
 }
+
+func Withdraw(contractID, userAddress, amount string) (string, error) {
+	fmt.Printf("💸 Withdrawing %s XLM for %s from contract %s on %s\n", amount, userAddress, contractID, config.Config.Network)
+	args := []string{userAddress, amount}
+	return CallSorobanFunction(contractID, "withdraw", args)
+}
+
