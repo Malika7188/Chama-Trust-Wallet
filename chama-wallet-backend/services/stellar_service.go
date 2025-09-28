@@ -29,4 +29,6 @@ func SendPayment(fromSecret, toAddress, amount string) error {
 		Asset:       txnbuild.NativeAsset{},
 	}
 
+	// Add memo for mainnet compliance
+	var memo txnbuild.Memo
 	
