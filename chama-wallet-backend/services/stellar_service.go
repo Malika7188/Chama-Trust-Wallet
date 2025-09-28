@@ -23,4 +23,10 @@ func SendPayment(fromSecret, toAddress, amount string) error {
 		return fmt.Errorf("could not load source account: %w", err)
 	}
 
+	op := txnbuild.Payment{
+		Destination: toAddress,
+		Amount:      amount,
+		Asset:       txnbuild.NativeAsset{},
+	}
+
 	
