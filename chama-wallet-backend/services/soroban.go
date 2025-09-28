@@ -215,3 +215,16 @@ func CallSorobanFunctionWithAuth(contractID, functionName, userSecretKey string,
 		done <- cmd.Run()
 	}()
 	
+	select {
+	case err := <-done:
+		if err != nil {
+			fmt.Printf("❌ Soroban invoke failed: %v\n", err)
+			fmt.Printf("❌ Stderr: %s\n", stderr.String())
+			fmt.Printf("❌ Stdout: %s\n", out.String())
+			return "", fmt.Errorf("soroban invoke failed: %v, stderr: %s", err, stderr.String())
+		}
+	case <-time.After(90 * time.Second): // Increased timeout for mainnet
+		cmd.Process.Kill()
+		return "", fmt.Errorf("soroban command timed out after 90 seconds")
+	}
+
