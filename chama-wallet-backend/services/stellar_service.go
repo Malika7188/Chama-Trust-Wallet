@@ -16,4 +16,5 @@ func SendPayment(fromSecret, toAddress, amount string) error {
 		return fmt.Errorf("invalid secret key: %w", err)
 	}
 
+	client := config.GetHorizonClient()
 	
