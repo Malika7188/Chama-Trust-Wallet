@@ -35,4 +35,6 @@ func SendPayment(fromSecret, toAddress, amount string) error {
 		memo = txnbuild.MemoText("Chama Wallet Payment")
 	}
 
-	
+	txParams := txnbuild.TransactionParams{
+		SourceAccount: &sourceAccount,
+		
