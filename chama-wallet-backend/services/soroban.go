@@ -31,3 +31,8 @@ func validateContractID(contractID string) error {
 	}
 	return nil
 }
+
+// checkContractExists verifies the contract exists on the network
+func checkContractExists(contractID string) error {
+	network := config.GetSorobanNetwork()
+	
