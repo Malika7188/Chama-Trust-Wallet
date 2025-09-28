@@ -57,4 +57,9 @@ func CallSorobanFunction(contractID, functionName string, args []string) (string
 		return "", fmt.Errorf("function name cannot be empty")
 	}
 
+	// Check if contract exists
+	if err := checkContractExists(contractID); err != nil {
+		return "", fmt.Errorf("contract validation failed: %w", err)
+	}
+
 	
