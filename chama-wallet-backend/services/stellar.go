@@ -40,4 +40,6 @@ func FundWallet(address string) error {
 	if err != nil {
 		return err
 	}
+	defer resp.Body.Close()
+	body, _ := ioutil.ReadAll(resp.Body)
 	
