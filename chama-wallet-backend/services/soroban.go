@@ -49,4 +49,8 @@ func checkContractExists(contractID string) error {
 // CallSorobanFunction executes a Soroban contract function
 func CallSorobanFunction(contractID, functionName string, args []string) (string, error) {
 	// Validate inputs
+	if err := validateContractID(contractID); err != nil {
+		return "", fmt.Errorf("invalid contract ID: %w", err)
+	}
+	
 	
