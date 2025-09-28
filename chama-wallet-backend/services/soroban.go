@@ -17,3 +17,9 @@ type SorobanInvokeRequest struct {
 	Function   string        `json:"function"`
 	Args       []interface{} `json:"args"`
 }
+
+// validateContractID ensures the contract ID is valid
+func validateContractID(contractID string) error {
+	if contractID == "" {
+		return fmt.Errorf("contract ID cannot be empty")
+	}
