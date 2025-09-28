@@ -67,4 +67,6 @@ func CallSorobanFunction(contractID, functionName string, args []string) (string
 
 	cmd := []string{
 		"contract", "invoke",
+		"--id", contractID,
+		"--network", network,
 	
