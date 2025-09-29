@@ -29,3 +29,6 @@ fi
 echo -e "${GREEN}✅ API is running${NC}"
 echo ""
 
+# Step 1: Register/Login test user
+echo -e "${YELLOW}Step 1: User Authentication${NC}"
+echo "Attempting to register test user..."
