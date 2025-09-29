@@ -20,3 +20,8 @@ echo -e "${BLUE}🔧 Debugging Group Contribution Issues${NC}"
 echo "======================================"
 echo ""
 
+# Check if API is running
+echo -e "${BLUE}🔍 Checking API availability...${NC}"
+if ! curl -s --max-time 3 "$API_URL" > /dev/null; then
+    echo -e "${RED}❌ API is not responding. Please start your backend server.${NC}"
+    exit 1
