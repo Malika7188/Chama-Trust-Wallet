@@ -126,4 +126,8 @@ interactive_mode() {
     echo -e "${YELLOW}Please confirm the details:${NC}"
     echo "Name: $group_name"
     echo "Description: $group_description"
-    
+    echo "Wallet: $wallet_address"
+    echo ""
+    read -p "Create this group? (y/N): " confirm
+
+   
