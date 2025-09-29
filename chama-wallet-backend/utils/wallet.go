@@ -33,4 +33,6 @@ func GenerateStellarWallet() (*StellarWallet, error) {
 		SecretKey: pair.Seed(),
 	}
 
-	
+	fmt.Printf("✅ Generated wallet: %s\n", wallet.PublicKey)
+	return wallet, nil
+}
