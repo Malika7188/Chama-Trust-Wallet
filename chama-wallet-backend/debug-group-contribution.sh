@@ -70,4 +70,7 @@ elif [[ "$REGISTER_STATUS" =~ ^2[0-9]{2}$ ]]; then
     USER_WALLET=$(echo "$REGISTER_JSON" | jq -r '.user.wallet // empty')
     USER_SECRET=$(echo "$REGISTER_JSON" | jq -r '.user.secret_key // empty')
 else
-  
+    echo -e "${RED}❌ Failed to register/login user${NC}"
+    echo "$REGISTER_JSON"
+    exit 1
+fi
