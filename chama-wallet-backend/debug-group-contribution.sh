@@ -32,3 +32,9 @@ echo ""
 # Step 1: Register/Login test user
 echo -e "${YELLOW}Step 1: User Authentication${NC}"
 echo "Attempting to register test user..."
+
+REGISTER_DATA="{
+    \"name\": \"$TEST_USER_NAME\",
+    \"email\": \"$TEST_USER_EMAIL\",
+    \"password\": \"$TEST_USER_PASSWORD\"
+}"
