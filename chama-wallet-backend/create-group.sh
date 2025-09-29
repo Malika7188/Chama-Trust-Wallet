@@ -50,4 +50,11 @@ create_group() {
     # Create JSON payload
     local json_payload=$(cat <<EOF
 {
-   
+    "name": "$name",
+    "description": "$description",
+    "wallet": "$wallet"
+}
+EOF
+)
+
+  
