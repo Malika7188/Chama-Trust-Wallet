@@ -24,3 +24,16 @@ show_usage() {
     echo ""
     exit 1
 }
+
+# Function to validate Stellar address
+validate_stellar_address() {
+    local address=$1
+    if [[ ! $address =~ ^G[A-Z2-7]{55}$ ]]; then
+        echo -e "${RED}❌ Invalid Stellar address format${NC}"
+        echo -e "${YELLOW}Stellar addresses should start with 'G' and be 56 characters long${NC}"
+        return 1
+    fi
+    return 0
+}
+
+#
