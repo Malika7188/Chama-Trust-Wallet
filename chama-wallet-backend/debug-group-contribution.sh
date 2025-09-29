@@ -43,3 +43,8 @@ REGISTER_RESPONSE=$(curl -s -X POST "$API_URL/auth/register" \
     -H "Content-Type: application/json" \
     -d "$REGISTER_DATA" \
     -w "\nHTTP_STATUS:%{http_code}")
+
+REGISTER_STATUS=$(echo "$REGISTER_RESPONSE" | grep "HTTP_STATUS" | cut -d: -f2)
+REGISTER_JSON=$(echo "$REGISTER_RESPONSE" | sed '/HTTP_STATUS/d')
+
+i
