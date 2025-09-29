@@ -121,4 +121,7 @@ GROUP_JSON=$(echo "$GROUP_RESPONSE" | sed '/HTTP_STATUS/d')
 if [[ "$GROUP_STATUS" =~ ^2[0-9]{2}$ ]]; then
     echo -e "${GREEN}✅ Group created successfully${NC}"
     GROUP_ID=$(echo "$GROUP_JSON" | jq -r '.group.id // .group.ID // empty')
-   
+    CONTRACT_ID=$(echo "$GROUP_JSON" | jq -r '.group.contract_id // .group.ContractID // empty')
+    GROUP_WALLET=$(echo "$GROUP_JSON" | jq -r '.group.wallet // .group.Wallet // empty')
+    
+    
