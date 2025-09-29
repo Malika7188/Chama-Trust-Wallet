@@ -141,4 +141,5 @@ interactive_mode() {
 # Generate sample wallet address for testing
 generate_sample_wallet() {
     echo -e "${BLUE}🎲 Generating sample wallet address...${NC}"
-   
+    if command -v soroban &> /dev/null; then
+       
