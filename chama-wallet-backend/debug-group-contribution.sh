@@ -66,4 +66,8 @@ if [[ "$REGISTER_STATUS" == "409" ]] || [[ "$REGISTER_STATUS" == "400" ]]; then
 elif [[ "$REGISTER_STATUS" =~ ^2[0-9]{2}$ ]]; then
     echo -e "${GREEN}✅ User registered successfully${NC}"
     TOKEN=$(echo "$REGISTER_JSON" | jq -r '.token // empty')
-   
+    USER_ID=$(echo "$REGISTER_JSON" | jq -r '.user.id // empty')
+    USER_WALLET=$(echo "$REGISTER_JSON" | jq -r '.user.wallet // empty')
+    USER_SECRET=$(echo "$REGISTER_JSON" | jq -r '.user.secret_key // empty')
+else
+  
