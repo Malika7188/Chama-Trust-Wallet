@@ -102,3 +102,9 @@ USER_BALANCE_RESPONSE=$(curl -s "$API_URL/balance/$USER_WALLET" \
 echo "$USER_BALANCE_RESPONSE" | jq .
 echo ""
 
+# Step 4: Create a test group
+echo -e "${YELLOW}Step 4: Create Test Group${NC}"
+GROUP_DATA="{
+    \"name\": \"Debug Test Group $(date +%s)\",
+    \"description\": \"Test group for debugging contributions\"
+}"
