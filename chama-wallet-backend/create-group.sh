@@ -182,4 +182,26 @@ main() {
         "--interactive"|"-i")
             interactive_mode
             ;;
-      
+        "--sample-wallet")
+            generate_sample_wallet
+            ;;
+        "")
+            interactive_mode
+            ;;
+        *)
+            if [[ $# -eq 3 ]]; then
+                # Validate wallet address
+                if ! validate_stellar_address "$3"; then
+                    exit 1
+                fi
+                create_group "$1" "$2" "$3"
+            else
+                echo -e "${RED}❌ Invalid number of arguments${NC}"
+                show_usage
+            fi
+            ;;
+    esac
+}
+
+# Run main function
+main "$@"
