@@ -25,4 +25,7 @@ func GenerateStellarWallet() (*StellarWallet, error) {
 	}
 
 	if pair.Seed() == "" {
+		return nil, fmt.Errorf("generated secret key is empty")
+	}
+
 	
