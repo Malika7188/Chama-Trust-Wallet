@@ -118,3 +118,7 @@ GROUP_RESPONSE=$(curl -s -X POST "$API_URL/group/create" \
 GROUP_STATUS=$(echo "$GROUP_RESPONSE" | grep "HTTP_STATUS" | cut -d: -f2)
 GROUP_JSON=$(echo "$GROUP_RESPONSE" | sed '/HTTP_STATUS/d')
 
+if [[ "$GROUP_STATUS" =~ ^2[0-9]{2}$ ]]; then
+    echo -e "${GREEN}✅ Group created successfully${NC}"
+    GROUP_ID=$(echo "$GROUP_JSON" | jq -r '.group.id // .group.ID // empty')
+   
