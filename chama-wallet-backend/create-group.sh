@@ -170,4 +170,8 @@ main() {
     echo "======================="
     echo ""
 
+    # Check if API is running
+    check_api
+    echo ""
+
    
