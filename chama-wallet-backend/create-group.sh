@@ -174,4 +174,12 @@ main() {
     check_api
     echo ""
 
-   
+    # Check command line arguments
+    case "$1" in
+        "--help"|"-h")
+            show_usage
+            ;;
+        "--interactive"|"-i")
+            interactive_mode
+            ;;
+      
