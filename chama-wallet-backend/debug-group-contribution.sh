@@ -124,4 +124,9 @@ if [[ "$GROUP_STATUS" =~ ^2[0-9]{2}$ ]]; then
     CONTRACT_ID=$(echo "$GROUP_JSON" | jq -r '.group.contract_id // .group.ContractID // empty')
     GROUP_WALLET=$(echo "$GROUP_JSON" | jq -r '.group.wallet // .group.Wallet // empty')
     
-    
+    echo "Group ID: $GROUP_ID"
+    echo "Contract ID: $CONTRACT_ID"
+    echo "Group Wallet: $GROUP_WALLET"
+    echo "$GROUP_JSON" | jq .
+else
+   
