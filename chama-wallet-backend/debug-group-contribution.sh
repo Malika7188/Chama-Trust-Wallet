@@ -74,3 +74,9 @@ else
     echo "$REGISTER_JSON"
     exit 1
 fi
+
+if [[ -z "$TOKEN" ]]; then
+    echo -e "${RED}❌ Failed to get authentication token${NC}"
+    exit 1
+fi
+
