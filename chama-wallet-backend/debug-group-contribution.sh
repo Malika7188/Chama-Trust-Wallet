@@ -144,3 +144,12 @@ DIRECT_CONTRIB_DATA="{
     \"secret_key\": \"$USER_SECRET\"
 }"
 
+test_endpoint "POST" "$API_URL/contribute" "$DIRECT_CONTRIB_DATA" "Direct Contract Contribution"
+
+# Step 6: Check contract balance
+echo -e "${YELLOW}Step 6: Check Contract Balance${NC}"
+CONTRACT_BALANCE_DATA="{
+    \"contract_id\": \"$CONTRACT_ID\",
+    \"user_address\": \"$USER_WALLET\"
+}"
+
