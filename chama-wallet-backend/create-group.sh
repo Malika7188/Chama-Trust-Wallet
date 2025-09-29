@@ -110,4 +110,10 @@ interactive_mode() {
     read -p "Enter group description: " group_description
     if [[ -z "$group_description" ]]; then
         group_description="Chama savings group powered by Stellar"
+    fi
+
+    # Get wallet address
+    echo -e "${YELLOW}💡 You can generate a test wallet at: https://lab.stellar.org/account-creator${NC}"
+    read -p "Enter Stellar wallet address (starts with G): " wallet_address
+    
    
