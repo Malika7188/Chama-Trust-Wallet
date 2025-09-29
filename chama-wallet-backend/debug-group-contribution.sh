@@ -55,4 +55,8 @@ if [[ "$REGISTER_STATUS" == "409" ]] || [[ "$REGISTER_STATUS" == "400" ]]; then
         \"password\": \"$TEST_USER_PASSWORD\"
     }"
     
-   
+    LOGIN_RESPONSE=$(curl -s -X POST "$API_URL/auth/login" \
+        -H "Content-Type: application/json" \
+        -d "$LOGIN_DATA")
+    
+    
