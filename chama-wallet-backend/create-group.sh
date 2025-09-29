@@ -73,4 +73,13 @@ EOF
         echo -e "${GREEN}✅ Group created successfully!${NC}"
         echo ""
         
-       
+        # Parse and display response using jq if available
+        if command -v jq &> /dev/null; then
+            echo -e "${GREEN}📋 Group Details:${NC}"
+            echo "$json_response" | jq -r '
+                "🆔 ID: " + .group.ID + 
+                "\n📛 Name: " + .group.Name + 
+                "\n📝 Description: " + .group.Description + 
+                "\n💳 Wallet: " + .group.Wallet + 
+                "\n🔗 Contract ID: " + .group.ContractID'
+      
