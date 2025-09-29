@@ -36,4 +36,10 @@ validate_stellar_address() {
     return 0
 }
 
-#
+# Function to create group via API
+create_group() {
+    local name="$1"
+    local description="$2"
+    local wallet="$3"
+
+   
