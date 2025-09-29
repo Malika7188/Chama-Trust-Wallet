@@ -151,3 +151,8 @@ generate_sample_wallet() {
         echo -e "${YELLOW}💡 This is a sample address. Generate your own at: https://lab.stellar.org/account-creator${NC}"
     fi
 }
+
+# Check if API is running
+check_api() {
+    echo -e "${BLUE}🔍 Checking if API is running...${NC}"
+   
