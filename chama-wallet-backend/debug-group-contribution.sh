@@ -172,4 +172,9 @@ GROUP_CONTRIB_RESPONSE=$(curl -s -X POST "$API_URL/group/$GROUP_ID/contribute" \
 GROUP_CONTRIB_STATUS=$(echo "$GROUP_CONTRIB_RESPONSE" | grep "HTTP_STATUS" | cut -d: -f2)
 GROUP_CONTRIB_JSON=$(echo "$GROUP_CONTRIB_RESPONSE" | sed '/HTTP_STATUS/d')
 
-i
+if [[ "$GROUP_CONTRIB_STATUS" =~ ^2[0-9]{2}$ ]]; then
+    echo -e "${GREEN}✅ Group contribution successful${NC}"
+    echo "$GROUP_CONTRIB_JSON" | jq .
+else
+    echo -e "${RED}❌ Group contribution failed (HTTP $GROUP_CONTRIB_STATUS)${NC}"
+  
