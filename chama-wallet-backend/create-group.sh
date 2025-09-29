@@ -64,4 +64,6 @@ EOF
         -d "$json_payload" \
         -w "\nHTTP_STATUS:%{http_code}")
 
-  
+    # Parse response and status
+    local http_status=$(echo "$response" | grep "HTTP_STATUS" | cut -d: -f2)
+    local json_response=$(echo "$response" | sed '/HTTP_STATUS/d')
