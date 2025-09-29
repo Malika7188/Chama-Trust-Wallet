@@ -153,3 +153,12 @@ CONTRACT_BALANCE_DATA="{
     \"user_address\": \"$USER_WALLET\"
 }"
 
+test_endpoint "POST" "$API_URL/balance" "$CONTRACT_BALANCE_DATA" "Check Contract Balance"
+
+# Step 7: Test group contribution (if group is active)
+echo -e "${YELLOW}Step 7: Test Group Contribution${NC}"
+GROUP_CONTRIB_DATA="{
+    \"from\": \"$USER_WALLET\",
+    \"secret\": \"$USER_SECRET\",
+    \"amount\": \"25\"
+}"
