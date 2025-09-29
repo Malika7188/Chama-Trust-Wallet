@@ -47,4 +47,7 @@ REGISTER_RESPONSE=$(curl -s -X POST "$API_URL/auth/register" \
 REGISTER_STATUS=$(echo "$REGISTER_RESPONSE" | grep "HTTP_STATUS" | cut -d: -f2)
 REGISTER_JSON=$(echo "$REGISTER_RESPONSE" | sed '/HTTP_STATUS/d')
 
-i
+if [[ "$REGISTER_STATUS" == "409" ]] || [[ "$REGISTER_STATUS" == "400" ]]; then
+    echo "User already exists, attempting login..."
+    
+   
