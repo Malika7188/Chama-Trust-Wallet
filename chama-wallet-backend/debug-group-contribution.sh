@@ -192,3 +192,19 @@ echo "User wallet balance:"
 curl -s "$API_URL/balance/$USER_WALLET" | jq .
 echo ""
 
+echo "Group wallet balance:"
+curl -s "$API_URL/balance/$GROUP_WALLET" | jq .
+echo ""
+
+echo -e "${BLUE}🎯 Debug Summary${NC}"
+echo "================"
+echo -e "${GREEN}✅ Group contribution debugging completed${NC}"
+echo ""
+echo -e "${YELLOW}💡 Key Information:${NC}"
+echo "Test User ID: $USER_ID"
+echo "Test User Wallet: $USER_WALLET"
+echo "Test Group ID: $GROUP_ID"
+echo "Test Contract ID: $CONTRACT_ID"
+echo "Test Group Wallet: $GROUP_WALLET"
+echo ""
+echo -e "${YELLOW}🔧 To activate the group for contributions:${NC}"
