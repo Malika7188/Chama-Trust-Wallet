@@ -29,4 +29,8 @@ func GenerateStellarWallet() (*StellarWallet, error) {
 	}
 
 	wallet := &StellarWallet{
+		PublicKey: pair.Address(),
+		SecretKey: pair.Seed(),
+	}
+
 	
