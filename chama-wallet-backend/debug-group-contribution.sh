@@ -12,3 +12,7 @@ NC='\033[0m' # No Color
 
 # Configuration
 API_URL="http://localhost:3000"
+TEST_USER_EMAIL="test@example.com"
+TEST_USER_PASSWORD="password123"
+TEST_USER_NAME="Test User"
+
