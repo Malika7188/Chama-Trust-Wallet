@@ -169,3 +169,7 @@ GROUP_CONTRIB_RESPONSE=$(curl -s -X POST "$API_URL/group/$GROUP_ID/contribute" \
     -d "$GROUP_CONTRIB_DATA" \
     -w "\nHTTP_STATUS:%{http_code}")
 
+GROUP_CONTRIB_STATUS=$(echo "$GROUP_CONTRIB_RESPONSE" | grep "HTTP_STATUS" | cut -d: -f2)
+GROUP_CONTRIB_JSON=$(echo "$GROUP_CONTRIB_RESPONSE" | sed '/HTTP_STATUS/d')
+
+i
