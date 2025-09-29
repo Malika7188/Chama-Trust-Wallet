@@ -177,4 +177,11 @@ if [[ "$GROUP_CONTRIB_STATUS" =~ ^2[0-9]{2}$ ]]; then
     echo "$GROUP_CONTRIB_JSON" | jq .
 else
     echo -e "${RED}❌ Group contribution failed (HTTP $GROUP_CONTRIB_STATUS)${NC}"
-  
+    echo "$GROUP_CONTRIB_JSON"
+    
+    # If group is not active, that's expected
+    if echo "$GROUP_CONTRIB_JSON" | grep -q "not active"; then
+        echo -e "${YELLOW}ℹ️  This is expected - group needs to be activated first${NC}"
+    fi
+fi
+echo ""
