@@ -130,4 +130,6 @@ interactive_mode() {
     echo ""
     read -p "Create this group? (y/N): " confirm
 
-   
+    if [[ $confirm =~ ^[Yy]$ ]]; then
+        create_group "$group_name" "$group_description" "$wallet_address"
+    
