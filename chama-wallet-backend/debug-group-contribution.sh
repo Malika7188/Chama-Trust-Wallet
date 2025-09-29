@@ -129,4 +129,10 @@ if [[ "$GROUP_STATUS" =~ ^2[0-9]{2}$ ]]; then
     echo "Group Wallet: $GROUP_WALLET"
     echo "$GROUP_JSON" | jq .
 else
-   
+    echo -e "${RED}❌ Failed to create group${NC}"
+    echo "$GROUP_JSON"
+    exit 1
+fi
+echo ""
+
+#
