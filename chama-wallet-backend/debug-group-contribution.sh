@@ -162,3 +162,10 @@ GROUP_CONTRIB_DATA="{
     \"secret\": \"$USER_SECRET\",
     \"amount\": \"25\"
 }"
+
+GROUP_CONTRIB_RESPONSE=$(curl -s -X POST "$API_URL/group/$GROUP_ID/contribute" \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer $TOKEN" \
+    -d "$GROUP_CONTRIB_DATA" \
+    -w "\nHTTP_STATUS:%{http_code}")
+
