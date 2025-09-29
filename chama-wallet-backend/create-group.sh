@@ -155,4 +155,11 @@ generate_sample_wallet() {
 # Check if API is running
 check_api() {
     echo -e "${BLUE}🔍 Checking if API is running...${NC}"
-   
+    if curl -s --max-time 3 "http://localhost:3000" > /dev/null; then
+        echo -e "${GREEN}✅ API is running${NC}"
+    else
+        echo -e "${RED}❌ API is not responding. Please make sure your backend is running on port 3000${NC}"
+        echo -e "${YELLOW}Start your backend with: go run main.go${NC}"
+        exit 1
+    fi
+}
