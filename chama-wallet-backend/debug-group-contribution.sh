@@ -115,3 +115,6 @@ GROUP_RESPONSE=$(curl -s -X POST "$API_URL/group/create" \
     -d "$GROUP_DATA" \
     -w "\nHTTP_STATUS:%{http_code}")
 
+GROUP_STATUS=$(echo "$GROUP_RESPONSE" | grep "HTTP_STATUS" | cut -d: -f2)
+GROUP_JSON=$(echo "$GROUP_RESPONSE" | sed '/HTTP_STATUS/d')
+
