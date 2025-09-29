@@ -25,3 +25,7 @@ echo -e "${BLUE}🔍 Checking API availability...${NC}"
 if ! curl -s --max-time 3 "$API_URL" > /dev/null; then
     echo -e "${RED}❌ API is not responding. Please start your backend server.${NC}"
     exit 1
+fi
+echo -e "${GREEN}✅ API is running${NC}"
+echo ""
+
