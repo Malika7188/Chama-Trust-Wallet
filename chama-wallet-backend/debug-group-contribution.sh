@@ -50,4 +50,9 @@ REGISTER_JSON=$(echo "$REGISTER_RESPONSE" | sed '/HTTP_STATUS/d')
 if [[ "$REGISTER_STATUS" == "409" ]] || [[ "$REGISTER_STATUS" == "400" ]]; then
     echo "User already exists, attempting login..."
     
+    LOGIN_DATA="{
+        \"email\": \"$TEST_USER_EMAIL\",
+        \"password\": \"$TEST_USER_PASSWORD\"
+    }"
+    
    
