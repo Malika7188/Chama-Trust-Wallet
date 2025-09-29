@@ -16,3 +16,7 @@ TEST_USER_EMAIL="test@example.com"
 TEST_USER_PASSWORD="password123"
 TEST_USER_NAME="Test User"
 
+echo -e "${BLUE}🔧 Debugging Group Contribution Issues${NC}"
+echo "======================================"
+echo ""
+
