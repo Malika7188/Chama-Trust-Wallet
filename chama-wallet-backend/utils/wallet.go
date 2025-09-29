@@ -28,4 +28,5 @@ func GenerateStellarWallet() (*StellarWallet, error) {
 		return nil, fmt.Errorf("generated secret key is empty")
 	}
 
+	wallet := &StellarWallet{
 	
