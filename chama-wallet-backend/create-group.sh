@@ -47,4 +47,7 @@ create_group() {
     echo -e "${BLUE}Wallet: ${wallet}${NC}"
     echo ""
 
+    # Create JSON payload
+    local json_payload=$(cat <<EOF
+{
    
