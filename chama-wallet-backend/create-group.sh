@@ -67,3 +67,10 @@ EOF
     # Parse response and status
     local http_status=$(echo "$response" | grep "HTTP_STATUS" | cut -d: -f2)
     local json_response=$(echo "$response" | sed '/HTTP_STATUS/d')
+
+    # Check if request was successful
+    if [ "$http_status" = "200" ] || [ "$http_status" = "201" ]; then
+        echo -e "${GREEN}✅ Group created successfully!${NC}"
+        echo ""
+        
+       
