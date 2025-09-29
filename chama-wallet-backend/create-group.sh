@@ -132,4 +132,8 @@ interactive_mode() {
 
     if [[ $confirm =~ ^[Yy]$ ]]; then
         create_group "$group_name" "$group_description" "$wallet_address"
-    
+    else
+        echo -e "${YELLOW}Operation cancelled${NC}"
+        exit 0
+    fi
+}
