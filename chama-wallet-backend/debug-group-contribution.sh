@@ -98,3 +98,7 @@ sleep 3
 # Step 3: Check user balance
 echo -e "${YELLOW}Step 3: Check User Balance${NC}"
 USER_BALANCE_RESPONSE=$(curl -s "$API_URL/balance/$USER_WALLET" \
+    -H "Authorization: Bearer $TOKEN")
+echo "$USER_BALANCE_RESPONSE" | jq .
+echo ""
+
