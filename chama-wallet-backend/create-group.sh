@@ -42,4 +42,9 @@ create_group() {
     local description="$2"
     local wallet="$3"
 
+    echo -e "${BLUE}Creating group: ${name}${NC}"
+    echo -e "${BLUE}Description: ${description}${NC}"
+    echo -e "${BLUE}Wallet: ${wallet}${NC}"
+    echo ""
+
    
