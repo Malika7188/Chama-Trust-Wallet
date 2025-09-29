@@ -116,4 +116,9 @@ interactive_mode() {
     echo -e "${YELLOW}💡 You can generate a test wallet at: https://lab.stellar.org/account-creator${NC}"
     read -p "Enter Stellar wallet address (starts with G): " wallet_address
     
-   
+    # Validate wallet address
+    if ! validate_stellar_address "$wallet_address"; then
+        exit 1
+    fi
+
+    
