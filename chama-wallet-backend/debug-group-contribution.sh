@@ -38,3 +38,8 @@ REGISTER_DATA="{
     \"email\": \"$TEST_USER_EMAIL\",
     \"password\": \"$TEST_USER_PASSWORD\"
 }"
+
+REGISTER_RESPONSE=$(curl -s -X POST "$API_URL/auth/register" \
+    -H "Content-Type: application/json" \
+    -d "$REGISTER_DATA" \
+    -w "\nHTTP_STATUS:%{http_code}")
