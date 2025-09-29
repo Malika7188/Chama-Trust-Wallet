@@ -8,4 +8,7 @@ import (
 
 type StellarWallet struct {
 	PublicKey string
-	
+	SecretKey string
+}
+
+}
