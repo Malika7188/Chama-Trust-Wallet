@@ -121,4 +121,7 @@ interactive_mode() {
         exit 1
     fi
 
-    
+    # Confirm details
+    echo ""
+    echo -e "${YELLOW}Please confirm the details:${NC}"
+   
