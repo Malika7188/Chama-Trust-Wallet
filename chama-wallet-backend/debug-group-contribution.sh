@@ -59,4 +59,6 @@ if [[ "$REGISTER_STATUS" == "409" ]] || [[ "$REGISTER_STATUS" == "400" ]]; then
         -H "Content-Type: application/json" \
         -d "$LOGIN_DATA")
     
-    
+    TOKEN=$(echo "$LOGIN_RESPONSE" | jq -r '.token // empty')
+    USER_ID=$(echo "$LOGIN_RESPONSE" | jq -r '.user.id // empty')
+   
