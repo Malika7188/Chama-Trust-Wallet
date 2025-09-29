@@ -144,4 +144,6 @@ generate_sample_wallet() {
     if command -v soroban &> /dev/null; then
         soroban keys generate --global temp-wallet-$(date +%s) 2>/dev/null
         local sample_address=$(soroban keys address temp-wallet-$(date +%s) 2>/dev/null || echo "GA7LYFBRHPF3WOJTUCQIWC3RDRBORDCXVWAYWAXDG4BT2XIPKDEXNJXL")
-      
+        echo -e "${GREEN}Sample address: $sample_address${NC}"
+        echo -e "${YELLOW}💡 Use this for testing, or generate your own at: https://lab.stellar.org/account-creator${NC}"
+   
