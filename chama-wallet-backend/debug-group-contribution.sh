@@ -80,3 +80,7 @@ if [[ -z "$TOKEN" ]]; then
     exit 1
 fi
 
+echo -e "${GREEN}✅ Authentication successful${NC}"
+echo "User ID: $USER_ID"
+echo "Wallet: $USER_WALLET"
+echo ""
