@@ -57,4 +57,11 @@ create_group() {
 EOF
 )
 
+    # Make API request
+    echo -e "${YELLOW}Sending request to API...${NC}"
+    local response=$(curl -s -X POST "$API_URL" \
+        -H "Content-Type: application/json" \
+        -d "$json_payload" \
+        -w "\nHTTP_STATUS:%{http_code}")
+
   
