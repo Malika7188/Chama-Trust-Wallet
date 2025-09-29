@@ -98,3 +98,12 @@ interactive_mode() {
     echo -e "${BLUE}🏛️  Chama Group Creation (Interactive Mode)${NC}"
     echo "=============================================="
     echo ""
+
+    # Get group name
+    read -p "Enter group name: " group_name
+    if [[ -z "$group_name" ]]; then
+        echo -e "${RED}❌ Group name cannot be empty${NC}"
+        exit 1
+    fi
+
+   
