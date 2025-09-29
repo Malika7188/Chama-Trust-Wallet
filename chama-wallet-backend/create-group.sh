@@ -163,3 +163,11 @@ check_api() {
         exit 1
     fi
 }
+
+# Main script logic
+main() {
+    echo -e "${BLUE}🏛️  Chama Group Creator${NC}"
+    echo "======================="
+    echo ""
+
+   
