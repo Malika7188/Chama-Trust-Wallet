@@ -185,3 +185,10 @@ else
     fi
 fi
 echo ""
+
+# Step 8: Check final balances
+echo -e "${YELLOW}Step 8: Final Balance Check${NC}"
+echo "User wallet balance:"
+curl -s "$API_URL/balance/$USER_WALLET" | jq .
+echo ""
+
