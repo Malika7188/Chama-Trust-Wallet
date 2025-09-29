@@ -13,4 +13,14 @@ NC='\033[0m' # No Color
 # Default API endpoint
 API_URL="http://localhost:3000/api/groups"
 
-#
+# Function to display usage
+show_usage() {
+    echo -e "${BLUE}Usage: $0 [group_name] [description] [wallet_address]${NC}"
+    echo -e "${BLUE}   or: $0 --interactive${NC}"
+    echo ""
+    echo -e "${YELLOW}Examples:${NC}"
+    echo "  $0 \"Sar Queens\" \"Women-led savings group\" \"GA...WALLET\""
+    echo "  $0 --interactive"
+    echo ""
+    exit 1
+}
