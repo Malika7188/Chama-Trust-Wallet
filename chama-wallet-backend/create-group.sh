@@ -93,3 +93,8 @@ EOF
     fi
 }
 
+# Interactive mode
+interactive_mode() {
+    echo -e "${BLUE}🏛️  Chama Group Creation (Interactive Mode)${NC}"
+    echo "=============================================="
+    echo ""
