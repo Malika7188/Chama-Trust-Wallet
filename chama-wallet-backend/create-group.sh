@@ -137,3 +137,8 @@ interactive_mode() {
         exit 0
     fi
 }
+
+# Generate sample wallet address for testing
+generate_sample_wallet() {
+    echo -e "${BLUE}🎲 Generating sample wallet address...${NC}"
+   
