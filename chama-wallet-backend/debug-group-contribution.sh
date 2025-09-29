@@ -108,3 +108,10 @@ GROUP_DATA="{
     \"name\": \"Debug Test Group $(date +%s)\",
     \"description\": \"Test group for debugging contributions\"
 }"
+
+GROUP_RESPONSE=$(curl -s -X POST "$API_URL/group/create" \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer $TOKEN" \
+    -d "$GROUP_DATA" \
+    -w "\nHTTP_STATUS:%{http_code}")
+
