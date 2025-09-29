@@ -135,4 +135,12 @@ else
 fi
 echo ""
 
-#
+# Step 5: Test direct contract contribution
+echo -e "${YELLOW}Step 5: Test Direct Contract Contribution${NC}"
+DIRECT_CONTRIB_DATA="{
+    \"contract_id\": \"$CONTRACT_ID\",
+    \"user_address\": \"$USER_WALLET\",
+    \"amount\": \"50\",
+    \"secret_key\": \"$USER_SECRET\"
+}"
+
