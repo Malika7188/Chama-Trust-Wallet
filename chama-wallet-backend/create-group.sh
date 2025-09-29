@@ -106,4 +106,8 @@ interactive_mode() {
         exit 1
     fi
 
+    # Get description
+    read -p "Enter group description: " group_description
+    if [[ -z "$group_description" ]]; then
+        group_description="Chama savings group powered by Stellar"
    
