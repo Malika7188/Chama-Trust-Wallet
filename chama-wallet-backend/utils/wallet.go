@@ -11,4 +11,6 @@ type StellarWallet struct {
 	SecretKey string
 }
 
-}
+// GenerateStellarWallet creates a new Stellar keypair
+func GenerateStellarWallet() (*StellarWallet, error) {
+	
