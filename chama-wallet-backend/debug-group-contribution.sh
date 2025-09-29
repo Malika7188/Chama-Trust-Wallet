@@ -64,4 +64,6 @@ if [[ "$REGISTER_STATUS" == "409" ]] || [[ "$REGISTER_STATUS" == "400" ]]; then
     USER_WALLET=$(echo "$LOGIN_RESPONSE" | jq -r '.user.wallet // empty')
     USER_SECRET=$(echo "$LOGIN_RESPONSE" | jq -r '.user.secret_key // empty')
 elif [[ "$REGISTER_STATUS" =~ ^2[0-9]{2}$ ]]; then
-  
+    echo -e "${GREEN}✅ User registered successfully${NC}"
+    TOKEN=$(echo "$REGISTER_JSON" | jq -r '.token // empty')
+   
