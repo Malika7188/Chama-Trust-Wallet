@@ -21,4 +21,6 @@ func GenerateStellarWallet() (*StellarWallet, error) {
 
 	// Validate the generated keys
 	if pair.Address() == "" {
-	
+		return nil, fmt.Errorf("generated public key is empty")
+	}
+
