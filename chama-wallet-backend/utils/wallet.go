@@ -15,4 +15,8 @@ type StellarWallet struct {
 func GenerateStellarWallet() (*StellarWallet, error) {
 	// Generate a new keypair
 	pair, err := keypair.Random()
+	if err != nil {
+		return nil, fmt.Errorf("failed to generate keypair: %w", err)
+	}
+
 	
