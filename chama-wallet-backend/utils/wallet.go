@@ -19,4 +19,6 @@ func GenerateStellarWallet() (*StellarWallet, error) {
 		return nil, fmt.Errorf("failed to generate keypair: %w", err)
 	}
 
+	// Validate the generated keys
+	if pair.Address() == "" {
 	
