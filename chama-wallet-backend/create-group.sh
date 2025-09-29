@@ -124,4 +124,6 @@ interactive_mode() {
     # Confirm details
     echo ""
     echo -e "${YELLOW}Please confirm the details:${NC}"
-   
+    echo "Name: $group_name"
+    echo "Description: $group_description"
+    
