@@ -86,4 +86,10 @@ EOF
             echo -e "${GREEN}📋 Raw Response:${NC}"
             echo "$json_response"
         fi
-  
+    else
+        echo -e "${RED}❌ Failed to create group (HTTP $http_status)${NC}"
+        echo -e "${RED}Response: $json_response${NC}"
+        exit 1
+    fi
+}
+
