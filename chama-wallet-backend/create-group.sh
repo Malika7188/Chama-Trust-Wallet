@@ -82,4 +82,8 @@ EOF
                 "\n📝 Description: " + .group.Description + 
                 "\n💳 Wallet: " + .group.Wallet + 
                 "\n🔗 Contract ID: " + .group.ContractID'
-      
+        else
+            echo -e "${GREEN}📋 Raw Response:${NC}"
+            echo "$json_response"
+        fi
+  
