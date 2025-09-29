@@ -146,4 +146,8 @@ generate_sample_wallet() {
         local sample_address=$(soroban keys address temp-wallet-$(date +%s) 2>/dev/null || echo "GA7LYFBRHPF3WOJTUCQIWC3RDRBORDCXVWAYWAXDG4BT2XIPKDEXNJXL")
         echo -e "${GREEN}Sample address: $sample_address${NC}"
         echo -e "${YELLOW}💡 Use this for testing, or generate your own at: https://lab.stellar.org/account-creator${NC}"
-   
+    else
+        echo -e "${GREEN}Sample address: GA7LYFBRHPF3WOJTUCQIWC3RDRBORDCXVWAYWAXDG4BT2XIPKDEXNJXL${NC}"
+        echo -e "${YELLOW}💡 This is a sample address. Generate your own at: https://lab.stellar.org/account-creator${NC}"
+    fi
+}
