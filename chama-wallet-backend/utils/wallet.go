@@ -13,4 +13,6 @@ type StellarWallet struct {
 
 // GenerateStellarWallet creates a new Stellar keypair
 func GenerateStellarWallet() (*StellarWallet, error) {
+	// Generate a new keypair
+	pair, err := keypair.Random()
 	
