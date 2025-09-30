@@ -15,4 +15,6 @@ const AdminNomination: React.FC<AdminNominationProps> = ({ group, currentUser })
   const [selectedMember, setSelectedMember] = useState('')
   const queryClient = useQueryClient()
 
-  
+  const nominateAdminMutation = useMutation({
+    mutationFn: (data: { nominee_id: string }) => 
+   
