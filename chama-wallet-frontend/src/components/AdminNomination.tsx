@@ -139,4 +139,21 @@ const AdminNomination: React.FC<AdminNominationProps> = ({ group, currentUser })
                   className="btn btn-secondary flex-1"
                 >
                   Cancel
-               
+                </button>
+                <button 
+                  type="submit" 
+                  className="btn btn-primary flex-1"
+                  disabled={nominateAdminMutation.isPending}
+                >
+                  {nominateAdminMutation.isPending ? 'Nominating...' : 'Nominate'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default AdminNomination
