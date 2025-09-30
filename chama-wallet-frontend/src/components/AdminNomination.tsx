@@ -132,4 +132,11 @@ const AdminNomination: React.FC<AdminNominationProps> = ({ group, currentUser })
                 </p>
               </div>
 
-             
+              <div className="flex space-x-3">
+                <button
+                  type="button"
+                  onClick={() => setShowNominationModal(false)}
+                  className="btn btn-secondary flex-1"
+                >
+                  Cancel
+               
