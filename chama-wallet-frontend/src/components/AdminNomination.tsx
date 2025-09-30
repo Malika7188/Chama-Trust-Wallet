@@ -5,4 +5,7 @@ import { groupApi } from '../services/api'
 import type { Group, Member, User } from '../types'
 import toast from 'react-hot-toast'
 
-i
+interface AdminNominationProps {
+  group: Group
+  currentUser: User
+}
