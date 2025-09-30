@@ -50,4 +50,6 @@ const AdminNomination: React.FC<AdminNominationProps> = ({ group, currentUser })
     nominateAdminMutation.mutate({ nominee_id: selectedMember })
   }
 
-  
+  return (
+    <div className="card">
+     
