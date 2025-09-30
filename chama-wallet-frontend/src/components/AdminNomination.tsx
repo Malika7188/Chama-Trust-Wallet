@@ -40,4 +40,7 @@ const AdminNomination: React.FC<AdminNominationProps> = ({ group, currentUser })
     ['admin', 'creator'].includes(m.Role)
   ) || []
 
- 
+  const currentUserMember = group.Members?.find(m => m.UserID === currentUser.id)
+  const canNominate = currentUserMember?.Status === 'approved'
+
+  
