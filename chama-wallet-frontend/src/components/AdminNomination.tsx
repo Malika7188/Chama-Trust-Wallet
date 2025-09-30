@@ -24,4 +24,9 @@ const AdminNomination: React.FC<AdminNominationProps> = ({ group, currentUser })
       setShowNominationModal(false)
       setSelectedMember('')
     },
+    onError: (error: any) => {
+      toast.error(error.response?.data?.error || 'Failed to nominate admin')
+    }
+  })
+
   
