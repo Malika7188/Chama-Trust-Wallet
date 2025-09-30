@@ -11,4 +11,6 @@ interface AdminNominationProps {
 }
 
 const AdminNomination: React.FC<AdminNominationProps> = ({ group, currentUser }) => {
+  const [showNominationModal, setShowNominationModal] = useState(false)
+  const [selectedMember, setSelectedMember] = useState('')
   
