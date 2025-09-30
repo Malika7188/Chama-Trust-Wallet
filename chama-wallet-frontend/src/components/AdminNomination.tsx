@@ -71,4 +71,11 @@ const AdminNomination: React.FC<AdminNominationProps> = ({ group, currentUser })
       {/* Current Admins */}
       <div className="mb-6">
         <h4 className="font-medium text-gray-700 mb-3">Current Administrators</h4>
-       
+        <div className="space-y-2">
+          {admins.map((admin) => (
+            <div key={admin.ID} className="flex items-center justify-between p-3 bg-yellow-50 rounded-lg">
+              <div>
+                <p className="font-medium">{admin.User.name}</p>
+                <p className="text-sm text-gray-600">{admin.User.email}</p>
+              </div>
+            
