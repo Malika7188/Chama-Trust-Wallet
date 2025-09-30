@@ -125,4 +125,11 @@ const AdminNomination: React.FC<AdminNominationProps> = ({ group, currentUser })
                 </select>
               </div>
               
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4">
+                <p className="text-sm text-yellow-800">
+                  <strong>Note:</strong> This member will become an admin if they receive 
+                  2 nominations from different members.
+                </p>
+              </div>
+
              
