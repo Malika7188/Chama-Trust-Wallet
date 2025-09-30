@@ -99,3 +99,7 @@ const AdminNomination: React.FC<AdminNominationProps> = ({ group, currentUser })
           <li>• At least 2 admins must approve payouts</li>
         </ul>
       </div>
+
+      {/* Nomination Modal */}
+      {showNominationModal && (
+        <d
