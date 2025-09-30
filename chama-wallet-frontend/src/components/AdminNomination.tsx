@@ -107,4 +107,12 @@ const AdminNomination: React.FC<AdminNominationProps> = ({ group, currentUser })
             <h3 className="text-lg font-semibold mb-4">Nominate Admin</h3>
             <form onSubmit={handleNominate}>
               <div className="mb-4">
-         
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Select Member to Nominate
+                </label>
+                <select
+                  value={selectedMember}
+                  onChange={(e) => setSelectedMember(e.target.value)}
+                  className="input"
+                  required
+          
