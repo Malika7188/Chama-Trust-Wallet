@@ -57,4 +57,9 @@ const AdminNomination: React.FC<AdminNominationProps> = ({ group, currentUser })
           <Crown className="w-5 h-5 mr-2 text-yellow-500" />
           Group Administration
         </h3>
-       
+        {canNominate && eligibleMembers.length > 0 && (
+          <button
+            onClick={() => setShowNominationModal(true)}
+            className="btn btn-outline"
+          >
+         
