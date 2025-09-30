@@ -21,3 +21,7 @@ const AdminNomination: React.FC<AdminNominationProps> = ({ group, currentUser })
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['groups'] })
       toast.success('Admin nomination submitted!')
+      setShowNominationModal(false)
+      setSelectedMember('')
+    },
+  
