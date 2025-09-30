@@ -78,4 +78,13 @@ const AdminNomination: React.FC<AdminNominationProps> = ({ group, currentUser })
                 <p className="font-medium">{admin.User.name}</p>
                 <p className="text-sm text-gray-600">{admin.User.email}</p>
               </div>
-            
+              <span className={`px-2 py-1 rounded text-xs font-medium ${
+                admin.Role === 'creator' ? 'bg-purple-100 text-purple-800' :
+                'bg-yellow-100 text-yellow-800'
+              }`}>
+                {admin.Role === 'creator' ? 'Creator' : 'Admin'}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
