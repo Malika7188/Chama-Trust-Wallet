@@ -121,4 +121,8 @@ const AdminNomination: React.FC<AdminNominationProps> = ({ group, currentUser })
                     <option key={member.ID} value={member.UserID}>
                       {member.User.name} ({member.User.email})
                     </option>
-                
+                  ))}
+                </select>
+              </div>
+              
+             
