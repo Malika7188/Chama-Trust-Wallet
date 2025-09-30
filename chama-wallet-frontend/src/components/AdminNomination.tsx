@@ -9,3 +9,6 @@ interface AdminNominationProps {
   group: Group
   currentUser: User
 }
+
+const AdminNomination: React.FC<AdminNominationProps> = ({ group, currentUser }) => {
+  
