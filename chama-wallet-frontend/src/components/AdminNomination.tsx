@@ -43,4 +43,11 @@ const AdminNomination: React.FC<AdminNominationProps> = ({ group, currentUser })
   const currentUserMember = group.Members?.find(m => m.UserID === currentUser.id)
   const canNominate = currentUserMember?.Status === 'approved'
 
+  const handleNominate = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!selectedMember) return
+
+    nominateAdminMutation.mutate({ nominee_id: selectedMember })
+  }
+
   
