@@ -88,3 +88,14 @@ const AdminNomination: React.FC<AdminNominationProps> = ({ group, currentUser })
           ))}
         </div>
       </div>
+
+      {/* Nomination Info */}
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <h4 className="font-medium text-blue-900 mb-2">Admin Nomination Process</h4>
+        <ul className="text-sm text-blue-800 space-y-1">
+          <li>• Any approved member can nominate another member for admin role</li>
+          <li>• A member needs 2 nominations to become an admin</li>
+          <li>• Admins can approve new members and manage group settings</li>
+          <li>• At least 2 admins must approve payouts</li>
+        </ul>
+      </div>
