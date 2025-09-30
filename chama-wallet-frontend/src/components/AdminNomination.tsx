@@ -17,4 +17,6 @@ const AdminNomination: React.FC<AdminNominationProps> = ({ group, currentUser })
 
   const nominateAdminMutation = useMutation({
     mutationFn: (data: { nominee_id: string }) => 
-   
+      groupApi.nominateAdmin(group.ID, data),
+    onSuccess: () => {
+    
