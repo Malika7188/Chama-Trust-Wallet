@@ -19,4 +19,5 @@ const AdminNomination: React.FC<AdminNominationProps> = ({ group, currentUser })
     mutationFn: (data: { nominee_id: string }) => 
       groupApi.nominateAdmin(group.ID, data),
     onSuccess: () => {
-    
+      queryClient.invalidateQueries({ queryKey: ['groups'] })
+      toast.success('Admin nomination submitted!')
