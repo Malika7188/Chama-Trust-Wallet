@@ -62,4 +62,13 @@ const AdminNomination: React.FC<AdminNominationProps> = ({ group, currentUser })
             onClick={() => setShowNominationModal(true)}
             className="btn btn-outline"
           >
-         
+            <Vote className="w-4 h-4 mr-2" />
+            Nominate Admin
+          </button>
+        )}
+      </div>
+
+      {/* Current Admins */}
+      <div className="mb-6">
+        <h4 className="font-medium text-gray-700 mb-3">Current Administrators</h4>
+       
