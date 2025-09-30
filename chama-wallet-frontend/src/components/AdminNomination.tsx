@@ -35,4 +35,9 @@ const AdminNomination: React.FC<AdminNominationProps> = ({ group, currentUser })
     m.UserID !== currentUser.id
   ) || []
 
+  const admins = group.Members?.filter(m => 
+    m.Status === 'approved' && 
+    ['admin', 'creator'].includes(m.Role)
+  ) || []
+
  
