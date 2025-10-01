@@ -31,4 +31,6 @@ const GroupCard = ({ group }: GroupCardProps) => {
         {group.Name}
       </h3>
       
+      <p className="text-gray-600 mb-4 line-clamp-2">
+        {group.Description}
      
