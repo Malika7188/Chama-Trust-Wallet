@@ -4,4 +4,6 @@ interface BankCardProps {
   title: string;
   value: string | number;
   icon: React.ReactNode;
- 
+  progress?: number;
+  colorClass?: string;
+}
