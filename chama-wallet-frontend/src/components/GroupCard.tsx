@@ -33,4 +33,7 @@ const GroupCard = ({ group }: GroupCardProps) => {
       
       <p className="text-gray-600 mb-4 line-clamp-2">
         {group.Description}
-     
+      </p>
+      
+      <div className="flex items-center justify-between text-sm">
+       
