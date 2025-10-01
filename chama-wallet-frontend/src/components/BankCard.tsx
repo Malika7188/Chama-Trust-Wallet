@@ -9,4 +9,6 @@ interface BankCardProps {
 }
 
 const BankCard: React.FC<BankCardProps> = ({ title, value, icon, progress, colorClass }) => {
-  
+  return (
+    <div
+    
