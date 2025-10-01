@@ -7,3 +7,5 @@ interface GroupCardProps {
   group: Group;
 }
 
+const GroupCard = ({ group }: GroupCardProps) => {
+  
