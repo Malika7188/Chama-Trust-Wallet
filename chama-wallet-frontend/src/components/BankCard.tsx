@@ -7,3 +7,6 @@ interface BankCardProps {
   progress?: number;
   colorClass?: string;
 }
+
+const BankCard: React.FC<BankCardProps> = ({ title, value, icon, progress, colorClass }) => {
+  
