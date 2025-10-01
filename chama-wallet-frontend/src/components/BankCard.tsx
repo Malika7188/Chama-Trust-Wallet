@@ -17,4 +17,6 @@ const BankCard: React.FC<BankCardProps> = ({ title, value, icon, progress, color
         fontFamily: 'Inter, Roboto, sans-serif',
       }}
     >
-     
+      <div className="absolute inset-0 pointer-events-none opacity-50 group-hover:opacity-70 transition-opacity duration-300" style={{background: 'linear-gradient(135deg, #e0f7fa 0%, #e8f5e9 100%)'}} />
+      <div className="relative flex items-center gap-6 z-10">
+       
