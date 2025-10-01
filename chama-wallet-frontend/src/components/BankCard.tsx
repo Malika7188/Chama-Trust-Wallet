@@ -25,4 +25,6 @@ const BankCard: React.FC<BankCardProps> = ({ title, value, icon, progress, color
           <div className="text-4xl font-black text-[#1a237e] tracking-tight drop-shadow-sm" style={{ fontFamily: 'Inter, Roboto, sans-serif' }}>{value}</div>
         </div>
       </div>
-     
+      {typeof progress === 'number' && (
+        <div className="mt-6 relative z-10">
+         
