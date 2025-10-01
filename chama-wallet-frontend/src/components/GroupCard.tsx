@@ -14,4 +14,6 @@ const GroupCard = ({ group }: GroupCardProps) => {
 
   return (
     <Link
+      key={group.ID}
+      to={`/groups/${group.ID}`}
      
