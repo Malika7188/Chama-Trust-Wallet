@@ -21,4 +21,6 @@ const BankCard: React.FC<BankCardProps> = ({ title, value, icon, progress, color
       <div className="relative flex items-center gap-6 z-10">
         <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white text-2xl shadow-lg ${colorClass || 'bg-[#1a237e]'} transition-transform duration-300 group-hover:scale-110`}>{icon}</div>
         <div>
-          
+          <div className="text-lg text-gray-500 font-semibold tracking-wide" style={{ fontFamily: 'Inter, Roboto, sans-serif' }}>{title}</div>
+          <div className="text-4xl font-black text-[#1a237e] tracking-tight drop-shadow-sm" style={{ fontFamily: 'Inter, Roboto, sans-serif' }}>{value}</div>
+       
