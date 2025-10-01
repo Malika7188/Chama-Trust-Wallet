@@ -12,4 +12,6 @@ const GroupCard = ({ group }: GroupCardProps) => {
 
   const groupBalance = balance?.data?.balance || '0';
 
- 
+  return (
+    <Link
+     
