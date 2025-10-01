@@ -8,4 +8,6 @@ interface GroupCardProps {
 }
 
 const GroupCard = ({ group }: GroupCardProps) => {
+  const { data: balance, isLoading: balanceLoading } = useGroupBalance(group.ID);
+
   
