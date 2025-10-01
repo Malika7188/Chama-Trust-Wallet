@@ -27,4 +27,13 @@ const BankCard: React.FC<BankCardProps> = ({ title, value, icon, progress, color
       </div>
       {typeof progress === 'number' && (
         <div className="mt-6 relative z-10">
-         
+          <div className="w-full bg-gray-200 rounded-full h-3">
+            <div className="bg-[#2ecc71] h-3 rounded-full transition-all duration-500" style={{ width: `${progress}%` }}></div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default BankCard;
