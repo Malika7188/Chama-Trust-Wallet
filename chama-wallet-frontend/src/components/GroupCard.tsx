@@ -20,4 +20,6 @@ const GroupCard = ({ group }: GroupCardProps) => {
     >
       <div className="flex items-center justify-between mb-4">
         <div className="w-12 h-12 bg-gradient-to-r from-stellar-500 to-primary-600 rounded-lg flex items-center justify-center">
-         
+          <Users className="w-6 h-6 text-white" />
+        </div>
+       
