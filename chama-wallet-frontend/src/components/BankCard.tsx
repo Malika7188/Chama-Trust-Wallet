@@ -23,4 +23,6 @@ const BankCard: React.FC<BankCardProps> = ({ title, value, icon, progress, color
         <div>
           <div className="text-lg text-gray-500 font-semibold tracking-wide" style={{ fontFamily: 'Inter, Roboto, sans-serif' }}>{title}</div>
           <div className="text-4xl font-black text-[#1a237e] tracking-tight drop-shadow-sm" style={{ fontFamily: 'Inter, Roboto, sans-serif' }}>{value}</div>
-       
+        </div>
+      </div>
+     
