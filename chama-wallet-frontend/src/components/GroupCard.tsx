@@ -38,4 +38,13 @@ const GroupCard = ({ group }: GroupCardProps) => {
       <div className="flex items-center justify-between text-sm">
         <span className="text-gray-500">
           Total Savings: {balanceLoading ? '...' : `${groupBalance} XLM`}
-        
+        </span>
+        <span className="text-primary-600 font-medium">
+          View Details →
+        </span>
+      </div>
+    </Link>
+  );
+};
+
+export default GroupCard;
