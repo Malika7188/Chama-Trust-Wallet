@@ -27,4 +27,8 @@ const GroupCard = ({ group }: GroupCardProps) => {
         </span>
       </div>
       
+      <h3 className="text-xl font-semibold text-gray-900 mb-2">
+        {group.Name}
+      </h3>
       
+     
