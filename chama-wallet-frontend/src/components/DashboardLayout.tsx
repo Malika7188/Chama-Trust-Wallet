@@ -9,4 +9,9 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       <Sidebar isCollapsed={isSidebarCollapsed} setIsCollapsed={setIsSidebarCollapsed} />
       <main className={`flex-1 p-8 overflow-y-auto transition-all duration-300 ${isSidebarCollapsed ? 'ml-20' : 'ml-64'}`}>
         {children}
-     
+      </main>
+    </div>
+  );
+};
+
+export default DashboardLayout;
