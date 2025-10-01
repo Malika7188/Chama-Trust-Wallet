@@ -16,4 +16,6 @@ const GroupCard = ({ group }: GroupCardProps) => {
     <Link
       key={group.ID}
       to={`/groups/${group.ID}`}
-     
+      className="card hover:shadow-md transition-shadow"
+    >
+      
