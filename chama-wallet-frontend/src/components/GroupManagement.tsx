@@ -157,4 +157,7 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold">Group Status</h3>
           <span className={`px-3 py-1 rounded-full text-sm font-medium ${group.Status === 'active' ? 'bg-green-100 text-green-800' :
-           
+              group.Status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                'bg-gray-100 text-gray-800'
+            }`}>
+          
