@@ -99,4 +99,10 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
     e.preventDefault()
     console.log('Activating group with settings:', groupSettings)
 
+    // Ensure payout order is not empty
+    if (groupSettings.payout_order.length === 0) {
+      toast.error('Payout order cannot be empty')
+      return
+    }
+
    
