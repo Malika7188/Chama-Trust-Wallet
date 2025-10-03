@@ -160,4 +160,8 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
               group.Status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
                 'bg-gray-100 text-gray-800'
             }`}>
-          
+            {group.Status.charAt(0).toUpperCase() + group.Status.slice(1)}
+          </span>
+        </div>
+
+        
