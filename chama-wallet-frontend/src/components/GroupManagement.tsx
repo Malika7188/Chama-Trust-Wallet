@@ -141,4 +141,11 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
     }
   }, [group.PayoutOrder, approvedMembers])
 
- 
+  // Add this query to fetch the payout schedule
+  const { data: payoutScheduleResponse } = useQuery({
+    queryKey: ['payout-schedule', group.ID],
+    queryFn: () => groupApi.getPayoutSchedule(group.ID),
+    enabled: group.Status === 'active'
+  })
+
+  
