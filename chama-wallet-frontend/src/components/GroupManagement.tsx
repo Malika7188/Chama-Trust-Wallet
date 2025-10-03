@@ -55,4 +55,8 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
   const activateGroupMutation = useMutation({
     mutationFn: (settings: any) => groupApi.activateGroup(group.ID, settings),
     onSuccess: () => {
-     
+      queryClient.invalidateQueries({ queryKey: ['groups'] })
+      toast.success('Group activated successfully!')
+      setShowActivateModal(false)
+    },
+  
