@@ -43,4 +43,8 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
   const approveGroupMutation = useMutation({
     mutationFn: () => groupApi.approveGroup(group.ID),
     onSuccess: () => {
-      
+      queryClient.invalidateQueries({ queryKey: ['groups'] })
+      toast.success('Group approved successfully!')
+      setShowApproveModal(false)
+    },
+   
