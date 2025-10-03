@@ -134,4 +134,11 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
       try {
         const parsed = JSON.parse(group.PayoutOrder)
         console.log('Parsed PayoutOrder:', parsed)
-     
+        console.log('Approved Members:', approvedMembers.map(m => ({ id: m.UserID, name: m.User.name })))
+      } catch (error) {
+        console.error('Error parsing PayoutOrder:', error)
+      }
+    }
+  }, [group.PayoutOrder, approvedMembers])
+
+ 
