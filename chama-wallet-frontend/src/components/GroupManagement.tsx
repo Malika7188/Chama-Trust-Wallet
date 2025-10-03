@@ -40,4 +40,7 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
     }
   })
 
- 
+  const approveGroupMutation = useMutation({
+    mutationFn: () => groupApi.approveGroup(group.ID),
+    onSuccess: () => {
+      
