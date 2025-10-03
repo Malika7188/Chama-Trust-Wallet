@@ -10,3 +10,6 @@ interface GroupManagementProps {
   group: Group
   currentUser: User
 }
+
+const GroupManagement: React.FC<GroupManagementProps> = ({
+  group,
