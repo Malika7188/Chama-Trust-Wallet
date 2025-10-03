@@ -166,4 +166,7 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
 
         {/* Group Ready - Has minimum members for approval */}
         {group.Status === 'pending' && !group.IsApproved && isCreator && hasMinimumMembers && (
-          
+          <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
+            <p className="text-green-800 mb-3">
+              ✅ Your group has {approvedMembers.length} members and meets the minimum requirement! You can now approve it for activation.
+           
