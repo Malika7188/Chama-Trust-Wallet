@@ -118,4 +118,14 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
       const defaultPayoutOrder = approvedMembers.map(member => member.UserID)
       console.log('Initializing payout order:', defaultPayoutOrder)
       console.log('Approved members:', approvedMembers.map(m => ({ id: m.UserID, name: m.User.name })))
-     
+      
+      setGroupSettings(prev => ({
+        ...prev,
+        contribution_amount: prev.contribution_amount || 0,
+        contribution_period: prev.contribution_period || 30,
+        payout_order: defaultPayoutOrder
+      }))
+    }
+  }, [showActivateModal, approvedMembers])
+
+  
