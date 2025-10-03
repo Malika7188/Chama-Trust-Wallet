@@ -17,4 +17,6 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
 }) => {
   const [showInviteModal, setShowInviteModal] = useState(false)
   const [showApproveModal, setShowApproveModal] = useState(false)
+  const [showActivateModal, setShowActivateModal] = useState(false)
+  const [inviteEmail, setInviteEmail] = useState('')
   
