@@ -20,4 +20,11 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
   const [showActivateModal, setShowActivateModal] = useState(false)
   const [inviteEmail, setInviteEmail] = useState('')
   const [availableUsers, setAvailableUsers] = useState<User[]>([])
+  const [groupSettings, setGroupSettings] = useState({
+    contribution_amount: 0,
+    contribution_period: 30,
+    payout_order: [] as string[]
+  })
+  const queryClient = useQueryClient()
+
  
