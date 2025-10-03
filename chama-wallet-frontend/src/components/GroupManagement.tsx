@@ -116,4 +116,6 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
   useEffect(() => {
     if (showActivateModal && approvedMembers.length > 0) {
       const defaultPayoutOrder = approvedMembers.map(member => member.UserID)
+      console.log('Initializing payout order:', defaultPayoutOrder)
+      console.log('Approved members:', approvedMembers.map(m => ({ id: m.UserID, name: m.User.name })))
      
