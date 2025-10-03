@@ -95,4 +95,8 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
     approveGroupMutation.mutate()
   }
 
-  
+  const handleActivate = (e: React.FormEvent) => {
+    e.preventDefault()
+    console.log('Activating group with settings:', groupSettings)
+
+   
