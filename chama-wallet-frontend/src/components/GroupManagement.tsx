@@ -83,4 +83,7 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
 
   const approvedMembers = group.Members?.filter(m => m.Status === 'approved') || []
   const pendingMembers = group.Members?.filter(m => m.Status === 'pending') || []
+  const hasMinimumMembers = approvedMembers.length >= (group.MinMembers || 3)
+  const isGroupFull = approvedMembers.length >= (group.MaxMembers || 20)
+
  
