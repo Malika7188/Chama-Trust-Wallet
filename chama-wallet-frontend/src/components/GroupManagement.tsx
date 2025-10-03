@@ -148,4 +148,7 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
     enabled: group.Status === 'active'
   })
 
-  
+  const payoutSchedule = payoutScheduleResponse?.data || []
+
+  return (
+   
