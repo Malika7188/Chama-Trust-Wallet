@@ -31,4 +31,8 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
     mutationFn: (email: string) => groupApi.inviteToGroup(group.ID, { email }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['groups'] })
-     
+      toast.success('Invitation sent successfully!')
+      setShowInviteModal(false)
+      setInviteEmail('')
+    },
+   
