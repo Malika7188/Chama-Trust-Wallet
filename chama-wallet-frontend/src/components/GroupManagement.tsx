@@ -86,4 +86,9 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
   const hasMinimumMembers = approvedMembers.length >= (group.MinMembers || 3)
   const isGroupFull = approvedMembers.length >= (group.MaxMembers || 20)
 
- 
+  const handleInvite = (e: React.FormEvent) => {
+    e.preventDefault()
+    inviteUserMutation.mutate(inviteEmail)
+  }
+
+  
