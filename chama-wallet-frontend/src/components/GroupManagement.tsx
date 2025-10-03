@@ -47,4 +47,9 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
       toast.success('Group approved successfully!')
       setShowApproveModal(false)
     },
-   
+    onError: (error: any) => {
+      toast.error(error.response?.data?.error || 'Failed to approve group')
+    }
+  })
+
+  
