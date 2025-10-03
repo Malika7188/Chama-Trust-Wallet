@@ -174,4 +174,10 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
               onClick={() => setShowApproveModal(true)}
               className="btn btn-primary"
             >
-             
+              <CheckCircle className="w-4 h-4 mr-2" />
+              Approve Group
+            </button>
+          </div>
+        )}
+
+       
