@@ -35,4 +35,9 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
       setShowInviteModal(false)
       setInviteEmail('')
     },
-   
+    onError: (error: any) => {
+      toast.error(error.response?.data?.error || 'Failed to send invitation')
+    }
+  })
+
+ 
