@@ -128,4 +128,7 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
     }
   }, [showActivateModal, approvedMembers])
 
-  
+  useEffect(() => {
+    if (group.PayoutOrder) {
+      console.log('Raw PayoutOrder:', group.PayoutOrder)
+    
