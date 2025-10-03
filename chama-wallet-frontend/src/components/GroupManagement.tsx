@@ -64,4 +64,11 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
     }
   })
 
+  // Fetch available users when invite modal opens
+  useEffect(() => {
+    if (showInviteModal) {
+      groupApi.getNonGroupMembers(group.ID)
+        .then(response => setAvailableUsers(response.data))
+        .catch(error => console.error('Failed to fetch available users:', error))
+    }
   
