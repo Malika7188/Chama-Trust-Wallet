@@ -105,4 +105,11 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
       return
     }
 
-   
+    activateGroupMutation.mutate({
+      contribution_amount: groupSettings.contribution_amount,
+      contribution_period: groupSettings.contribution_period,
+      payout_order: groupSettings.payout_order,
+    })
+  }
+
+  
