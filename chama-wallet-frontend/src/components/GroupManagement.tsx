@@ -81,4 +81,6 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
     m.UserID === currentUser.id && m.Role === 'creator'
   )
 
-  
+  const approvedMembers = group.Members?.filter(m => m.Status === 'approved') || []
+  const pendingMembers = group.Members?.filter(m => m.Status === 'pending') || []
+ 
