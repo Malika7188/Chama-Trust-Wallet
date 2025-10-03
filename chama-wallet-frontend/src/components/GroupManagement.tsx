@@ -91,4 +91,8 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
     inviteUserMutation.mutate(inviteEmail)
   }
 
+  const handleApproveGroup = () => {
+    approveGroupMutation.mutate()
+  }
+
   
