@@ -131,4 +131,7 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
   useEffect(() => {
     if (group.PayoutOrder) {
       console.log('Raw PayoutOrder:', group.PayoutOrder)
-    
+      try {
+        const parsed = JSON.parse(group.PayoutOrder)
+        console.log('Parsed PayoutOrder:', parsed)
+     
