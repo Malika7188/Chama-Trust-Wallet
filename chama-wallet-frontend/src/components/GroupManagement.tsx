@@ -180,4 +180,7 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
           </div>
         )}
 
-       
+        {/* Group Approved - Ready for Activation */}
+        {group.Status === 'pending' && group.IsApproved && isAdmin && (
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+           
