@@ -151,4 +151,6 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
   const payoutSchedule = payoutScheduleResponse?.data || []
 
   return (
-   
+    <div className="space-y-6">
+      {/* Group Status */}
+     
