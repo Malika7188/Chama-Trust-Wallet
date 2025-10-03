@@ -71,4 +71,14 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
         .then(response => setAvailableUsers(response.data))
         .catch(error => console.error('Failed to fetch available users:', error))
     }
+  }, [showInviteModal, group.ID])
+
+  const isAdmin = group.Members?.find(m =>
+    m.UserID === currentUser.id && ['creator', 'admin'].includes(m.Role)
+  )
+
+  const isCreator = group.Members?.find(m =>
+    m.UserID === currentUser.id && m.Role === 'creator'
+  )
+
   
