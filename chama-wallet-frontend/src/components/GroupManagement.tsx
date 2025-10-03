@@ -164,4 +164,6 @@ const GroupManagement: React.FC<GroupManagementProps> = ({
           </span>
         </div>
 
-        
+        {/* Group Ready - Has minimum members for approval */}
+        {group.Status === 'pending' && !group.IsApproved && isCreator && hasMinimumMembers && (
+          
