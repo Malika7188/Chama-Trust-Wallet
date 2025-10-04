@@ -10,4 +10,5 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const navigation = [
-   
+    { name: 'Dashboard', href: '/dashboard', icon: BarChart3 },
+    
