@@ -11,4 +11,6 @@ const LoadingSpinner = ({ size = 'md', className = '' }: LoadingSpinnerProps) =>
     lg: 'h-12 w-12'
   }
 
+  return (
+    <div className={`animate-spin rounded-full border-b-2 border-primary-600 ${sizeClasses[size]} ${className}`} />
  
