@@ -85,4 +85,20 @@ const Navbar = () => {
                     isActive('/login') ? 'font-semibold text-primary-600' : ''
                   }`}
                 >
-                
+                  Login
+                </Link>
+                <Link
+                  to="/signup"
+                  className={`btn ${isActive('/signup') ? 'btn-secondary' : 'btn-primary'}`}
+                >
+                  Sign Up
+                </Link>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Mobile menu */}
+        {user && isMobileMenuOpen && (
+          <div className="md:hidden py-4 border-t border-gray-200">
+           
