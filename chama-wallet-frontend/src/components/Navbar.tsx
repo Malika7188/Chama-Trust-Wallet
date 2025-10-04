@@ -56,4 +56,7 @@ const Navbar = () => {
             </div>
           )}
 
-         
+          <div className="flex items-center space-x-4">
+            {user ? (
+              <>
+               
