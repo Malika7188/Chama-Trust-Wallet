@@ -9,4 +9,5 @@ const Navbar = () => {
   const location = useLocation()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
-  
+  const navigation = [
+   
