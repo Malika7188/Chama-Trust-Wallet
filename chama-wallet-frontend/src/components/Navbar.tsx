@@ -34,4 +34,6 @@ const Navbar = () => {
             </Link>
           </div>
 
-       
+          {user && (
+            <div className="hidden md:flex items-center space-x-8">
+            
