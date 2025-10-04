@@ -66,4 +66,7 @@ const Navbar = () => {
                     onClick={handleLogout}
                     className="flex items-center space-x-1 text-gray-600 hover:text-gray-900 transition-colors"
                   >
-                  
+                    <LogOut className="w-4 h-4" />
+                    <span>Logout</span>
+                  </button>
+               
