@@ -69,4 +69,8 @@ const Navbar = () => {
                     <LogOut className="w-4 h-4" />
                     <span>Logout</span>
                   </button>
-               
+                </div>
+                <button
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  className="md:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+            
