@@ -38,4 +38,6 @@ const Navbar = () => {
             <div className="hidden md:flex items-center space-x-8">
               {navigation.map((item) => {
                 const Icon = item.icon
-               
+                return (
+                  <Link
+                 
