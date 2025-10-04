@@ -7,4 +7,6 @@ import NotificationCenter from './NotificationCenter'
 const Navbar = () => {
   const { user, logout } = useAuth()
   const location = useLocation()
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
   
