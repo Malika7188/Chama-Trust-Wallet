@@ -81,4 +81,8 @@ const Navbar = () => {
               <div className="flex items-center space-x-4">
                 <Link
                   to="/login"
-               
+                  className={`text-gray-600 hover:text-gray-900 transition-colors ${
+                    isActive('/login') ? 'font-semibold text-primary-600' : ''
+                  }`}
+                >
+                
