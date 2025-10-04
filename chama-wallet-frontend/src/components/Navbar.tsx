@@ -12,4 +12,7 @@ const Navbar = () => {
   const navigation = [
     { name: 'Dashboard', href: '/dashboard', icon: BarChart3 },
     { name: 'Groups', href: '/groups', icon: Users },
-   
+    { name: 'Wallet', href: '/wallet', icon: Wallet },
+  ]
+
+ 
