@@ -101,4 +101,13 @@ const Navbar = () => {
         {/* Mobile menu */}
         {user && isMobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-200">
-           
+            <div className="space-y-2">
+              {navigation.map((item) => {
+                const Icon = item.icon
+                return (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                     
