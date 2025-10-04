@@ -5,4 +5,6 @@ import { useState } from 'react'
 import NotificationCenter from './NotificationCenter'
 
 const Navbar = () => {
+  const { user, logout } = useAuth()
+  const location = useLocation()
   
