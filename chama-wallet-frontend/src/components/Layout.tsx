@@ -7,4 +7,7 @@ const Layout = () => {
   return (
     <DashboardLayout>
       <Outlet />
-   
+    </DashboardLayout>
+  );
+}
+
