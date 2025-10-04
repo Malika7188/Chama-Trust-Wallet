@@ -42,4 +42,5 @@ const Navbar = () => {
                   <Link
                     key={item.name}
                     to={item.href}
-                  
+                    className={`flex items-center space-x-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                     
