@@ -6,4 +6,5 @@ import DashboardLayout from './DashboardLayout';
 const Layout = () => {
   return (
     <DashboardLayout>
-    
+      <Outlet />
+   
