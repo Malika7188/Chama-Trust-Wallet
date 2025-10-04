@@ -17,4 +17,8 @@ const Navbar = () => {
 
   const isActive = (path: string) => location.pathname === path
 
+  const handleLogout = () => {
+    logout()
+    setIsMobileMenuOpen(false)
+  }
  
