@@ -5,4 +5,5 @@ interface LoadingSpinnerProps {
 }
 
 const LoadingSpinner = ({ size = 'md', className = '' }: LoadingSpinnerProps) => {
-  
+  const sizeClasses = {
+   
