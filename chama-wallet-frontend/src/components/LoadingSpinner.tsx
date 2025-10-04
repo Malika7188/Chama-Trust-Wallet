@@ -4,3 +4,5 @@ interface LoadingSpinnerProps {
   className?: string
 }
 
+const LoadingSpinner = ({ size = 'md', className = '' }: LoadingSpinnerProps) => {
+  
