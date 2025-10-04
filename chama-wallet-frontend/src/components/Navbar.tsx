@@ -15,4 +15,6 @@ const Navbar = () => {
     { name: 'Wallet', href: '/wallet', icon: Wallet },
   ]
 
+  const isActive = (path: string) => location.pathname === path
+
  
