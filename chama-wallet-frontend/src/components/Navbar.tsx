@@ -59,4 +59,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-4">
             {user ? (
               <>
-               
+                <div className="hidden md:flex items-center space-x-3">
+                  <span className="text-sm text-gray-700">Welcome, {user.name}</span>
+                  <NotificationCenter />
+                  
