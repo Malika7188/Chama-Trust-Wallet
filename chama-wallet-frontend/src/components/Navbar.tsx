@@ -4,3 +4,5 @@ import { Wallet, Users, BarChart3, LogOut, Menu, X } from 'lucide-react'
 import { useState } from 'react'
 import NotificationCenter from './NotificationCenter'
 
+const Navbar = () => {
+  
