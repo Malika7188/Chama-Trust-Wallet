@@ -40,4 +40,6 @@ const Navbar = () => {
                 const Icon = item.icon
                 return (
                   <Link
-                 
+                    key={item.name}
+                    to={item.href}
+                  
