@@ -21,4 +21,6 @@ const Navbar = () => {
     logout()
     setIsMobileMenuOpen(false)
   }
- 
+  return (
+    <nav className="bg-white shadow-sm border-b border-gray-200">
+      
