@@ -28,4 +28,10 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-gradient-to-r from-stellar-500 to-primary-600 rounded-lg flex items-center justify-center">
-              
+                <Wallet className="w-5 h-5 text-white" />
+              </div>
+              <span className="text-xl font-bold text-gray-900">Chama Wallet</span>
+            </Link>
+          </div>
+
+       
