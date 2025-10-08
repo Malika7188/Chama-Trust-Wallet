@@ -191,4 +191,10 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
                     onChange={e => {
                       if (e.target.checked) setSelected([...selected, notification.ID])
                       else setSelected(selected.filter(id => id !== notification.ID))
+                    }}
+                    className="mt-1 accent-[#2ecc71]"
+                  />
+                  {getNotificationIcon(notification.Type)}
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-[#1a237e]">{notification.Title}</p>
                    
