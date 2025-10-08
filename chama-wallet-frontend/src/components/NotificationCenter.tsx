@@ -151,3 +151,10 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
                         From {invitation.Inviter.name}
                       </p>
                       <div className="flex space-x-2 mt-3">
+                        <button
+                          onClick={() => handleAcceptInvitation(invitation.ID)}
+                          className="px-3 py-1 bg-green-600 text-white text-xs rounded-lg shadow hover:bg-green-700 focus:outline-none"
+                          disabled={acceptInvitationMutation.isPending}
+                        >
+                          Accept
+                       
