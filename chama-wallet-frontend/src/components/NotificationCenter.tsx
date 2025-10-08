@@ -179,4 +179,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
               <div className="p-4 text-center text-gray-500">
                 No notifications
               </div>
-            )
+            ) : (
+              notifications.map((notification) => (
+                <div
+             
