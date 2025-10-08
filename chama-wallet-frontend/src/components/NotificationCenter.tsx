@@ -147,4 +147,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
                       <p className="text-sm font-medium text-[#1a237e]">
                         Invitation to join "{invitation.Group.Name}"
                       </p>
-                     
+                      <p className="text-xs text-gray-600 mt-1">
+                        From {invitation.Inviter.name}
+                      </p>
+                      <div className="flex space-x-2 mt-3">
