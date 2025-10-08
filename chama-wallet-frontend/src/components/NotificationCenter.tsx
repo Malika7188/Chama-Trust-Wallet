@@ -197,4 +197,9 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
                   {getNotificationIcon(notification.Type)}
                   <div className="flex-1">
                     <p className="text-sm font-medium text-[#1a237e]">{notification.Title}</p>
-                   
+                    <p className="text-xs text-gray-600 mt-1">{notification.Message}</p>
+                    <p className="text-xs text-gray-400 mt-2">
+                      {new Date(notification.CreatedAt).toLocaleDateString()}
+                    </p>
+                    {!notification.Read && (
+                      
