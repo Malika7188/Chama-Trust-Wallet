@@ -106,4 +106,8 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
     acceptInvitationMutation.mutate(id)
   }
 
-  
+  const handleRejectInvitation = (id: string) => {
+    rejectInvitationMutation.mutate(id)
+  }
+
+ 
