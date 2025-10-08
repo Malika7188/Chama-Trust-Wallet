@@ -81,4 +81,6 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
     }
   })
 
+  const unreadCount = notifications.filter(n => !n.Read).length + invitations.length
+
   
