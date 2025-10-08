@@ -8,3 +8,7 @@ import toast from 'react-hot-toast'
 interface NotificationCenterProps {
   isCollapsed: boolean;
 }
+
+const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) => {
+  const [showNotifications, setShowNotifications] = useState(false)
+  
