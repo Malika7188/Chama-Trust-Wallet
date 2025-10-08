@@ -73,4 +73,12 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
     }
   })
 
+  const rejectInvitationMutation = useMutation({
+    mutationFn: (id: string) => notificationApi.rejectInvitation(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['invitations'] })
+      toast.success('Invitation rejected')
+    }
+  })
+
   
