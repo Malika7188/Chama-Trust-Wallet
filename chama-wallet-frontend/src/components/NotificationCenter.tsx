@@ -113,4 +113,8 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
   return (
     <div className="relative">
       <button
-     
+        onClick={() => setShowNotifications(!showNotifications)}
+        className={`flex items-center w-full px-4 py-3 rounded-lg transition-colors duration-200 text-white hover:bg-[#2ecc71] hover:text-[#1a237e] ${showNotifications ? 'bg-[#2ecc71] text-[#1a237e]' : ''}`}
+        style={{ outline: 'none' }}
+      >
+       
