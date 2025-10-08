@@ -83,4 +83,8 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
 
   const unreadCount = notifications.filter(n => !n.Read).length + invitations.length
 
-  
+  const getNotificationIcon = (type: string) => {
+    switch (type) {
+      case 'contribution_reminder':
+        return <DollarSign className="w-5 h-5 text-yellow-500" />
+    
