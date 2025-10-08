@@ -172,3 +172,11 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
               ))}
             </div>
           )}
+
+          {/* Regular Notifications */}
+          <div className="max-h-64 overflow-y-auto">
+            {notifications.length === 0 && invitations.length === 0 ? (
+              <div className="p-4 text-center text-gray-500">
+                No notifications
+              </div>
+            )
