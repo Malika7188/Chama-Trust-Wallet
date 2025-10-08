@@ -33,4 +33,8 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
     queryKey: ['notifications'],
     queryFn: () => {
       console.log('🔍 Fetching notifications...')
-     
+      return notificationApi.getNotifications().then((res: { data: Notification[] }) => {
+        console.log('✅ Notifications received:', res.data)
+        return res.data
+      })
+   
