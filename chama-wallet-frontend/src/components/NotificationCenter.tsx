@@ -110,4 +110,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
     rejectInvitationMutation.mutate(id)
   }
 
- 
+  return (
+    <div className="relative">
+      <button
+     
