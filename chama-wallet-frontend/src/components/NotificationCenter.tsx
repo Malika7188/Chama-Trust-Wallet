@@ -68,4 +68,9 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
       queryClient.invalidateQueries({ queryKey: ['userGroups'] }) // Add this if you have user-specific groups
       toast.success('Invitation accepted! You are now a member of the group.')
     },
-   
+    onError: (error: any) => {
+      toast.error(error.response?.data?.error || 'Failed to accept invitation')
+    }
+  })
+
+  
