@@ -163,4 +163,12 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
                           className="px-3 py-1 bg-gray-600 text-white text-xs rounded-lg shadow hover:bg-gray-700 focus:outline-none"
                           disabled={rejectInvitationMutation.isPending}
                         >
-                     
+                          Reject
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
