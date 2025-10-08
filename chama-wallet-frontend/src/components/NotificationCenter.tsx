@@ -87,4 +87,8 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
     switch (type) {
       case 'contribution_reminder':
         return <DollarSign className="w-5 h-5 text-yellow-500" />
-    
+      case 'payout_approved':
+        return <Check className="w-5 h-5 text-green-500" />
+      case 'new_member_request':
+        return <UserPlus className="w-5 h-5 text-blue-500" />
+     
