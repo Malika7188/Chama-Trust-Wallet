@@ -121,4 +121,9 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
         {!isCollapsed && <span className="font-medium ml-3">Notifications</span>}
         {unreadCount > 0 && (
           <span className={`absolute top-2 right-6 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center ${isCollapsed ? 'right-2' : ''}`}>
-         
+            {unreadCount > 9 ? '9+' : unreadCount}
+          </span>
+        )}
+      </button>
+
+      
