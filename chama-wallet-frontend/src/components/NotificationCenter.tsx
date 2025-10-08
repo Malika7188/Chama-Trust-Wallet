@@ -19,4 +19,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
       queryClient.invalidateQueries({ queryKey: ['notifications'] })
       toast.success('Notification cleared')
     },
-    
+    onError: () => {
+      toast.error('Failed to clear notification')
+    }
+  })
