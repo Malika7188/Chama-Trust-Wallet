@@ -202,4 +202,32 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
                       {new Date(notification.CreatedAt).toLocaleDateString()}
                     </p>
                     {!notification.Read && (
-                      
+                      <button
+                        onClick={() => handleMarkAsRead(notification.ID)}
+                        className="text-xs text-blue-600 hover:text-blue-800 mt-2 font-semibold"
+                      >
+                        Mark as read
+                      </button>
+                    )}
+                  </div>
+                </div>
+              ))
+            )}
+            {selected.length > 0 && (
+              <div className="p-4 flex justify-end">
+                <button
+                  onClick={clearSelected}
+                  className="px-4 py-2 bg-red-500 text-white rounded-lg shadow hover:bg-red-700 transition font-semibold"
+                >
+                  Clear Selected
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default NotificationCenter
