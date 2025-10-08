@@ -29,4 +29,8 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
     setSelected([])
   }
 
-  c
+  const { data: notifications = [] } = useQuery({
+    queryKey: ['notifications'],
+    queryFn: () => {
+      console.log('🔍 Fetching notifications...')
+     
