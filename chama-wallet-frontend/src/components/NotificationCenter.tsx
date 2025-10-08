@@ -23,3 +23,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
       toast.error('Failed to clear notification')
     }
   })
+
+  const clearSelected = () => {
+    selected.forEach(id => clearNotificationMutation.mutate(id))
+  
