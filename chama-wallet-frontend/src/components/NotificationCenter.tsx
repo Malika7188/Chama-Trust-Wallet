@@ -44,4 +44,8 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
   const { data: invitations = [] } = useQuery({
     queryKey: ['invitations'],
     queryFn: () => {
+      console.log('🔍 Fetching invitations...')
+      return notificationApi.getInvitations().then((res: { data: GroupInvitation[] }) => {
+        console.log('✅ Invitations received:', res.data)
+        return res.data
       
