@@ -117,4 +117,8 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
         className={`flex items-center w-full px-4 py-3 rounded-lg transition-colors duration-200 text-white hover:bg-[#2ecc71] hover:text-[#1a237e] ${showNotifications ? 'bg-[#2ecc71] text-[#1a237e]' : ''}`}
         style={{ outline: 'none' }}
       >
-       
+        <Bell className="h-6 w-6" />
+        {!isCollapsed && <span className="font-medium ml-3">Notifications</span>}
+        {unreadCount > 0 && (
+          <span className={`absolute top-2 right-6 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center ${isCollapsed ? 'right-2' : ''}`}>
+         
