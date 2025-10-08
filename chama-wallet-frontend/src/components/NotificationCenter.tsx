@@ -182,4 +182,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
             ) : (
               notifications.map((notification) => (
                 <div
-             
+                  key={notification.ID}
+                  className={`p-4 border-b border-gray-100 last:border-b-0 rounded-xl transition flex items-start gap-3 ${!notification.Read ? 'bg-blue-50' : 'bg-white/70 hover:bg-blue-50'}`}
+                >
+                 
