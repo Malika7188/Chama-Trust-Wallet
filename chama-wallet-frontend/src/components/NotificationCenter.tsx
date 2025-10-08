@@ -13,4 +13,6 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
   const [showNotifications, setShowNotifications] = useState(false)
   const [selected, setSelected] = useState<string[]>([])
   const queryClient = useQueryClient()
-  
+  const clearNotificationMutation = useMutation({
+    mutationFn: (id: string) => notificationApi.clearNotification(id),
+    
