@@ -129,4 +129,8 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
       {showNotifications && (
   <div className="absolute left-0 top-12 w-80 backdrop-blur-lg bg-white/80 border border-gray-200 rounded-2xl shadow-2xl z-50 max-h-96 overflow-y-auto transition-all duration-300">
           <div className="p-4 border-b border-gray-200 flex items-center justify-between">
+            <h3 className="text-lg font-semibold text-[#1a237e]">Notifications</h3>
+            <span className="text-xs text-gray-500">{unreadCount > 0 ? `${unreadCount} unread` : 'All read'}</span>
+          </div>
+
           
