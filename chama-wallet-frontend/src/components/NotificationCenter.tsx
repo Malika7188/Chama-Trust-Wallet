@@ -65,4 +65,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['invitations'] })
       queryClient.invalidateQueries({ queryKey: ['groups'] })
-    
+      queryClient.invalidateQueries({ queryKey: ['userGroups'] }) // Add this if you have user-specific groups
+      toast.success('Invitation accepted! You are now a member of the group.')
+    },
+   
