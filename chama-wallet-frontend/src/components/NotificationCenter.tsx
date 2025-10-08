@@ -53,4 +53,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
     refetchInterval: 30000, // Refetch every 30 seconds
   })
 
-  
+  const markAsReadMutation = useMutation({
+    mutationFn: (id: string) => notificationApi.markAsRead(id),
+    onSuccess: () => {
+    
