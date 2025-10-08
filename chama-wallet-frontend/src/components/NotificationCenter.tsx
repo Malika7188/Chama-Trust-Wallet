@@ -126,4 +126,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
         )}
       </button>
 
-      
+      {showNotifications && (
+  <div className="absolute left-0 top-12 w-80 backdrop-blur-lg bg-white/80 border border-gray-200 rounded-2xl shadow-2xl z-50 max-h-96 overflow-y-auto transition-all duration-300">
+          <div className="p-4 border-b border-gray-200 flex items-center justify-between">
+          
