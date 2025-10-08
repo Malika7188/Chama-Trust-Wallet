@@ -15,4 +15,8 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
   const queryClient = useQueryClient()
   const clearNotificationMutation = useMutation({
     mutationFn: (id: string) => notificationApi.clearNotification(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['notifications'] })
+      toast.success('Notification cleared')
+    },
     
