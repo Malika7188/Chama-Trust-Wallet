@@ -56,4 +56,8 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
   const markAsReadMutation = useMutation({
     mutationFn: (id: string) => notificationApi.markAsRead(id),
     onSuccess: () => {
-    
+      queryClient.invalidateQueries({ queryKey: ['notifications'] })
+    }
+  })
+
+  
