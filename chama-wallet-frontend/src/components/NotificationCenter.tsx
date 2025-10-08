@@ -91,4 +91,11 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
         return <Check className="w-5 h-5 text-green-500" />
       case 'new_member_request':
         return <UserPlus className="w-5 h-5 text-blue-500" />
-     
+      case 'admin_promotion':
+        return <Users className="w-5 h-5 text-purple-500" />
+      default:
+        return <Bell className="w-5 h-5 text-gray-500" />
+    }
+  }
+
+ 
