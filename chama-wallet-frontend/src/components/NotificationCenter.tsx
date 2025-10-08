@@ -26,4 +26,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
 
   const clearSelected = () => {
     selected.forEach(id => clearNotificationMutation.mutate(id))
-  
+    setSelected([])
+  }
+
+  c
