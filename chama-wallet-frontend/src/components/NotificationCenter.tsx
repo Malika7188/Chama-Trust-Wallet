@@ -136,4 +136,10 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
           {/* Invitations */}
           {invitations.length > 0 && (
             <div className="border-b border-gray-200">
-            
+              <div className="p-3 bg-blue-100 rounded-t-xl">
+                <h4 className="font-medium text-blue-900">Group Invitations</h4>
+              </div>
+              {invitations.map((invitation) => (
+                <div key={invitation.ID} className="p-4 border-b border-gray-100 last:border-b-0 bg-white/70 hover:bg-blue-50 transition rounded-xl">
+                  <div className="flex items-start space-x-3">
+                   
