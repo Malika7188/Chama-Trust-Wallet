@@ -133,4 +133,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
             <span className="text-xs text-gray-500">{unreadCount > 0 ? `${unreadCount} unread` : 'All read'}</span>
           </div>
 
-          
+          {/* Invitations */}
+          {invitations.length > 0 && (
+            <div className="border-b border-gray-200">
+            
