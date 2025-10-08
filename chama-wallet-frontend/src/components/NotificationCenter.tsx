@@ -98,4 +98,8 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
     }
   }
 
- 
+  const handleMarkAsRead = (id: string) => {
+    markAsReadMutation.mutate(id)
+  }
+
+  
