@@ -185,4 +185,10 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
                   key={notification.ID}
                   className={`p-4 border-b border-gray-100 last:border-b-0 rounded-xl transition flex items-start gap-3 ${!notification.Read ? 'bg-blue-50' : 'bg-white/70 hover:bg-blue-50'}`}
                 >
-                 
+                  <input
+                    type="checkbox"
+                    checked={selected.includes(notification.ID)}
+                    onChange={e => {
+                      if (e.target.checked) setSelected([...selected, notification.ID])
+                      else setSelected(selected.filter(id => id !== notification.ID))
+                   
