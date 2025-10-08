@@ -48,4 +48,9 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
       return notificationApi.getInvitations().then((res: { data: GroupInvitation[] }) => {
         console.log('✅ Invitations received:', res.data)
         return res.data
-      
+      })
+    },
+    refetchInterval: 30000, // Refetch every 30 seconds
+  })
+
+  
