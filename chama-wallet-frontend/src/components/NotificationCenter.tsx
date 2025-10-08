@@ -142,4 +142,9 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
               {invitations.map((invitation) => (
                 <div key={invitation.ID} className="p-4 border-b border-gray-100 last:border-b-0 bg-white/70 hover:bg-blue-50 transition rounded-xl">
                   <div className="flex items-start space-x-3">
-                   
+                    <UserPlus className="w-5 h-5 text-blue-500 mt-1" />
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-[#1a237e]">
+                        Invitation to join "{invitation.Group.Name}"
+                      </p>
+                     
