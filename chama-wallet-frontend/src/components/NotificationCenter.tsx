@@ -37,4 +37,8 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
         console.log('✅ Notifications received:', res.data)
         return res.data
       })
-   
+    },
+    refetchInterval: 30000, // Refetch every 30 seconds
+  })
+
+  
