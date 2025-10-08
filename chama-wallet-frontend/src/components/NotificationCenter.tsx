@@ -60,4 +60,6 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) 
     }
   })
 
-  
+  const acceptInvitationMutation = useMutation({
+    mutationFn: (id: string) => notificationApi.acceptInvitation(id),
+   
