@@ -11,4 +11,6 @@ interface NotificationCenterProps {
 
 const NotificationCenter: React.FC<NotificationCenterProps> = ({ isCollapsed }) => {
   const [showNotifications, setShowNotifications] = useState(false)
+  const [selected, setSelected] = useState<string[]>([])
+  const queryClient = useQueryClient()
   
