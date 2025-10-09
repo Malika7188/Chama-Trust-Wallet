@@ -122,4 +122,7 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
               const userHasVoted = hasUserVoted(payout)
               
               return (
-                
+                <div key={payout.ID} className="border border-gray-200 rounded-lg p-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <div>
+                    
