@@ -27,4 +27,7 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
   const payoutRequests = payoutRequestsResponse?.data || []
 
   const createPayoutMutation = useMutation({
-   
+    mutationFn: (data: any) => groupApi.createPayoutRequest(group.ID, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['payout-requests', group.ID] })
+     
