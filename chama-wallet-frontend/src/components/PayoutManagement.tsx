@@ -53,4 +53,6 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
 
   const currentUserMember = group.Members?.find(m => m.UserID === currentUser.id)
   const isAdmin = currentUserMember && ['creator', 'admin'].includes(currentUserMember.Role)
-  
+  const approvedMembers = group.Members?.filter(m => m.Status === 'approved') || []
+
+ 
