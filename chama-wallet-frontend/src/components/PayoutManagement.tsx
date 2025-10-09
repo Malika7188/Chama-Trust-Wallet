@@ -130,4 +130,7 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
                       </h4>
                       <p className="text-sm text-gray-600">
                         Amount: {payout.Amount} XLM • Round {payout.Round}
+                      </p>
+                    </div>
+                    <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                     
