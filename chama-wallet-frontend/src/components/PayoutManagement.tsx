@@ -34,4 +34,9 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
       setShowCreateModal(false)
       setPayoutData({ recipient_id: '', amount: 0, round: 1 })
     },
-   
+    onError: (error: any) => {
+      toast.error(error.response?.data?.error || 'Failed to create payout request')
+    }
+  })
+
+  
