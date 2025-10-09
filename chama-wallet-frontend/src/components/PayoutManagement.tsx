@@ -99,3 +99,12 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
             <h4 className="font-medium text-blue-900 mb-2">Payout Process</h4>
             <ul className="text-sm text-blue-800 space-y-1">
               <li>• Only admins can create payout requests</li>
+              <li>• At least 1 admin must approve each payout</li>
+              <li>• All members are notified when payouts are approved</li>
+              <li>• Payouts follow the predetermined order set during group activation</li>
+            </ul>
+          </div>
+        </div>
+      )}
+
+     
