@@ -161,4 +161,7 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
                   {/* Admin Actions */}
                   {isAdmin && payout.Status === 'pending' && !userHasVoted && (
                     <div className="flex space-x-2">
-                     
+                      <button
+                        onClick={() => handleApprovePayout(payout.ID, true)}
+                        className="btn btn-primary btn-sm"
+                       
