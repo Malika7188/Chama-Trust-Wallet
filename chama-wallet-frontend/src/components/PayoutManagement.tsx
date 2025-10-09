@@ -79,4 +79,7 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
     return payout.Approvals?.some(a => a.Admin.id === currentUser.id)
   }
 
-  
+  return (
+    <div className="space-y-6">
+      {/* Create Payout Request */}
+     
