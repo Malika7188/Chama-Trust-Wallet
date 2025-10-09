@@ -12,4 +12,6 @@ interface PayoutManagementProps {
 
 const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser }) => {
   const [showCreateModal, setShowCreateModal] = useState(false)
-  
+  const [payoutData, setPayoutData] = useState({
+    recipient_id: '',
+    
