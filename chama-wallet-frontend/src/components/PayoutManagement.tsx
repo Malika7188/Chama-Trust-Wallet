@@ -158,4 +158,7 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
                     </div>
                   </div>
 
-                 
+                  {/* Admin Actions */}
+                  {isAdmin && payout.Status === 'pending' && !userHasVoted && (
+                    <div className="flex space-x-2">
+                     
