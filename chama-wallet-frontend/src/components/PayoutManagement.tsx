@@ -115,4 +115,8 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
           <div className="text-center py-8 text-gray-500">
             No payout requests yet
           </div>
-       
+        ) : (
+          <div className="space-y-4">
+            {payoutRequests.map((payout: PayoutRequest) => {
+              const status = getPayoutStatus(payout)
+             
