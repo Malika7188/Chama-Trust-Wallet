@@ -90,4 +90,9 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
               onClick={() => setShowCreateModal(true)}
               className="btn btn-primary"
             >
-            
+              <DollarSign className="w-4 h-4 mr-2" />
+              Create Payout Request
+            </button>
+          </div>
+          
+         
