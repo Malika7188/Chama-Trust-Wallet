@@ -111,4 +111,8 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
       <div className="card">
         <h3 className="text-lg font-semibold mb-4">Payout Requests</h3>
         
+        {payoutRequests.length === 0 ? (
+          <div className="text-center py-8 text-gray-500">
+            No payout requests yet
+          </div>
        
