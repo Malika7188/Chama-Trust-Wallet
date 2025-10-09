@@ -60,4 +60,8 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
     createPayoutMutation.mutate(payoutData)
   }
 
+  const handleApprovePayout = (payoutId: string, approved: boolean) => {
+    approvePayoutMutation.mutate({ id: payoutId, approved })
+  }
+
   
