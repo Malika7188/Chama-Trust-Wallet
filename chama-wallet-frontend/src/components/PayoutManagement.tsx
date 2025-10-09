@@ -243,4 +243,10 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
                     Round
                   </label>
                   <input
-                 
+                    type="number"
+                    value={payoutData.round}
+                    onChange={(e) => setPayoutData({
+                      ...payoutData,
+                      round: parseInt(e.target.value)
+                    })}
+                  
