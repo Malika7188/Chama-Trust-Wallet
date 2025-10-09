@@ -107,4 +107,8 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
         </div>
       )}
 
-     
+      {/* Payout Requests List */}
+      <div className="card">
+        <h3 className="text-lg font-semibold mb-4">Payout Requests</h3>
+        
+       
