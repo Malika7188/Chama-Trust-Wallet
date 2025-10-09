@@ -174,4 +174,10 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
                         className="btn btn-secondary btn-sm"
                         disabled={approvePayoutMutation.isPending}
                       >
-                      
+                        <X className="w-4 h-4 mr-1" />
+                        Reject
+                      </button>
+                    </div>
+                  )}
+
+                 
