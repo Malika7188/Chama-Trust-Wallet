@@ -133,4 +133,6 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
                       </p>
                     </div>
                     <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                    
+                      status.color === 'green' ? 'bg-green-100 text-green-800' :
+                      status.color === 'red' ? 'bg-red-100 text-red-800' :
+                     
