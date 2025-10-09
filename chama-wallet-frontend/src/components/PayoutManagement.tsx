@@ -30,4 +30,8 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
     mutationFn: (data: any) => groupApi.createPayoutRequest(group.ID, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['payout-requests', group.ID] })
-     
+      toast.success('Payout request created!')
+      setShowCreateModal(false)
+      setPayoutData({ recipient_id: '', amount: 0, round: 1 })
+    },
+   
