@@ -64,4 +64,8 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
     approvePayoutMutation.mutate({ id: payoutId, approved })
   }
 
-  
+  const getPayoutStatus = (payout: PayoutRequest) => {
+    const approvals = payout.Approvals?.filter(a => a.Approved).length || 0
+    const rejections = payout.Approvals?.filter(a => !a.Approved).length || 0
+
+   
