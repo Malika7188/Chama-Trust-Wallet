@@ -87,4 +87,7 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold">Payout Management</h3>
             <button
-           
+              onClick={() => setShowCreateModal(true)}
+              className="btn btn-primary"
+            >
+            
