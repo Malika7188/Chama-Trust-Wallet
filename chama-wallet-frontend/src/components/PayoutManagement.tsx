@@ -267,4 +267,16 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
                   type="submit" 
                   className="btn btn-primary flex-1"
                   disabled={createPayoutMutation.isPending}
+                >
+                  {createPayoutMutation.isPending ? 'Creating...' : 'Create Request'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
 
+export default PayoutManagement
