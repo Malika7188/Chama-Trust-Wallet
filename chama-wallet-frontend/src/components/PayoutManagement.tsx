@@ -39,4 +39,7 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
     }
   })
 
-  
+  const approvePayoutMutation = useMutation({
+    mutationFn: ({ id, approved }: { id: string, approved: boolean }) => 
+      payoutApi.approvePayout(id, { approved }),
+    
