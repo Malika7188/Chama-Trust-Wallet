@@ -216,4 +216,13 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
                     {approvedMembers.map((member) => (
                       <option key={member.ID} value={member.UserID}>
                         {member.User.name}
-                  
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Amount (XLM)
+                  </label>
+                 
