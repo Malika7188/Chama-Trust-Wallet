@@ -203,4 +203,8 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Recipient
                   </label>
-                  
+                  <select
+                    value={payoutData.recipient_id}
+                    onChange={(e) => setPayoutData({
+                      ...payoutData,
+                   
