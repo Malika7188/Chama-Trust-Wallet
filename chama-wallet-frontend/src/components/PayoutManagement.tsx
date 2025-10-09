@@ -55,4 +55,9 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
   const isAdmin = currentUserMember && ['creator', 'admin'].includes(currentUserMember.Role)
   const approvedMembers = group.Members?.filter(m => m.Status === 'approved') || []
 
- 
+  const handleCreatePayout = (e: React.FormEvent) => {
+    e.preventDefault()
+    createPayoutMutation.mutate(payoutData)
+  }
+
+  
