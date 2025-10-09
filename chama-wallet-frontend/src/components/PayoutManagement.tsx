@@ -18,3 +18,10 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
     round: 1
   })
   const queryClient = useQueryClient()
+
+  const { data: payoutRequestsResponse } = useQuery({
+    queryKey: ['payout-requests', group.ID],
+    queryFn: () => groupApi.getPayoutRequests(group.ID)
+  })
+
+  
