@@ -141,4 +141,7 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
                     </span>
                   </div>
 
-                 
+                  {/* Approval Status */}
+                  <div className="mb-3">
+                    <h5 className="text-sm font-medium text-gray-700 mb-2">Approvals:</h5>
+                    
