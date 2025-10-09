@@ -82,4 +82,6 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
   return (
     <div className="space-y-6">
       {/* Create Payout Request */}
-     
+      {isAdmin && group.Status === 'active' && (
+        <div className="card">
+         
