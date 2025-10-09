@@ -225,4 +225,13 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Amount (XLM)
                   </label>
-                 
+                  <input
+                    type="number"
+                    step="0.01"
+                    value={payoutData.amount}
+                    onChange={(e) => setPayoutData({
+                      ...payoutData,
+                      amount: parseFloat(e.target.value)
+                    })}
+                    className="input"
+                  
