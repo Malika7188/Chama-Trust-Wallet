@@ -84,4 +84,7 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
       {/* Create Payout Request */}
       {isAdmin && group.Status === 'active' && (
         <div className="card">
-         
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold">Payout Management</h3>
+            <button
+           
