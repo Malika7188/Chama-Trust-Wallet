@@ -147,4 +147,8 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
                     <div className="flex flex-wrap gap-2">
                       {payout.Approvals?.map((approval) => (
                         <div key={approval.ID} className="flex items-center space-x-1">
-                         
+                          <span className="text-sm">{approval.Admin.name}</span>
+                          {approval.Approved ? (
+                            <Check className="w-4 h-4 text-green-500" />
+                          ) : (
+                          
