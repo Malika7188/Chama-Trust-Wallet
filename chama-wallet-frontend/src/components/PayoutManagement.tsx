@@ -75,4 +75,8 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
     return { text: `Pending (${approvals}/1 approval)`, color: 'yellow' }
   }
 
+  const hasUserVoted = (payout: PayoutRequest) => {
+    return payout.Approvals?.some(a => a.Admin.id === currentUser.id)
+  }
+
   
