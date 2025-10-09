@@ -125,4 +125,9 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
                 <div key={payout.ID} className="border border-gray-200 rounded-lg p-4">
                   <div className="flex items-center justify-between mb-3">
                     <div>
+                      <h4 className="font-medium">
+                        Payout to {payout.Recipient.name}
+                      </h4>
+                      <p className="text-sm text-gray-600">
+                        Amount: {payout.Amount} XLM • Round {payout.Round}
                     
