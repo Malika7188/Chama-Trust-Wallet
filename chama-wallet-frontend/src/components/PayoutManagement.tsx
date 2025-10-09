@@ -164,4 +164,9 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
                       <button
                         onClick={() => handleApprovePayout(payout.ID, true)}
                         className="btn btn-primary btn-sm"
-                       
+                        disabled={approvePayoutMutation.isPending}
+                      >
+                        <Check className="w-4 h-4 mr-1" />
+                        Approve
+                      </button>
+                     
