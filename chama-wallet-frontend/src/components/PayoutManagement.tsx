@@ -51,4 +51,6 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
     }
   })
 
+  const currentUserMember = group.Members?.find(m => m.UserID === currentUser.id)
+  const isAdmin = currentUserMember && ['creator', 'admin'].includes(currentUserMember.Role)
   
