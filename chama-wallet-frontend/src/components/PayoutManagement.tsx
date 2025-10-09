@@ -261,4 +261,10 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
                   onClick={() => setShowCreateModal(false)}
                   className="btn btn-secondary flex-1"
                 >
-              
+                  Cancel
+                </button>
+                <button 
+                  type="submit" 
+                  className="btn btn-primary flex-1"
+                  disabled={createPayoutMutation.isPending}
+
