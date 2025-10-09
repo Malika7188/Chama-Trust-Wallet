@@ -71,4 +71,8 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
     if (payout.Status === 'approved') return { text: 'Approved', color: 'green' }
     if (payout.Status === 'rejected') return { text: 'Rejected', color: 'red' }
     if (rejections > 0) return { text: 'Rejected', color: 'red' }
-    
+    if (approvals >= 1) return { text: 'Approved', color: 'green' }
+    return { text: `Pending (${approvals}/1 approval)`, color: 'yellow' }
+  }
+
+  
