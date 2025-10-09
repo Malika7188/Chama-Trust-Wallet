@@ -119,4 +119,7 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
           <div className="space-y-4">
             {payoutRequests.map((payout: PayoutRequest) => {
               const status = getPayoutStatus(payout)
-             
+              const userHasVoted = hasUserVoted(payout)
+              
+              return (
+                
