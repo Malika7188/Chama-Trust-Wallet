@@ -180,4 +180,16 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
                     </div>
                   )}
 
-                 
+                  {userHasVoted && (
+                    <p className="text-sm text-gray-600">
+                      You have already voted on this request
+                    </p>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+        )}
+      </div>
+
+    
