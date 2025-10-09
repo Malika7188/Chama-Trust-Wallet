@@ -199,4 +199,8 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
             <h3 className="text-lg font-semibold mb-4">Create Payout Request</h3>
             <form onSubmit={handleCreatePayout}>
               <div className="space-y-4">
-             
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Recipient
+                  </label>
+                  
