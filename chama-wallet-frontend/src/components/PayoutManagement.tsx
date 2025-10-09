@@ -151,4 +151,11 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
                           {approval.Approved ? (
                             <Check className="w-4 h-4 text-green-500" />
                           ) : (
-                          
+                            <X className="w-4 h-4 text-red-500" />
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                 
