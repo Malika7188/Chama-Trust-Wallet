@@ -249,4 +249,16 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
                       ...payoutData,
                       round: parseInt(e.target.value)
                     })}
-                  
+                    className="input"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="flex space-x-3 mt-6">
+                <button
+                  type="button"
+                  onClick={() => setShowCreateModal(false)}
+                  className="btn btn-secondary flex-1"
+                >
+              
