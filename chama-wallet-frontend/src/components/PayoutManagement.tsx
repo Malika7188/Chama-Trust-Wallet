@@ -207,4 +207,9 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
                     value={payoutData.recipient_id}
                     onChange={(e) => setPayoutData({
                       ...payoutData,
-                   
+                      recipient_id: e.target.value
+                    })}
+                    className="input"
+                    required
+                  >
+                 
