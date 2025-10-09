@@ -46,4 +46,9 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
       queryClient.invalidateQueries({ queryKey: ['payout-requests', group.ID] })
       toast.success('Payout decision recorded!')
     },
-    
+    onError: (error: any) => {
+      toast.error(error.response?.data?.error || 'Failed to process payout decision')
+    }
+  })
+
+  
