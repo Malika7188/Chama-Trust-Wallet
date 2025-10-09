@@ -212,4 +212,8 @@ const PayoutManagement: React.FC<PayoutManagementProps> = ({ group, currentUser 
                     className="input"
                     required
                   >
-                 
+                    <option value="">Select recipient...</option>
+                    {approvedMembers.map((member) => (
+                      <option key={member.ID} value={member.UserID}>
+                        {member.User.name}
+                  
